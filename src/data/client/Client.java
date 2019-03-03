@@ -11,7 +11,7 @@ package data.client;
  * 		d. Address
  */
 
-public class Client {
+public final class Client {
 	private String first_name;
 	private String last_name;
 	private String email;

@@ -14,7 +14,7 @@ package data.client;
  *  	1. Should I add code to parse the zip code into a ArrayList Integer?
  */
 
-class Address {
+final class Address {
 	private String street_address;
 	private String city;
 	private String state;

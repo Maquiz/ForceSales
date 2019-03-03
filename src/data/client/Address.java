@@ -12,6 +12,7 @@ package data.client;
  * 
  *  TODO:
  *  	1. Should I add code to parse the zip code into a ArrayList Integer?
+ *  	2. Should I override the equals comparison and allow for case insensitivity.
  */
 
 final class Address {

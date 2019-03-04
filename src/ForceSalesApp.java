@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class ForceSalesApp {
 
 	public static void main(String[] arg) {
@@ -7,9 +9,11 @@ public class ForceSalesApp {
 		Employee Thomas = new Employee("Thomas");
 		Employee Max = new Employee("Max");
 		
-		Task job1 = new Task("Sales report", Arend);
-		Task job2 = new Task("Profit Report", Thomas);
-		Task job3 = new Task("Growth report", Max);
+		Date test = new Date();
+		
+		Task job1 = new Task("Sales report", Arend, test);
+		Task job2 = new Task("Profit Report", Thomas, test);
+		Task job3 = new Task("Growth report", Max, test);
 		
 		TaskList list = new TaskList();
 		
@@ -20,12 +24,12 @@ public class ForceSalesApp {
 		list.addTask(job2);
 		list.addTask(job3);
 		
-		//list.getAllTasks();
+		list.getAllTasks();
 		
 		//list.getCompletedTasks();
 		
-		list.getTasks();
-		
+		//list.getTasks();
+
 		
 		
 		

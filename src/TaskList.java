@@ -7,12 +7,13 @@
  * _List - List: An arraylist which holds task objects.
  * 
  * Functions:
- * addTask(Task) - Takes input Task and adds it to the TaskList.
- * getCompletedTasks() - Prints out all completed tasks.
- * getTasks() - Prints out all Tasks that have not been completed.
- * getAllTasks() - Prints all tasks in the Task List. This should be called before calling removeTask()
- * removeTask(int) - Removes task at index, call getAllTasks() before selecting an index.
- * getSize() - Returns List size as an int.
+ * void - addTask(Task) - Takes input Task and adds it to the TaskList.
+ * void - getCompletedTasks() - Prints out all completed tasks and their completion date.
+ * void - getTasks() - Prints out all Tasks that have not been completed and shows their due date.
+ * void - getAllTasks() - Prints all tasks in the Task List. This should be called before calling removeTask(), also shows assignment date.
+ * void - removeTask(int) - Removes task at index, call getAllTasks() before selecting an index.
+ * int - getSize() - Returns List size as an int.
+ * Task - get() - Return task at an index.
  */
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class TaskList {
 		int count = 1;
 		for(int i = 0; i < _List.size(); i++) {
 			if(_List.get(i).isTaskDone() == true) {
-				System.out.println(count + ". " +_List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned());
+				System.out.println(count + ". " +_List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned() + " | Completed on: " + _List.get(i).getCompletionDate());
 				count++;
 			}
 		}
@@ -46,7 +47,7 @@ public class TaskList {
 		int count = 1;
 		for(int i = 0; i < _List.size(); i++) {
 			if(_List.get(i).isTaskDone() == false) {
-				System.out.println(count + ". " + _List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned());
+				System.out.println(count + ". " + _List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned() + " | Due: " + _List.get(i).getDueDate());
 				count++;
 			}
 		}
@@ -55,7 +56,7 @@ public class TaskList {
 	public void getAllTasks() {
 		int count = 0;
 		for(int i = 0; i < _List.size(); i++) {
-				System.out.println(count + ". " + _List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned());
+				System.out.println(count + ". " + _List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned() + " | Assigned on: " + _List.get(i).getAssignedDate());
 				count++;
 			}
 	}
@@ -66,6 +67,10 @@ public class TaskList {
 	
 	public int getSize() {
 		return _List.size();
+	}
+	
+	public Task get(int index) {
+		return _List.get(index);
 	}
 
 }

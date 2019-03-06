@@ -17,6 +17,11 @@ public final class Client {
 	private String email;
 	private Address address;
 	
+	// Constructor
+	public Client() {
+		address = new Address();
+	}
+	
 	// Return the first name
 	public String getFirstName() {
 		return first_name;

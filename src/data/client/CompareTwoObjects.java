@@ -6,5 +6,5 @@ package data.client;
  */
 
 interface CompareTwoObjects<A,B> {
-	public boolean __compare__(A a,B b);
+	public boolean compare(A a,B b);
 }

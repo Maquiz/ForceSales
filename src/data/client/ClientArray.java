@@ -8,12 +8,14 @@ import java.util.ArrayList;
  * a match based on the function used. 
  * 
  * TODO:
- * 		* Verify with group if it is okay to implement a client list this way. Code
- * 		might be removed.
- * 		* If group members are okay with idea, see if Java has official way of supporting
- * 		abstractComparsions.
+ * 		* Verify with group if it is okay to implement a client list this way.
+ * 		  Code might be removed (I think they are cool with it).
+ * 		* See if Java has official way of supporting an abstract comparsions.
+ * 		* For the address, should I also provide the ability to check for State,
+ * 		  Zip Code, and City? 
  */ 
 
+@SuppressWarnings("serial")
 public final class ClientArray extends ArrayList<Client> {
 	// To avoid being repetitious I am using lambda expressions for the following functions
 	private CompareTwoObjects<Client,String> compareFirstName = (v,s) -> { return v.getFirstName().equalsIgnoreCase(s); };
@@ -26,7 +28,7 @@ public final class ClientArray extends ArrayList<Client> {
 		ArrayList<Client> result = new ArrayList<>();
 		
 		for(Client i: this) {
-			if (i.getAddress().equals(v)) {
+			if (comparsion.compare(i, v)) {
 				result.add(i);
 			}
 		}

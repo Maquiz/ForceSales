@@ -1,4 +1,6 @@
-import java.util.Date;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Scanner;
 
 public class ForceSalesApp {
 
@@ -9,7 +11,7 @@ public class ForceSalesApp {
 		Employee Thomas = new Employee("Thomas");
 		Employee Max = new Employee("Max");
 		
-		Date test = new Date();
+		Calendar test = Calendar.getInstance();
 		
 		Task job1 = new Task("Sales report", Arend, test);
 		Task job2 = new Task("Profit Report", Thomas, test);
@@ -24,17 +26,55 @@ public class ForceSalesApp {
 		list.addTask(job2);
 		list.addTask(job3);
 		
-		list.getAllTasks();
+		boolean flag = true;
 		
-		//list.getCompletedTasks();
-		
-		//list.getTasks();
+		int option;
 
+		Scanner keyboard = new Scanner(System.in);
 		
+		while(flag == true)
+		{
+			System.out.println("Select an option");
+			System.out.println("1. Get all Tasks.");
+			System.out.println("2. Get Completed Tasks.");
+			System.out.println("3. Get Tasks.");
+			System.out.println("4. Get Today's Tasks.");
+			System.out.println("5. Exit.");
+			
+			option = keyboard.nextInt();
+			
+			for(int i = 0; i < 25; i++)
+			{
+				System.out.println("\n");
+			}
 		
+			switch(option){
+				
+			case 1:
+				list.getAllTasks();
+				break;
+			case 2:
+				list.getCompletedTasks();
+				break;
+			case 3:
+				list.getTasks();
+				break;
+			case 4:
+				list.getTodaysTasks();
+				break;
+			case 5:
+				flag = false;
+			}
+			
+			for(int i = 0; i < 2; i++)
+			{
+				System.out.println("\n");
+			}
 		
-		
-		
+		}	
 		
 	}
+	 
 }
+
+

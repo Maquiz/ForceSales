@@ -3,13 +3,19 @@
  * 														Task Class
  * This object holds task information such as a task name, is the task complete?, and who is assigned to this task?
  * 
+ * 
+ * 
+ * 
  * Attributes:
  * nameOfTask - String: holds the name of the task.
  * isTaskDone - Boolean: defaults to false, set to true when the task is complete.
  * assigned - Employee: holds employee object of the employee working on the task.
- * assignedDate - Date: holds date the task was assigned.
- * dueDate - Date: holds due date of task
- * completionDate - Date: holds date which the task was completed.
+ * assignedDate - Calendar: holds date the task was assigned.
+ * dueDate - Calendar: holds due date of task
+ * completionDate - Calendar: holds date which the task was completed.
+ * 
+ * 
+ * 
  * 
  * Functions:
  * Constructor - Task(String, Employee, Date) - String input is set to name of task and Employee object is set to assigned Employee. 
@@ -20,12 +26,12 @@
  * void - setTaskDone() - Sets isTaskDone attribute to true.
  * Employee - getAssigned() - Returned assigned Employee object.
  * void - changeAssigned(Employee) - Sets assigned Employee to input Employee.
+ * Calendar - getCalendarDueDate() - Returns the calendar object for due date, used for back end comparisons.
  * Date - getAssignedDate() - returns date the task was assigned.
  * Date - getDueDate() - returns date the task is due
  * Date - getCompletionDate() - returns date the task was completed.
  * 
  */
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,16 +41,16 @@ public class Task {
 	private String nameOfTask;
 	private boolean isTaskDone;
 	private Employee assigned;
-	private Date assignedDate;
-	private Date dueDate;
-	private Date completionDate;
+	private Calendar assignedDate;
+	private Calendar dueDate;
+	private Calendar completionDate;
 	
 	//Constructor
-	Task(String name, Employee who, Date due){
+	Task(String name, Employee who, Calendar due){
 		this.nameOfTask = name;
 		this.isTaskDone = false;
 		this.assigned = who;
-		this.assignedDate = new Date();
+		this.assignedDate = Calendar.getInstance();
 		this.dueDate = due;
 		
 	}
@@ -63,7 +69,7 @@ public class Task {
 
 	public void setTaskDone() {
 		this.isTaskDone = true;
-		this.completionDate = new Date();
+		this.completionDate = Calendar.getInstance();
 	}
 
 	public Employee getAssigned() {
@@ -73,17 +79,21 @@ public class Task {
 	public void changeAssigned(Employee assigned) {
 		this.assigned = assigned;
 	}
+	
+	public Calendar getCalendarDueDate() {
+		return this.dueDate;
+	}
 
 	public Date getAssignedDate() {
-		return assignedDate;
+		return assignedDate.getTime();
 	}
 
 	public Date getDueDate() {
-		return dueDate;
+		return dueDate.getTime();
 	}
 
 	public Date getCompletionDate() {
-		return completionDate;
+		return completionDate.getTime();
 	}	
 	
 	

@@ -1,17 +1,17 @@
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import java.util.Date;
 
 class ForceSalesAppTest {
 
 	Employee Arend;
 	Employee Thomas;
 	Employee Max;
-	Date test;
+	Calendar test;
 	
 	public ForceSalesAppTest() {
 		
@@ -22,7 +22,7 @@ class ForceSalesAppTest {
 		Arend = new Employee("Arend");
 		Thomas = new Employee("Thomas");
 		Max = new Employee("Max");
-		test = new Date();
+		test = Calendar.getInstance();
 	}
 	
 	@Test

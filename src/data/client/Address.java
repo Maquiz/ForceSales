@@ -12,20 +12,59 @@ package data.client;
  * 
  *  TODO:
  *  	1. Should I add code to parse the zip code into a ArrayList Integer?
- *  	2. Should I override the equals comparison and allow for case insensitivity.
+ *  	2. If someone wanted to do a more elaborate search on the Address, should
+ *  		I add the functionality here or in the ClientArray function?
  */
 
-final class Address {
+public final class Address {
 	private String street_address;
 	private String city;
 	private String state;
 	private String zip_code;
 	
+	public Address() {
+		this.street_address = "";
+		this.city = "";
+		this.state = "";
+		this.zip_code = "";
+	}
 	
+	public Address(String street_address,
+				String city,
+				String state,
+				String zip_code) {
+		this.street_address = street_address;
+		this.city = city;
+		this.state = state;
+		this.zip_code = zip_code;
+	}
+	
+	
+	@Override // compares the values to another objects. Case sensivity is ignored.
+	public boolean equals(Object obj) {
+		if (obj instanceof Address) {
+			Address value = (Address) obj;
+			if (!value.street_address.equalsIgnoreCase(this.street_address))
+				return false;
+			else if (!value.city.equalsIgnoreCase(this.city))
+				return false;
+			else if (!value.state.equalsIgnoreCase(this.state))
+				return false;
+			else if (!value.zip_code.equalsIgnoreCase(this.zip_code))
+				return false;
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	// Returns the street address
 	public String getStreetAddress() {
 		return street_address;
 	}
 	
+	// Assigns the street address
 	public void setStreetAddress(String street_address) {
 		this.street_address = street_address;
 	}

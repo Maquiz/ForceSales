@@ -58,4 +58,29 @@ class TestClient {
 		
 		Assertions.assertEquals(compare_address, client.getAddress());
 	}
+	
+	@Test
+	void testEqualComparsion() {
+		Client a = new Client();
+		Client b = new Client();
+		Client a2 = new Client();
+		
+		a.setFirstName("a");
+		a.setLastName("a");
+		a.setEmail("a");
+		a.setAddress(new Address());
+		
+		b.setFirstName("b");
+		b.setLastName("b");
+		b.setEmail("b");
+		b.setAddress(new Address());
+		
+		a2.setFirstName("a");
+		a2.setLastName("a");
+		a2.setEmail("a");
+		a2.setAddress(new Address());
+		
+		Assertions.assertNotEquals(a, b);
+		Assertions.assertEquals(a, a2);
+	}
 }

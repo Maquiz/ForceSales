@@ -2,6 +2,9 @@
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Calendar;
+import Tasks.Employee;
+import Tasks.Task;
+import Tasks.TaskList;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;

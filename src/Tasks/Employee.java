@@ -1,3 +1,4 @@
+package Tasks;
 /*
  * 						Fake Employee Class (for testing purposes)
  */
@@ -7,7 +8,7 @@ public class Employee {
 	
 	private String name;
 
-	Employee(String name){
+	public Employee(String name){
 		this.name = name;
 	}
 

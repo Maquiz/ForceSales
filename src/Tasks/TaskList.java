@@ -1,3 +1,4 @@
+package Tasks;
 /*
  * 												TaskList Class
  * This class handles storing all the task objects into a list. As well as functions which allow the returning of
@@ -33,7 +34,7 @@ public class TaskList {
 	private List<Task> _List;
 	
 	//Constructor
-	TaskList(){
+	public TaskList(){
 		_List = new ArrayList<>();
 	}
 	

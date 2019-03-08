@@ -1,3 +1,4 @@
+package Tasks;
 /*
  * 
  * 														Task Class
@@ -46,7 +47,7 @@ public class Task {
 	private Calendar completionDate;
 	
 	//Constructor
-	Task(String name, Employee who, Calendar due){
+	public Task(String name, Employee who, Calendar due){
 		this.nameOfTask = name;
 		this.isTaskDone = false;
 		this.assigned = who;

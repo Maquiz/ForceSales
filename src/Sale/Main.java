@@ -1,10 +1,5 @@
 package Sale;
 
-import java.sql.SQLClientInfoException;
-
-import Sale.Sales.Sale;
-import Sale.Sales.Sale.Item;
-
 public class Main {
 
 	static Sales s  = new Sales ();

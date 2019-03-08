@@ -9,6 +9,9 @@ package data.client;
  * 		b. Last name
  * 		c. Email
  * 		d. Address
+ * 
+ * TODO:
+ * 		1. Add hire date?
  */
 
 public final class Client {
@@ -19,7 +22,29 @@ public final class Client {
 	
 	// Constructor
 	public Client() {
+		first_name = "";
+		last_name = "";
+		email = "";
 		address = new Address();
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof Client) {
+			Client other2 = (Client) other;
+			if (!other2.first_name.equalsIgnoreCase(this.first_name))
+				return false;
+			else if (!other2.last_name.equalsIgnoreCase(this.last_name))
+				return false;
+			else if (!other2.email.equals(this.email))
+				return false;
+			else if (!other2.address.equals(this.address))
+				return false;
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	// Return the first name

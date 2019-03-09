@@ -2,10 +2,14 @@ package data.client;
 
 import java.util.ArrayList;
 
+import util.CompareTwoObjects;
+
 /*
  * ClientArray is an Array that inherits from java.util.ArrayList. Besides using
  * the same functionality as ArrayList, it will also have some function to find
  * a match based on the function used. 
+ * 
+ * 
  * 
  * TODO:
  * 		* Verify with group if it is okay to implement a client list this way.
@@ -22,19 +26,24 @@ public final class ClientArray extends ArrayList<Client> {
 	private CompareTwoObjects<Client,String> compareLastName = (v,s) -> { return v.getLastName().equalsIgnoreCase(s); };
 	private CompareTwoObjects<Client,String> compareEmail = (v,s) -> { return v.getEmail().equals(s); };
 	private CompareTwoObjects<Client,Address> compareAddress = (v,s) -> { return v.getAddress().equals(s); };
-
-	// This is a template class, designed to return an ArrayList of Clients if the requested comparison does match
-	private <V> ArrayList<Client> abstractContains(V v, CompareTwoObjects<Client,V> comparsion) {
-		ArrayList<Client> result = new ArrayList<>();
+	
+	private CompareTwoObjects<Client,Address> compareAddressStreet = (v,s) -> { return v.getAddress().compareStreetAddress(s); };
+	private CompareTwoObjects<Client,Address> compareAddressZipCode = (v,s) -> { return v.getAddress().compareZipCode(s); };
+	private CompareTwoObjects<Client,Address> compareAddressCity = (v,s) -> { return v.getAddress().compareCity(s); };
+	private CompareTwoObjects<Client,Address> compareAddressState = (v,s) -> { return v.getAddress().compareState(s); };
+	
+	
+	private <V> ClientArray abstractContains(V v, CompareTwoObjects<Client,V> comparsion) {
+		ClientArray result = new ClientArray();
 		
 		for(Client i: this) {
-			if (comparsion.compare(i, v)) {
+			if (comparsion.compare(i, v))
 				result.add(i);
-			}
 		}
 		
 		return result;
 	}
+	
 	
 	// Constructor
 	public ClientArray() {
@@ -42,22 +51,42 @@ public final class ClientArray extends ArrayList<Client> {
 	}
 	
 	// Find a list of clients that have the same first name.
-	public ArrayList<Client> containsFirstName(String v) {
+	public ClientArray containsFirstName(String v) {
 		return abstractContains(v, compareFirstName);
 	}
 	
 	// Find a list of clients that have the same list name.
-	public ArrayList<Client> containsLastName(String v) {
+	public ClientArray containsLastName(String v) {
 		return abstractContains(v, compareLastName);
 	}
 	
 	// Find a list of clients that have the same email.
-	public ArrayList<Client> containsEmail(String v) {
+	public ClientArray containsEmail(String v) {
 		return abstractContains(v, compareEmail);
 	}
 	
 	// Find a list of clients that have the same address.
-	public ArrayList<Client> containsAddress(Address v) {
+	public ClientArray containsAddress(Address v) {
 		return abstractContains(v, compareAddress);
+	}
+	
+	// Find a list of clients that have the same address.
+	public ClientArray containsAddressStreet(Address v) {
+		return abstractContains(v, compareAddressStreet);
+	}
+	
+	// Find a list of clients that have the same address.
+	public ClientArray containsAddressZipCode(Address v) {
+		return abstractContains(v, compareAddressZipCode);
+	}
+	
+	// Find a list of clients that have the same address.
+	public ClientArray containsAddressCity(Address v) {
+		return abstractContains(v, compareAddressCity);
+	}
+	
+	// Find a list of clients that have the same address.
+	public ClientArray containsAddressState(Address v) {
+		return abstractContains(v, compareAddressState);
 	}
 }

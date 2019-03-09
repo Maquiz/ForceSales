@@ -98,4 +98,22 @@ public final class Address {
 	public void setZipCode(String zip_code) {
 		this.zip_code = zip_code;
 	}
+	
+	public boolean compareStreetAddress(Address o) {
+		return this.getStreetAddress().equalsIgnoreCase(o.getStreetAddress());
+	}
+	
+	public boolean compareZipCode(Address o) {
+		return this.getZipCode().equalsIgnoreCase(o.getZipCode());
+	}
+	
+	public boolean compareCity(Address o) {
+		return this.getCity().equalsIgnoreCase(o.getCity());
+	}
+	
+	public boolean compareState(Address o) {
+		return this.getState().equalsIgnoreCase(o.getState());
+	}
+	
+
 }

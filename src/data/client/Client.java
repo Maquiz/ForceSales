@@ -4,14 +4,27 @@
 package data.client;
 
 /**
- * Client is a class that holds information about the current person. It provides the following:
- * 		a. First name
- * 		b. Last name
- * 		c. Email
- * 		d. Address
+ * Client is a class that holds information about the current person. It
+ * provides the following:
+ * 
+ * public:
+ * 	-> (Constructor) Initializes various values.
+ * 	getters:
+ * 		-> getFirstName
+ * 		-> getLastName
+ * 		-> getEmail
+ * 		-> getAddress
+ * 	setter:
+ * 		-> setFirstName
+ * 		-> setLastName
+ * 		-> setEmail
+ * 		-> setAddress
+ * 	(@object):
+ * 		-> equals - The First and Last Name checks are case insensitive. 
  * 
  * TODO:
  * 		1. Add hire date?
+ * 		2. Should the manager also be considered a client?
  */
 
 public final class Client {
@@ -19,8 +32,8 @@ public final class Client {
 	private String last_name;
 	private String email;
 	private Address address;
+//	private Calender hired;
 	
-	// Constructor
 	public Client() {
 		first_name = "";
 		last_name = "";
@@ -47,43 +60,34 @@ public final class Client {
 		return false;
 	}
 	
-	// Return the first name
 	public String getFirstName() {
 		return first_name;
 	}
 	
-	// Sets the first_name
 	public void setFirstName(String first_name) {
 		this.first_name = first_name;
 	}
 
-	// Returns the last_name
 	public String getLastName() {
 		return last_name;
 	}
 
-	// Sets the last_name
 	public void setLastName(String last_name) {
 		this.last_name = last_name;
 	}
 
-	// Returns the email
 	public String getEmail() {
 		return email;
 	}
 
-	// Sets the email
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-	// Returns the address
 	public Address getAddress() {
 		return address;
 	}
 
-	// Sets the address
 	public void setAddress(Address address) {
 		this.address = address;
 	}

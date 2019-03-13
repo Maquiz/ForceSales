@@ -4,16 +4,34 @@
 package data.client;
 
 /**
- * Address is a class that splits the address into multiple components:
- * 		a. The street address
- * 		b. The city
- * 		c. The state
- * 		d. The zip code
+ * Address is a class that was designed to split a normal address into serveral
+ * parts. It makes it easy to do searching.
+ * 
+ * public:
+ * 	constructor:
+ * 		-> (empty)
+ * 		-> (street_address,city,state,zip_code)
+ * 	getters:
+ * 		-> getStreetAddress
+ * 		-> getCity
+ * 		-> getState
+ * 		-> getZipCode
+ * 	setter:
+ * 		-> setStreetAddress
+ * 		-> setCity
+ * 		-> setState
+ * 		-> setZipCode
+ * 	compare (will compare a specific element from one Address object to another):
+ * 		-> compareStreetAddress
+ * 		-> compareZipCode
+ * 		-> compareCity
+ * 		-> compareState
+ * -> equals - Overloads Object's method. Does a case insesitive check
  * 
  *  TODO:
- *  	1. Should I add code to parse the zip code into a ArrayList Integer?
- *  	2. If someone wanted to do a more elaborate search on the Address, should
- *  		I add the functionality here or in the ClientArray function?
+ *  	1. Rearrange functions location
+ *  	2. Should I add code to parse the zip code into a ArrayList Integer?
+ *  	3. Should I error check for null?
  */
 
 public final class Address {
@@ -59,45 +77,39 @@ public final class Address {
 		return false;
 	}
 	
-	// Returns the street address
+	
 	public String getStreetAddress() {
 		return street_address;
 	}
 	
-	// Assigns the street address
 	public void setStreetAddress(String street_address) {
 		this.street_address = street_address;
 	}
 
-	//	Returns the city
 	public String getCity() {
 		return city;
 	}
 
-	//	Assigns the city
 	public void setCity(String city) {
 		this.city = city;
 	}
 
-	//	Returns the state
 	public String getState() {
 		return state;
 	}
 
-	//	Assigns the state
 	public void setState(String state) {
 		this.state = state;
 	}
 
-	//	Returns the zip code
 	public String getZipCode() {
 		return zip_code;
 	}
 
-	//	Assigns the zip code
 	public void setZipCode(String zip_code) {
 		this.zip_code = zip_code;
 	}
+	
 	
 	public boolean compareStreetAddress(Address o) {
 		return this.getStreetAddress().equalsIgnoreCase(o.getStreetAddress());

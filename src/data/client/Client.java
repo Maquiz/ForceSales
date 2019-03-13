@@ -8,17 +8,19 @@ package data.client;
  * provides the following:
  * 
  * public:
- * 	-> (Constructor) Initializes various values.
+ * 	constructor:
+ * 		-> ()
+ * 		-> (first_name,last_name,email,address)
  * 	getters:
+ * 		-> getAddress
+ * 		-> getEmail
  * 		-> getFirstName
  * 		-> getLastName
- * 		-> getEmail
- * 		-> getAddress
  * 	setter:
+ * 		-> setAddress
+ * 		-> setEmail
  * 		-> setFirstName
  * 		-> setLastName
- * 		-> setEmail
- * 		-> setAddress
  * 	(@object):
  * 		-> equals - The First and Last Name checks are case insensitive. 
  * 
@@ -41,6 +43,16 @@ public final class Client {
 		address = new Address();
 	}
 	
+	public Client(String first_name,
+				String last_name,
+				String email,
+				Address address) {
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.email = email;
+		this.address = address;
+	}
+	
 	@Override
 	public boolean equals(Object other) {
 		if (other instanceof Client) {
@@ -60,35 +72,37 @@ public final class Client {
 		return false;
 	}
 	
-	public String getFirstName() {
-		return first_name;
+	
+	public Address getAddress() {
+		return address;
 	}
 	
-	public void setFirstName(String first_name) {
-		this.first_name = first_name;
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getFirstName() {
+		return first_name;
 	}
 
 	public String getLastName() {
 		return last_name;
 	}
 
-	public void setLastName(String last_name) {
-		this.last_name = last_name;
+	
+	public void setAddress(Address address) {
+		this.address = address;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public Address getAddress() {
-		return address;
+	
+	public void setFirstName(String first_name) {
+		this.first_name = first_name;
 	}
-
-	public void setAddress(Address address) {
-		this.address = address;
+	
+	public void setLastName(String last_name) {
+		this.last_name = last_name;
 	}
 }

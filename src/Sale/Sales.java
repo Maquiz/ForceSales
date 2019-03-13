@@ -1,21 +1,39 @@
+/*
+ * 
+ * 														Sales Class
+ * This object holds a list of sales for a given customer.
+ * 
+ *  
+ * 
+ * 
+ * 
+ * Attributes:
+ * salesList - List: An array list which holds sale objects.
+ * 
+ * 
+ * 
+ * 
+ * Functions:
+ * Constructor - Sales() - Default Constructor.
+ * void - addSale(Sale) - Add Sale to salesList.
+ * void - printSales() - 	Print all sales in list.
+ * 
+ */
 package Sale;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Sales {
-	
+public class Sales {	
 	ArrayList<Sale> salesList = new ArrayList<Sale>();
-	
-	//Add Sale to saleList
+
 	public void addSale(Sale s) {
 		salesList.add(s);
 	}
 	
-	//Print all sales in list
 	public void printSales() {
 		for(Sale s : salesList) {			
-			s.getTotal();	
+			s.printSale();	
 		}	
 	};
 }

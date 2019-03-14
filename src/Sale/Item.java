@@ -58,4 +58,8 @@ import java.util.Date;
 		System.out.println(itemDescription + " " + String.format("%.2f", itemCost) + " "+ itemQuantity + " " + String.format("%.2f", itemTotalCost()));
 		
 	}
+	
+	public String toString() {
+		return itemDescription + " " + String.format("%.2f", itemCost) + " "+ itemQuantity + " " + String.format("%.2f", itemTotalCost());	
+	}
 }

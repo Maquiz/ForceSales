@@ -44,6 +44,11 @@ public class Menu implements MenuItem {
     	options.remove(pos);
     	
     }
+    
+    public void clear() {
+    	options.clear();
+    }
+    
     @Override
     public String toString() {
         return name;

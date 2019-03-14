@@ -44,6 +44,7 @@ public class TaskList {
 	
 	public void getCompletedTasks() {
 		int count = 1;
+		System.out.println("\n");
 		for(int i = 0; i < _List.size(); i++) {
 			if(_List.get(i).isTaskDone() == true) {
 				System.out.println(count + ". " +_List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned() + " | Completed on: " + _List.get(i).getCompletionDate());
@@ -64,8 +65,16 @@ public class TaskList {
 	
 	public void getAllTasks() {
 		int count = 0;
+		String status;
+		System.out.println("\n");
 		for(int i = 0; i < _List.size(); i++) {
-				System.out.println(count + ". " + _List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned() + " | Assigned on: " + _List.get(i).getAssignedDate());
+				if(_List.get(i).isTaskDone() == true) {
+					status = "Yes.";
+				}
+				else {
+					status = "No.";
+				}
+				System.out.println(count + ". " + _List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned() + " | Assigned on: " + _List.get(i).getAssignedDate() + " | Completion Status: " + status);
 				count++;
 			}
 	}
@@ -73,7 +82,7 @@ public class TaskList {
 	public void getTodaysTasks() {
 		int count = 0;
 		Calendar temp = Calendar.getInstance();
-		System.out.println("Today's Tasks:");
+		System.out.println("\nToday's Tasks:");
 		for(int i = 0; i < _List.size(); i++) {
 			if(_List.get(i).getCalendarDueDate().get(Calendar.DAY_OF_MONTH) == temp.get(Calendar.DAY_OF_MONTH) && _List.get(i).getCalendarDueDate().get(Calendar.MONTH) == temp.get(Calendar.MONTH) && _List.get(i).getCalendarDueDate().get(Calendar.YEAR) == temp.get(Calendar.YEAR) && _List.get(i).isTaskDone() == false) {
 				System.out.println(count + ". " + _List.get(i).getNameOfTask() + " | Assigned to: " + _List.get(i).getAssigned() + " | Assigned on: " + _List.get(i).getAssignedDate());

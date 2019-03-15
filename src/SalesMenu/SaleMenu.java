@@ -4,6 +4,7 @@ import Sale.Sales;
 import consoleKit.Menu;
 import consoleKit.MenuItem;
 import consoleKit.MenuStack;
+import consoleKit.QuitCmd;
 import consoleKit.ReturnFromMenu;
 
 public class SaleMenu implements MenuItem {
@@ -20,6 +21,8 @@ public class SaleMenu implements MenuItem {
 	@Override
 	public void execute() {
 		Menu subMenu = new Menu("Sales Management", menu_stack);
+		subMenu.add(new QuitCmd());
+		subMenu.add(new ReturnFromMenu(subMenu.toString(), menu_stack));
 		//Create Sale
 		subMenu.add(new CreateSale(account_sales, menu_stack));
 		//Print All Sales

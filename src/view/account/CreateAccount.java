@@ -10,7 +10,7 @@ import data.account.Account;
 import data.account.AccountArray;
 import data.client.ClientArray;
 
-class CreateAccount implements MenuItem {
+final class CreateAccount implements MenuItem {
 	private AccountArray account_array;
 	private Account account;
 	private String value1[];

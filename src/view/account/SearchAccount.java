@@ -11,7 +11,7 @@ import consoleKit.ReturnFromMenu;
 import data.account.Account;
 import data.account.AccountArray;
 
-public class SearchAccount implements MenuItem {
+final class SearchAccount implements MenuItem {
 	private String name;
 	private MenuStack menu_stack;
 	private AccountArray account_array;

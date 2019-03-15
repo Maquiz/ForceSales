@@ -7,7 +7,7 @@ import consoleKit.ReturnFromMenu;
 import data.account.Account;
 import data.account.AccountArray;
 
-class DeleteAccount implements MenuItem {
+final class DeleteAccount implements MenuItem {
 	private AccountArray account_array;
 	private MenuStack menu_stack;
 	private String option_name;

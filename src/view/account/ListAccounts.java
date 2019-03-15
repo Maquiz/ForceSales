@@ -7,7 +7,7 @@ import consoleKit.ReturnFromMenu;
 import data.account.Account;
 import data.account.AccountArray;
 
-class ListAccounts implements MenuItem {
+final class ListAccounts implements MenuItem {
 	private AccountArray account_array;
 	private MenuStack menu_stack;
 	private String option_name;

@@ -8,6 +8,8 @@ import data.account.AccountArray;
 import view.account.AccountMenu;
 import view.client.ClientMenu;
 import SalesMenu.SaleMenu;
+import consoleKit.QuitCmd;
+
 
 public final class MainMenu extends Menu {
 	private Account account;
@@ -18,7 +20,7 @@ public final class MainMenu extends Menu {
 		this.account = new Account();
 		this.account_array = new AccountArray();
 		
-		
+		this.subMenu.add(new QuitCmd());
 		this.add(new ClientMenu("Manage clients", menus, account));
 		this.add(new Tasks(account.getTasks(), this, menus));
 		this.add(new AccountMenu("Manage accounts", account_array, menus));

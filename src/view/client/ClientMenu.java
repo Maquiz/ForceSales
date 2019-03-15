@@ -22,6 +22,7 @@ public class ClientMenu implements MenuItem {
 		Menu subMenu = new Menu(menu_name, menu_stack);
 		subMenu.add(new CreateClient("Add Client",account));
 		subMenu.add(new PrintClient("View Clients", menu_stack, account));
+		subMenu.add(new SearchClient("Search Client", menu_stack, account));
 		subMenu.add(new DeleteClient("Remove Client", menu_stack, account));
 		subMenu.add(new ReturnFromMenu("Return", menu_stack));
 		subMenu.execute();

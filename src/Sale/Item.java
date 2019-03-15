@@ -44,7 +44,6 @@ import java.util.Date;
 		dateSold = new Date();
 	};		
 	
-	
 	public void changeQuantity(int _quantity) {
 		itemQuantity += _quantity;
 	}
@@ -56,7 +55,6 @@ import java.util.Date;
 	public void printItem() {
 		System.out.println(dateSold);
 		System.out.println(itemDescription + " " + String.format("%.2f", itemCost) + " "+ itemQuantity + " " + String.format("%.2f", itemTotalCost()));
-		
 	}
 	
 	public String toString() {

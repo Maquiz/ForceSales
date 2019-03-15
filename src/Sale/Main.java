@@ -23,9 +23,11 @@ public class Main {
 		s1.addItem(ik);
 		s1.addItem(shoe);
 		s1.addItem(overwatch);
+		s1.addPayment(99.46f);
 		
 		s2.addItem(ik);
 		s2.addItem(shoe);
+		s2.addPayment(127.46f);
 		
 		//print All Sales
 		s.printSales();

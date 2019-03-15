@@ -43,7 +43,11 @@ import java.util.ArrayList;
 			saleList.add(i);
 		}
 		
-	
+		public void addPayment(float payAmount) {
+			amountPaid += payAmount;
+			
+		}
+		
 		public void printSale() {
 			System.out.println("Sale ID:" + saleId);
 			for(Item i :  saleList) {
@@ -53,6 +57,7 @@ import java.util.ArrayList;
 			}
 		
 			System.out.println("Total: " + String.format("%.2f", totalCost));
+			System.out.println("Amount Paid: "  +  String.format("%.2f", amountPaid));
 			System.out.println();
 		}
 			

@@ -36,4 +36,8 @@ public class Sales {
 			s.printSale();	
 		}	
 	};
+	
+	public Sale getSale(int pos) {
+		return salesList.get(pos);
+	}
 }

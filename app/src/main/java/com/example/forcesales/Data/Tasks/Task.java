@@ -1,4 +1,6 @@
 package com.example.forcesales.Data.Tasks;
+import com.example.forcesales.Data.Employee.Employee;
+
 /*
  * 
  * 														Task Class

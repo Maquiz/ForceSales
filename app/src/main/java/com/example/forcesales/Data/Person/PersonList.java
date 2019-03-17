@@ -8,8 +8,8 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
  * AbstractArrayListComparsion for implementation details. Note that this class is
  * not meant to be used directly.
  *
- * For implementation, here is an example for ClientArray:
- *      "ClientArray extends PersonList<Client,ClientArray>"
+ * For implementation, here is an example for ClientList:
+ *      "ClientList extends PersonList<Client,ClientList>"
  *
  *  Personal Notes:
  *      a. Advance Lamadas - https://nofluffjuststuff.com/magazine/2016/09/time_to_really_learn_generics_a_java_8_perspective

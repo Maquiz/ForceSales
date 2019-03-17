@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * Note:
  * 	For the second template argument, you must provide the subclass itself:
- * 		"AccountArray extends AbstractArrayListComparsion<Account,AccountArray>"
+ * 		"AccountList extends AbstractArrayListComparsion<Account,AccountList>"
  * 
  * Public:
  * 	-> (Constructor) Initializes ArrayList.
@@ -21,8 +21,8 @@ import java.util.ArrayList;
  * 		If you set the template parameters correctly, the return type is your subClass.
  * 		For example:
  *
- * 			protected AccountArray createEmptyArrayList() {
- * 				return new AccountArray();
+ * 			protected AccountList createEmptyArrayList() {
+ * 				return new AccountList();
  *        	}
  *
  *
@@ -32,7 +32,7 @@ import java.util.ArrayList;
  * 		the new list.
  * 		For example:
  *
- * 			public AccountArray compareOpportunityName(String value) {
+ * 			public AccountList compareOpportunityName(String value) {
  * 				return abstractContains(value, compare_oportunity_name);
  *        	}
  */

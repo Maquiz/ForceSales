@@ -5,11 +5,11 @@ import com.example.forcesales.Data.util.AbstractArrayListComparsion;
 import com.example.forcesales.Data.util.CompareTwoObjects;
 
 /*
- * AccountArray is a class that holds all of the accounts in a array.
+ * AccountList is a class that holds all of the accounts in a array.
  * 
  * Public:
  * 	-> (Constructor) Initializes AbstractArrayListComparsion
- * 	compare (returns a AccountArray subset based on the function called):
+ * 	compare (returns a AccountList subset based on the function called):
  * 		-> compareAccountName()
  * 		-> compareCloseDate()
  * 		-> compareOpportunityName()
@@ -22,7 +22,7 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
  */
 
 
-public final class AccountArray extends AbstractArrayListComparsion<Account,AccountArray> {
+public final class AccountList extends AbstractArrayListComparsion<Account, AccountList> {
 	// Lamadas are used to avoid code repetition
 	private CompareTwoObjects<Account,String> compare_account_name = (a,b) -> a.getAccountName().equalsIgnoreCase(b);
 	private CompareTwoObjects<Account,String> compare_oportunity_name = (a,b) -> a.getOpportunityName().equalsIgnoreCase(b);
@@ -33,31 +33,31 @@ public final class AccountArray extends AbstractArrayListComparsion<Account,Acco
 		a.getCloseDate().get(Calendar.YEAR) == b.get(Calendar.YEAR);
 
 	
-	public AccountArray() {
+	public AccountList() {
 		super();
 	}
 
 	@Override
-	// returns a new AccountArray (gets casted into ArrayList)
-	protected AccountArray createEmptyArrayList() {
-		return new AccountArray();
+	// returns a new AccountList (gets casted into ArrayList)
+	protected AccountList createEmptyArrayList() {
+		return new AccountList();
 	}
 
-	public AccountArray compareAccountName(String value) {
+	public AccountList compareAccountName(String value) {
 		return abstractContains(value, compare_account_name);
 	}
 	
-	// public AccountArray compareCloseDateGreater(Calendar value)
-	// public AccountArray compareCloseDateLess(Calendar value)
-	public AccountArray compareCloseDate(Calendar value) {
+	// public AccountList compareCloseDateGreater(Calendar value)
+	// public AccountList compareCloseDateLess(Calendar value)
+	public AccountList compareCloseDate(Calendar value) {
 		return abstractContains(value, compare_close_date);
 	}
 
-	public AccountArray compareOpportunityName(String value) {
+	public AccountList compareOpportunityName(String value) {
 		return abstractContains(value, compare_oportunity_name);
 	}
 	
-//	public AccountArray compareFindOwner(Client value) {
-//		return (AccountArray) abstractContains(value, compare_find_owner);
+//	public AccountList compareFindOwner(Client value) {
+//		return (AccountList) abstractContains(value, compare_find_owner);
 //	}
 }

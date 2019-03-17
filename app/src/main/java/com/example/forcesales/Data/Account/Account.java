@@ -1,13 +1,13 @@
 /**
  * @author Thomas A.
  */
-package com.example.forcesales.Data.account;
+package com.example.forcesales.Data.Account;
 
 import java.util.Calendar;
 
 import com.example.forcesales.Data.Sale.Sales;
 import com.example.forcesales.Data.Tasks.TaskList;
-import com.example.forcesales.Data.client.ClientArray;
+import com.example.forcesales.Data.Client.ClientArray;
 import com.example.forcesales.Data.util.CompareTwoObjects;
 
 /*
@@ -51,13 +51,12 @@ public final class Account {
 	private Calendar close_date;
 //	private ClientArray owner;
 	
-	private CompareTwoObjects<String,String> cmp_acc_name = (a,b) -> { return a.equalsIgnoreCase(b); };
-	private CompareTwoObjects<String,String> cmp_op_name = (a,b) -> { return a.equalsIgnoreCase(b); };
-	private CompareTwoObjects<Calendar,Calendar> cmp_cal = (a,b) -> {
-		return a.get(Calendar.DATE) == b.get(Calendar.DATE) &&
-				a.get(Calendar.MONTH) == b.get(Calendar.MONTH) &&
-				a.get(Calendar.YEAR) == b.get(Calendar.YEAR);
-	};
+	private CompareTwoObjects<String,String> cmp_acc_name = (a,b) -> a.equalsIgnoreCase(b);
+	private CompareTwoObjects<String,String> cmp_op_name = (a,b) -> a.equalsIgnoreCase(b);
+	private CompareTwoObjects<Calendar,Calendar> cmp_cal = (a,b) ->
+			a.get(Calendar.DATE) == b.get(Calendar.DATE) &&
+			a.get(Calendar.MONTH) == b.get(Calendar.MONTH) &&
+			a.get(Calendar.YEAR) == b.get(Calendar.YEAR);
 	
 	public Account() {
 		this.clients = new ClientArray();

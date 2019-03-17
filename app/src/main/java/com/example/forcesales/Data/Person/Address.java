@@ -1,7 +1,7 @@
 /**
  *  @author thomas_a
  */
-package com.example.forcesales.Data.client;
+package com.example.forcesales.Data.Person;
 
 /**
  * Address is a class that was designed to split a normal address into serveral

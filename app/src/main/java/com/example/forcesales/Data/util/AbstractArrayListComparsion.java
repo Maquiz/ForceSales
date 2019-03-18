@@ -3,48 +3,58 @@ package com.example.forcesales.Data.util;
 
 import java.util.ArrayList;
 
-import com.example.forcesales.Data.client.Client;
-import com.example.forcesales.Data.client.ClientArray;
-
-/*
+/**
  * AbstractArrayListComparsion is a an abstract class that extends from ArrayList.
  * This class provides two protected methods that are used to help with generating
- * a specialized ArrayList.
- * 
- * Note that the abstractContains is intended to be wrapped onto another method.
+ * a specialized ArrayList (ex: Return a list of people that match the last name).
+ *
+ *
+ * Note:
+ * 	For the second template argument, you must provide the subclass itself:
+ * 		"AccountList extends AbstractArrayListComparsion<Account,AccountList>"
  * 
  * Public:
- * 	-> (Constructor) Initalizes ArrayList.
+ * 	-> (Constructor) Initializes ArrayList.
  * 
  * Protected:
  * 	-> createEmptyArrayList - An abstract function that return a newly created Object.
- * 		It is not intended for the actual implementation to return a new ArrayList, 
- * 		instead, you should return a new instance of the inheriated class.
- * 
+ * 		If you set the template parameters correctly, the return type is your subClass.
+ * 		For example:
+ *
+ * 			protected AccountList createEmptyArrayList() {
+ * 				return new AccountList();
+ *        	}
+ *
+ *
  * 	-> abstractContains - Takes a value and CompareTwoObjects. This code is responsible,
  * 		for returning a specialized ArrayList based on what the CompareTwoObjects method
  * 		is comparing. If the CompareTwoObjects method returns true, the item is added to
  * 		the new list.
- * 		Note that the public function that calls this method should cast the returned object
- * 		to the inheriated class
+ * 		For example:
+ *
+ * 			public AccountList compareOpportunityName(String value) {
+ * 				return abstractContains(value, compare_oportunity_name);
+ *        	}
  */
 
-@SuppressWarnings("serial")
-public abstract class AbstractArrayListComparsion <A> extends ArrayList<A> {
+public abstract class AbstractArrayListComparsion <A,B extends AbstractArrayListComparsion<A,B>> extends ArrayList<A> {
 	public AbstractArrayListComparsion() {
 		super();
 	}
-	
-	abstract protected ArrayList<A> createEmptyArrayList();
-	
-	protected <V> ArrayList<A> abstractContains(V v, CompareTwoObjects<A,V> comparsion) {
-		ArrayList<A> result = createEmptyArrayList();
-		
+
+	abstract protected B createEmptyArrayList();
+//	protected B createEmptyArrayList() {
+//		return new B();
+//	}
+
+	protected <V> B abstractContains(V v, CompareTwoObjects<A,V> comparsion) {
+		B result = createEmptyArrayList();
+
 		for(A i: this) {
 			if (comparsion.compare(i, v))
 				result.add(i);
 		}
-		
+
 		return result;
 	}
 }

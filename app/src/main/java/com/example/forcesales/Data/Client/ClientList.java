@@ -1,7 +1,12 @@
 package com.example.forcesales.Data.Client;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.forcesales.Data.Person.PersonList;
+
+import java.io.Serializable;
 
 
 /*
@@ -25,7 +30,7 @@ import com.example.forcesales.Data.Person.PersonList;
  */ 
 
 @SuppressWarnings("serial")
-public final class ClientList extends PersonList<Client, ClientList> {
+public final class ClientList extends PersonList<Client, ClientList>  {
 	public ClientList() {
 		super();
 	}
@@ -33,6 +38,11 @@ public final class ClientList extends PersonList<Client, ClientList> {
 	@Override
 	// returns a new ClientList
 	protected ClientList createEmptyArrayList() { return new ClientList(); }
+
+
+
+
+
 
 
 }

@@ -1,5 +1,8 @@
 package com.example.forcesales.Data.Person;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Person is a generic class that holds information that apply to either a Client,
  * Employee, or Developer.
@@ -26,7 +29,7 @@ package com.example.forcesales.Data.Person;
  * 		2. Should the manager also be considered a client?
  */
 
-public class Person {
+public class Person implements Parcelable {
     private String first_name;
     private String last_name;
     private String email;
@@ -101,5 +104,40 @@ public class Person {
 
     public void setLastName(String last_name) {
         this.last_name = last_name;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(first_name);
+        dest.writeString(last_name);
+        dest.writeString(email);
+
+        dest.writeParcelable(address, flags);
+
+    }
+
+    //creator
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
+        public Person createFromParcel(Parcel in){
+            return new Person(in);
+        }
+
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
+
+    //deparcel object
+    public Person(Parcel in) {
+        first_name = in.readString();
+        last_name = in.readString();
+        email = in.readString();
+
+        address = (Address) in.readParcelable(Address.class.getClassLoader());
     }
 }

@@ -24,11 +24,15 @@ package com.example.forcesales.Data.Tasks;
  * Task - get() - Return task at an index.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class TaskList {
+public class TaskList implements Parcelable {
 	
 	//Attributes
 	private List<Task> _List;
@@ -101,6 +105,35 @@ public class TaskList {
 	
 	public Task get(int index) {
 		return _List.get(index);
+	}
+
+
+	//parcelable methods
+	@Override
+	public int describeContents(){
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags){
+		dest.writeList(_List);
+	}
+
+	//creator
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public TaskList createFromParcel(Parcel in){
+			return new TaskList(in);
+		}
+
+		public TaskList[] newArray(int size){
+			return new TaskList[size];
+		}
+	};
+
+	//de-parecel object
+	private TaskList(Parcel in) {
+		_List = new ArrayList<Task>();
+		in.readList(_List, Task.class.getClassLoader());
 	}
 
 }

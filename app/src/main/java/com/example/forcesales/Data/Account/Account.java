@@ -3,6 +3,7 @@
  */
 package com.example.forcesales.Data.Account;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import com.example.forcesales.Data.Client.ClientList;
@@ -41,7 +42,7 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
  * 		2. Do a error check for null values?
  */
 
-public final class Account {
+public final class Account implements Serializable {
 	private ClientList clients;
 	private Sales sales;
 	private TaskList tasks;

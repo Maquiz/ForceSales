@@ -3,6 +3,9 @@
  */
 package com.example.forcesales.Data.Person;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Address is a class that was designed to split a normal address into serveral
  * parts. It makes it easy to do searching.
@@ -34,30 +37,30 @@ package com.example.forcesales.Data.Person;
  *  	3. Should I error check for null?
  */
 
-public final class Address {
+public final class Address implements Parcelable {
 	private String street_address;
 	private String city;
 	private String state;
 	private String zip_code;
-	
+
 	public Address() {
 		this.street_address = "";
 		this.city = "";
 		this.state = "";
 		this.zip_code = "";
 	}
-	
+
 	public Address(String street_address,
-				String city,
-				String state,
-				String zip_code) {
+				   String city,
+				   String state,
+				   String zip_code) {
 		this.street_address = street_address;
 		this.city = city;
 		this.state = state;
 		this.zip_code = zip_code;
 	}
-	
-	
+
+
 	@Override // compares the values to another objects. Case sensivity is ignored.
 	public boolean equals(Object obj) {
 		if (obj instanceof Address) {
@@ -70,18 +73,18 @@ public final class Address {
 				return false;
 			else if (!value.zip_code.equalsIgnoreCase(this.zip_code))
 				return false;
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	
+
+
 	public String getStreetAddress() {
 		return street_address;
 	}
-	
+
 	public void setStreetAddress(String street_address) {
 		this.street_address = street_address;
 	}
@@ -109,23 +112,62 @@ public final class Address {
 	public void setZipCode(String zip_code) {
 		this.zip_code = zip_code;
 	}
-	
-	
+
+
 	public boolean compareStreetAddress(Address o) {
 		return this.getStreetAddress().equalsIgnoreCase(o.getStreetAddress());
 	}
-	
+
 	public boolean compareZipCode(Address o) {
 		return this.getZipCode().equalsIgnoreCase(o.getZipCode());
 	}
-	
+
 	public boolean compareCity(Address o) {
 		return this.getCity().equalsIgnoreCase(o.getCity());
 	}
-	
+
 	public boolean compareState(Address o) {
 		return this.getState().equalsIgnoreCase(o.getState());
 	}
-	
+
+
+//	private String street_address;
+//	private String city;
+//	private String state;
+//	private String zip_code;
+
+	//parcelable implementation methods
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(street_address);
+		dest.writeString(city);
+		dest.writeString(state);
+		dest.writeString(zip_code);
+	}
+	//creator
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public Address createFromParcel(Parcel in){
+			return new Address(in);
+		}
+
+		public Address[] newArray(int size){
+			return new Address[size];
+		}
+	};
+
+	//De-parcel object
+	private Address(Parcel in) {
+		street_address = in.readString();
+		city = in.readString();
+		state = in.readString();
+		zip_code = in.readString();
+	}
+
+
 
 }

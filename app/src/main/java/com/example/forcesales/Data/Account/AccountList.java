@@ -1,5 +1,8 @@
 package com.example.forcesales.Data.Account;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.Calendar;
 import com.example.forcesales.Data.util.AbstractArrayListComparsion;
 import com.example.forcesales.Data.util.CompareTwoObjects;
@@ -22,7 +25,7 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
  */
 
 
-public final class AccountList extends AbstractArrayListComparsion<Account, AccountList> {
+public final class AccountList extends AbstractArrayListComparsion<Account, AccountList> implements Serializable {
 	// Lamadas are used to avoid code repetition
 	private CompareTwoObjects<Account,String> compare_account_name = (a,b) -> a.getAccountName().equalsIgnoreCase(b);
 	private CompareTwoObjects<Account,String> compare_oportunity_name = (a,b) -> a.getOpportunityName().equalsIgnoreCase(b);

@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Task temp = new Task("Test", new_person, Calendar.getInstance());
+        Task temp = new Task("Test", "", new_person, Calendar.getInstance());
 
         account.getTasks().addTask(temp);
 

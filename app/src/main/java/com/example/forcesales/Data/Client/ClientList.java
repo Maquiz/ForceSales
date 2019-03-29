@@ -24,13 +24,10 @@ import java.io.Serializable;
  * 		-> containsAddressCity
  * 		-> containsAddressState
  * 	-> (Constructor) ClientList() - Initalizes inheritated class
- * 
- * TODO:
- * 		* See if Java has official way of supporting an abstract comparsions.
+ *
  */ 
 
-@SuppressWarnings("serial")
-public final class ClientList extends PersonList<Client, ClientList>  {
+public final class ClientList extends PersonList<Client, ClientList>  implements Parcelable {
 	public ClientList() {
 		super();
 	}
@@ -41,8 +38,29 @@ public final class ClientList extends PersonList<Client, ClientList>  {
 
 
 
+	protected ClientList(Parcel in) {
+		in.readList(this, ClientList.class.getClassLoader());
+	}
 
+	public static final Creator<ClientList> CREATOR = new Creator<ClientList>() {
+		@Override
+		public ClientList createFromParcel(Parcel in) {
+			return new ClientList(in);
+		}
 
+		@Override
+		public ClientList[] newArray(int size) {
+			return new ClientList[size];
+		}
+	};
 
+	@Override
+	public int describeContents() {
+		return 0;
+	}
 
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeList(this);
+	}
 }

@@ -4,8 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Employee.Employee;
+import com.example.forcesales.Data.Person.Person;
 
-import java.util.Calendar;
+import java.io.Serializable;
+import java.util.ArrayList;
+
 
 /* Tasks extends from AbstractTask<AbstractTask>. Refer to AbstractTask
  * for details on the functions inherited.

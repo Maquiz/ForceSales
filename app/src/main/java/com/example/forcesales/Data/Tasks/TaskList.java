@@ -24,13 +24,16 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Calendar;
+
+import com.example.forcesales.Data.util.AbstractArrayListComparsion;
+import com.example.forcesales.Data.util.CompareTwoObjects;
 
 public class TaskList extends AbstractArrayListComparsion<Task,TaskList> implements Parcelable {
 
+
     // Attributes
     private CompareTwoObjects<Task,Boolean> compare_tasks = (a, b) -> a.isTaskDone() == b;
-	private CompareTwoObjects<Task,Calendar> compare_date = (a, b) -> {
+	  private CompareTwoObjects<Task,Calendar> compare_date = (a, b) -> {
 	    Calendar a2 = a.getCalendarDueDate();
         return a2.get(Calendar.DAY_OF_MONTH) == b.get(Calendar.DAY_OF_MONTH)
                 && a2.get(Calendar.MONTH) == b.get(Calendar.MONTH)
@@ -42,22 +45,21 @@ public class TaskList extends AbstractArrayListComparsion<Task,TaskList> impleme
 		super();
 	}
 
-    @Override
-    protected TaskList createEmptyArrayList() {
-        return new TaskList();
-    }
+   @Override
+  protected TaskList createEmptyArrayList() {
+     return new TaskList();
+   }
 	
 	public TaskList getCompletedTasks() {
-	    return abstractContains(true, compare_tasks);
+	   return abstractContains(true, compare_tasks);
 	}
 	
 	public TaskList getTasks() {
-	    return abstractContains(false, compare_tasks);
+	   return abstractContains(false, compare_tasks);
 	}
 	
 	public TaskList getTodaysTasks() {
         return abstractContains(Calendar.getInstance(),compare_date).getTasks();
-	}
 
 
 	//parcelable methods
@@ -87,3 +89,4 @@ public class TaskList extends AbstractArrayListComparsion<Task,TaskList> impleme
 		in.readList(this, Task.class.getClassLoader());
 	}
 }
+

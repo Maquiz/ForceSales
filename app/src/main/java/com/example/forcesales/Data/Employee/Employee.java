@@ -1,7 +1,12 @@
 package com.example.forcesales.Data.Employee;
+import com.example.forcesales.Data.Application.SalesApplication;
+import com.example.forcesales.Data.Application.SalesApplicationList;
 import com.example.forcesales.Data.Person.Person;
+import com.example.forcesales.Data.Sale.Sales;
+
+import java.io.Serializable;
 /*
- * 						Fake Employee Class (for testing purposes)
+ * 						Employee Menu
  */
 
 

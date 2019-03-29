@@ -22,6 +22,7 @@ import com.example.forcesales.Data.util.AbstractArrayListComparsion;
 import com.example.forcesales.Data.util.CompareTwoObjects;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class TaskList extends AbstractArrayListComparsion<Task,TaskList> impleme
 
     // Attributes
     private CompareTwoObjects<Task,Boolean> compare_tasks = (a, b) -> a.isTaskDone() == b;
-	  private CompareTwoObjects<Task,Calendar> compare_date = (a, b) -> {
+	  private CompareTwoObjects<Task, Calendar> compare_date = (a, b) -> {
 	    Calendar a2 = a.getCalendarDueDate();
         return a2.get(Calendar.DAY_OF_MONTH) == b.get(Calendar.DAY_OF_MONTH)
                 && a2.get(Calendar.MONTH) == b.get(Calendar.MONTH)
@@ -59,7 +60,8 @@ public class TaskList extends AbstractArrayListComparsion<Task,TaskList> impleme
 	}
 	
 	public TaskList getTodaysTasks() {
-        return abstractContains(Calendar.getInstance(),compare_date).getTasks();
+		return abstractContains(Calendar.getInstance(), compare_date).getTasks();
+	}
 
 
 	//parcelable methods

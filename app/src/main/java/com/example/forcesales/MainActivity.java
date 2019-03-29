@@ -12,6 +12,7 @@ import com.example.forcesales.Data.Account.Account;
 import com.example.forcesales.Data.Account.AccountList;
 import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Employee.Employee;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Tasks.Task;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mEmployeeMenu;
     private Button mClientMenu;
 
-    private Employee employee = new Employee("Joe Cool");
+    private Employee employee = new Employee();
     private SalesApplication salesApp = new SalesApplication();
     private Account account = new Account();
     private AccountList account_array = new AccountList();

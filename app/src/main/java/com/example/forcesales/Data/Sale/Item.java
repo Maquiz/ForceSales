@@ -28,9 +28,13 @@
 package com.example.forcesales.Data.Sale;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.Date;
 
- public class Item{
+ public class Item implements Parcelable {
 	private String itemDescription;
 	private float itemCost;
 	private int itemQuantity;	
@@ -61,4 +65,40 @@ import java.util.Date;
 	public String toString() {
 		return itemDescription + " " + String.format("%.2f", itemCost) + " "+ itemQuantity + " " + String.format("%.2f", itemTotalCost());	
 	}
+
+	 //parcelable methods
+	 @Override
+	 public int describeContents(){
+		 return 0;
+	 }
+
+	 @Override
+	 public void writeToParcel(Parcel dest, int flags){
+		 dest.writeString(itemDescription);
+		 dest.writeFloat(itemCost);
+		 dest.writeInt(itemQuantity);
+		 dest.writeLong(dateSold.getTime());
+	 }
+
+	 //creator
+	 public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		 public Item createFromParcel(Parcel in){
+			 return new Item(in);
+		 }
+
+		 public Item[] newArray(int size){
+			 return new Item[size];
+		 }
+	 };
+
+	 //de-parecel object
+	 private Item(Parcel in) {
+		 itemDescription = in.readString();
+		 itemCost = in.readFloat();
+		 itemQuantity = in.readInt();
+		 Date temp = new Date();
+		 temp.setTime(in.readLong());
+		 dateSold = temp;
+
+	 }
 }

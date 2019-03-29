@@ -21,10 +21,20 @@
  */
 package com.example.forcesales.Data.Sale;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Sales {	
-	ArrayList<Sale> salesList = new ArrayList<Sale>();
+public class Sales implements Parcelable {
+
+	ArrayList<Sale> salesList;
+
+	public Sales(){
+		salesList = new ArrayList<Sale>();
+	}
+
 
 	public void addSale(Sale s) {
 		salesList.add(s);
@@ -38,5 +48,33 @@ public class Sales {
 	
 	public Sale getSale(int pos) {
 		return salesList.get(pos);
+	}
+
+	//parcelable methods
+	@Override
+	public int describeContents(){
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags){
+		dest.writeList(salesList);
+	}
+
+	//creator
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+		public Sales createFromParcel(Parcel in){
+			return new Sales(in);
+		}
+
+		public Sales[] newArray(int size){
+			return new Sales[size];
+		}
+	};
+
+	//de-parecel object
+	private Sales(Parcel in) {
+		salesList = new ArrayList<Sale>();
+		in.readList(salesList, Sale.class.getClassLoader());
 	}
 }

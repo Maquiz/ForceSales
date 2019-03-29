@@ -25,44 +25,61 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_task_box1"
-            android:hint="First Name"/>
+            android:hint="Task Description"/>
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/add_task_box2"
-            android:hint="Last Name"/>
+            android:layout_height="wrap_content">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/left_task_button3"
+                android:hint="Previous"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/right_task_button4"
+                android:hint="Next"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/add_task_button2"
+                android:hint="Assigned to"/>
+
+        </LinearLayout>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_task_box3"
-            android:hint="Street Address"/>
+            android:hint="Month"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_task_box4"
-            android:hint="City"/>
+            android:hint="Date"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_task_box5"
-            android:hint="State"/>
+            android:hint="Year"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_task_box6"
-            android:hint="Zip Code/Postal Code"/>
+            android:hint="Hour"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/add_task_box7"
-            android:hint="E-mail Address"/>
+            android:hint="Minute"/>
 
         <Button
             android:layout_width="wrap_content"

@@ -1,13 +1,14 @@
 /**
  * @author Thomas A.
  */
-package com.example.forcesales.Data.account;
+package com.example.forcesales.Data.Account;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
+import com.example.forcesales.Data.Client.ClientList;
 import com.example.forcesales.Data.Sale.Sales;
 import com.example.forcesales.Data.Tasks.TaskList;
-import com.example.forcesales.Data.client.ClientArray;
 import com.example.forcesales.Data.util.CompareTwoObjects;
 
 /*
@@ -41,33 +42,32 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
  * 		2. Do a error check for null values?
  */
 
-public final class Account {
-	private ClientArray clients;
+public final class Account implements Serializable {
+	private ClientList clients;
 	private Sales sales;
 	private TaskList tasks;
 	
 	private String account_name;
 	private String opportunity_name;
 	private Calendar close_date;
-//	private ClientArray owner;
+//	private ClientList owner;
 	
-	private CompareTwoObjects<String,String> cmp_acc_name = (a,b) -> { return a.equalsIgnoreCase(b); };
-	private CompareTwoObjects<String,String> cmp_op_name = (a,b) -> { return a.equalsIgnoreCase(b); };
-	private CompareTwoObjects<Calendar,Calendar> cmp_cal = (a,b) -> {
-		return a.get(Calendar.DATE) == b.get(Calendar.DATE) &&
-				a.get(Calendar.MONTH) == b.get(Calendar.MONTH) &&
-				a.get(Calendar.YEAR) == b.get(Calendar.YEAR);
-	};
+	private CompareTwoObjects<String,String> cmp_acc_name = (a,b) -> a.equalsIgnoreCase(b);
+	private CompareTwoObjects<String,String> cmp_op_name = (a,b) -> a.equalsIgnoreCase(b);
+	private CompareTwoObjects<Calendar,Calendar> cmp_cal = (a,b) ->
+			a.get(Calendar.DATE) == b.get(Calendar.DATE) &&
+			a.get(Calendar.MONTH) == b.get(Calendar.MONTH) &&
+			a.get(Calendar.YEAR) == b.get(Calendar.YEAR);
 	
 	public Account() {
-		this.clients = new ClientArray();
+		this.clients = new ClientList();
 		this.sales = new Sales();
 		this.tasks = new TaskList();
 		
 		this.account_name = "";
 		this.opportunity_name = "";
 		this.close_date = Calendar.getInstance();
-//		this.owner = new ClientArray();
+//		this.owner = new ClientList();
 	}
 	
 	
@@ -110,7 +110,7 @@ public final class Account {
 		return account_name;
 	}
 
-	public ClientArray getClients() {
+	public ClientList getClients() {
 		return clients;
 	}
 	
@@ -122,7 +122,7 @@ public final class Account {
 		return opportunity_name;
 	}
 	
-//	public ClientArray getOwner() {
+//	public ClientList getOwner() {
 //		return this.owner;
 //	}
 	
@@ -139,7 +139,7 @@ public final class Account {
 		this.account_name = account_name;
 	}
 	
-	public void setClients(ClientArray clients) {
+	public void setClients(ClientList clients) {
 		this.clients = clients;
 	}
 	
@@ -151,7 +151,7 @@ public final class Account {
 		this.opportunity_name = opportunity_name;
 	}
 	
-//	public void setOwner(ClientArray owner) {
+//	public void setOwner(ClientList owner) {
 //		this.owner = owner;
 //	}
 

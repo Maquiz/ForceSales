@@ -7,12 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Tasks.TaskList;
-import com.example.forcesales.R;
-
 import java.util.ArrayList;
+
 
 public class ManageTaskActivity extends AppCompatActivity {
 
@@ -21,6 +19,7 @@ public class ManageTaskActivity extends AppCompatActivity {
     private Button mRemoveTask;
     private Button mFindTask;
     private TaskList _Task;
+    private ArrayList<Client> _List;
 
 
     @Override
@@ -34,6 +33,7 @@ public class ManageTaskActivity extends AppCompatActivity {
 
             //pull task list object from previous activity
             _Task =  getIntent().getParcelableExtra("TASK_LIST");
+            _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
 
             //initializes Show Task List Menu button, sets an on click listerner with intent to switch to the Show all tasks activity.
             mShowAllTask = (Button) findViewById(R.id.show_all_task_button);
@@ -64,6 +64,7 @@ public class ManageTaskActivity extends AppCompatActivity {
 
                     //Storing the task list in this intent
                     i.putParcelableArrayListExtra("TASK_LIST", _Task);
+                    i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
 
                     //starting actvity for result to return the list when a task has been added.
                     startActivityForResult(i,2);

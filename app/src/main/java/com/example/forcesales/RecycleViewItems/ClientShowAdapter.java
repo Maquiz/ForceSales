@@ -1,5 +1,7 @@
 package com.example.forcesales.RecycleViewItems;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.R;
 
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 public class ClientShowAdapter extends RecyclerView.Adapter<ClientShowAdapter.ClientShowViewHolder> {
 
@@ -32,6 +36,7 @@ public class ClientShowAdapter extends RecyclerView.Adapter<ClientShowAdapter.Cl
             mTextView3 = itemView.findViewById(R.id.client_list_text3);
             mTextView4 = itemView.findViewById(R.id.client_list_text4);
             mTextView5 = itemView.findViewById(R.id.client_list_text5);
+
         }
     }
 
@@ -52,6 +57,7 @@ public class ClientShowAdapter extends RecyclerView.Adapter<ClientShowAdapter.Cl
 
         holder.mTextView1.setText(currentItem.getFirstName() + " " + currentItem.getLastName());
         holder.mTextView2.setText(currentItem.getEmail());
+
     }
 
     @Override

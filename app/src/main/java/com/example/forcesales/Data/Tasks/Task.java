@@ -1,4 +1,20 @@
 package com.example.forcesales.Data.Tasks;
+
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Employee.Employee;
+import com.example.forcesales.Data.Person.Person;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import static java.util.Calendar.getInstance;
+
 /*
  * 
  * 														Task Class
@@ -33,26 +49,27 @@ package com.example.forcesales.Data.Tasks;
  * Date - getCompletionDate() - returns date the task was completed.
  * 
  */
-import java.util.Calendar;
-import java.util.Date;
 
-public class Task {
+
+
+public class Task implements Parcelable {
 
 	//Attributes
 	private String nameOfTask;
 	private boolean isTaskDone;
-	private Employee assigned;
+	private Client assigned;
 	private Calendar assignedDate;
 	private Calendar dueDate;
 	private Calendar completionDate;
 	
 	//Constructor
-	public Task(String name, Employee who, Calendar due){
+	public Task(String name, Client who, Calendar due){
 		this.nameOfTask = name;
 		this.isTaskDone = false;
 		this.assigned = who;
-		this.assignedDate = Calendar.getInstance();
+		this.assignedDate = getInstance();
 		this.dueDate = due;
+		this.completionDate = getInstance();
 		
 	}
 
@@ -70,14 +87,14 @@ public class Task {
 
 	public void setTaskDone() {
 		this.isTaskDone = true;
-		this.completionDate = Calendar.getInstance();
+		this.completionDate = getInstance();
 	}
 
-	public Employee getAssigned() {
+	public Client getAssigned() {
 		return assigned;
 	}
 
-	public void changeAssigned(Employee assigned) {
+	public void changeAssigned(Client assigned) {
 		this.assigned = assigned;
 	}
 	
@@ -95,8 +112,60 @@ public class Task {
 
 	public Date getCompletionDate() {
 		return completionDate.getTime();
-	}	
-	
+	}
+
+
+	//parcelable methods
+	@Override
+	public int describeContents(){
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags){
+		dest.writeString(nameOfTask);
+		dest.writeByte((byte) (isTaskDone ? 1 : 0));
+		dest.writeParcelable(assigned, flags);
+		dest.writeLong(assignedDate.getTimeInMillis());
+		dest.writeLong(dueDate.getTimeInMillis());
+		long temp = 0;
+
+
+		if(completionDate != null) {
+			temp = completionDate.getTimeInMillis();
+		}
+
+
+		dest.writeLong(temp);
+
+	}
+
+	//creator
+	public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
+		public Task createFromParcel(Parcel in) {
+			return new Task(in);
+		}
+
+		public Task[] newArray(int size) {
+			return new Task[size];
+		}
+	};
+
+	//de-parcel object
+	private Task(Parcel in){
+		nameOfTask = in.readString();
+		isTaskDone = in.readByte() != 0;
+		assigned = in.readParcelable(Client.class.getClassLoader());
+
+		assignedDate = Calendar.getInstance();
+		dueDate = Calendar.getInstance();
+		completionDate = Calendar.getInstance();
+
+		assignedDate.setTimeInMillis(in.readLong());
+		dueDate.setTimeInMillis(in.readLong());
+		completionDate.setTimeInMillis(in.readLong());
+	}
+
 	
 	
 }

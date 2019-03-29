@@ -25,9 +25,13 @@
  */
 package com.example.forcesales.Data.Sale;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-	public class Sale{
+	public class Sale implements Parcelable {
 		private int saleId;
 		private float totalCost;
 		private float amountPaid;
@@ -59,6 +63,41 @@ import java.util.ArrayList;
 			System.out.println("Total: " + String.format("%.2f", totalCost));
 			System.out.println("Amount Paid: "  +  String.format("%.2f", amountPaid));
 			System.out.println();
+		}
+
+
+		//parcelable methods
+		@Override
+		public int describeContents(){
+			return 0;
+		}
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags){
+			dest.writeInt(saleId);
+			dest.writeFloat(totalCost);
+			dest.writeFloat(amountPaid);
+			dest.writeList(saleList);
+		}
+
+		//creator
+		public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+			public Sale createFromParcel(Parcel in){
+				return new Sale(in);
+			}
+
+			public Sale[] newArray(int size){
+				return new Sale[size];
+			}
+		};
+
+		//de-parecel object
+		private Sale(Parcel in) {
+			saleId = in.readInt();
+			totalCost = in.readFloat();
+			amountPaid = in.readFloat();
+			saleList = new ArrayList<Item>();
+			in.readList(saleList, Item.class.getClassLoader());
 		}
 			
 }

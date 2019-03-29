@@ -58,11 +58,14 @@ public class ClientMenuActivity extends AppCompatActivity {
         mManageSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ClientMenuActivity.this, ManageSaleActivity.class);
+//                Intent i = new Intent(ClientMenuActivity.this, ManageSaleActivity.class);
+//
+//                i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+//
+//                startActivity(i);
 
-                i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
-
-                startActivity(i);
+                Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
+                toast.show();
 
             }
         });
@@ -75,6 +78,7 @@ public class ClientMenuActivity extends AppCompatActivity {
                 Intent i = new Intent(ClientMenuActivity.this, ManageTaskActivity.class);
 
                 i.putExtra("TASK_LIST", _Tasks);
+                i.putExtra("ACCOUNT_LIST", _List);
 
                 startActivityForResult(i, 2);
 
@@ -89,7 +93,7 @@ public class ClientMenuActivity extends AppCompatActivity {
 //                Intent i = new Intent(ClientMenuActivity.this, SubmitTicketClientActivity.class);
 //                startActivity(i);
 
-                Toast toast = Toast.makeText(getApplicationContext(), "Coming soon" + _Tasks.get(0).getNameOfTask(), Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
                 toast.show();
 
             }

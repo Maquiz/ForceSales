@@ -168,6 +168,4 @@ public final class Address implements Parcelable {
 		zip_code = in.readString();
 	}
 
-
-
 }

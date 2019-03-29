@@ -19,6 +19,7 @@
         <activity android:name=".SubmitTicketClientActivity" />
         <activity android:name=".ManageSaleActivity" />
         <activity android:name=".ManageClientActivity" />
+        <activity android:name=".Employee.ApplicationsActivity" />
         <activity android:name=".ClientMenuActivity" />
         <activity android:name=".EmployeeMenuActivity" />
         <activity android:name=".DeveloperMenuActivity" />

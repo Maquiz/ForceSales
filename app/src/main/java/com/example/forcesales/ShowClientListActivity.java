@@ -8,11 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.RecycleViewItems.ClientShowAdapter;
-import java.util.ArrayList;
-
+import java.util.ArrayList;v
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class ShowClientListActivity extends AppCompatActivity {
@@ -28,8 +26,6 @@ public class ShowClientListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_client_list);
 
         ArrayList<Client> _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
-
-
 
         mRecyclerView = findViewById(R.id.show_all_client_recycleview);
         mRecyclerView.setHasFixedSize(true);

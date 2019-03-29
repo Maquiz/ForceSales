@@ -1,20 +1,18 @@
 package com.example.forcesales.Data.Tasks;
-/* TODO: Modify Documentation
- *
+/*
  * 												TaskList Class
- *
  * This class handles storing all the task objects into a list. As well as functions which allow the returning of
  * tasks that are complete, not complete, or assigned to a specific employee.
- *
- *
- *
- *
+ * 
+ * 
+ * 
+ * 
  * Attributes:
  * _List - List: An array list which holds task objects.
- *
- *
- *
- *
+ * 
+ * 
+ * 
+ * 
  * Functions:
  * void - addTask(Task) - Takes input Task and adds it to the TaskList.
  * void - getCompletedTasks() - Prints out all completed tasks and their completion date.
@@ -28,7 +26,6 @@ package com.example.forcesales.Data.Tasks;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.example.forcesales.Data.util.AbstractArrayListComparsion;
 import com.example.forcesales.Data.util.CompareTwoObjects;
 import java.util.Calendar;
@@ -91,6 +88,8 @@ public class TaskList extends AbstractArrayListComparsion<Task,TaskList> impleme
 
 	//de-parecel object
 	private TaskList(Parcel in) {
+
 		in.readList(this, Task.class.getClassLoader());
 	}
 }
+

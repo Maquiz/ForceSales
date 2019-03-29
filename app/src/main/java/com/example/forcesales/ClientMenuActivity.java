@@ -15,6 +15,7 @@ import com.example.forcesales.Data.Person.PersonList;
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.Data.Tasks.TaskList;
 
+
 import java.util.ArrayList;
 
 public class ClientMenuActivity extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class ClientMenuActivity extends AppCompatActivity {
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
         _List = getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
         _Tasks = getIntent().getParcelableArrayListExtra("TASK_LIST");
+
 
         //initializes Manage Client Menu button, sets an on click listerner with intent to switch to he Developer Menu.
         mManageClient = (Button) findViewById(R.id.manage_client_button);
@@ -115,6 +117,7 @@ public class ClientMenuActivity extends AppCompatActivity {
                 _Tasks = data.getParcelableExtra("TASK_LIST");
             }
         }
+
     }
 
     //When the back button is pressed it passes the current client list back to the previous activity.
@@ -126,7 +129,9 @@ public class ClientMenuActivity extends AppCompatActivity {
         Intent result = new Intent();
 
         result.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+
         result.putParcelableArrayListExtra("TASK_LIST", _Tasks);
+
         setResult(RESULT_OK, result);
         finish();
     }

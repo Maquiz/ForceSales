@@ -9,15 +9,15 @@ import android.widget.Button;
 
 import com.example.forcesales.Data.Account.Account;
 import com.example.forcesales.Data.Account.AccountList;
+import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
+import com.example.forcesales.Data.Employee.Employee;
+import com.example.forcesales.Data.Employee.EmployeeList;
 import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Tasks.Task;
-import com.example.forcesales.Data.Tasks.TaskList;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import static java.util.Calendar.DAY_OF_WEEK;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
    private Button mEmployeeMenu;
    private Button mClientMenu;
 
-    private Account account = new Account();
-    private AccountList account_array = new AccountList();
+   private Employee employee = new Employee("Joe Cool");
+   private SalesApplication salesApp = new SalesApplication();
+   private Account account = new Account();
+   private AccountList account_array = new AccountList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         account.getTasks().add(temp4);
 
 
-
         //initializes Developer Menu button, sets an on click listerner with intent to switch to he Developer Menu.
         mDeveloperMenu = (Button) findViewById(R.id.developer_button);
         mDeveloperMenu.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +87,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
-                startActivity(i);
+
+                i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
+
+                startActivityForResult(i, 2);
 
             }
         });
@@ -108,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 //i.putParcelableArrayListExtra("SALES_LIST", account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
-                startActivityForResult(i, 2);
+                startActivityForResult(i, 3);
 
             }
         });
@@ -127,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ArrayList<Client> temp;
 
+
                 temp = data.getParcelableArrayListExtra("ACCOUNT_LIST");
 
                 account.getClients().clear();
@@ -140,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(requestCode == 2){
+        if(requestCode == 3){
             if(resultCode == RESULT_OK){
 
                 ArrayList<Task> temp;
@@ -159,6 +164,5 @@ public class MainActivity extends AppCompatActivity {
 
             Log.d("APP", "Tasks passed, post onActivity Result in MainActivity");
         }
-    }
 
 }

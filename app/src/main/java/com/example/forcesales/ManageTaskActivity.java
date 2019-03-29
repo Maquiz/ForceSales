@@ -20,8 +20,8 @@ public class ManageTaskActivity extends AppCompatActivity {
     private Button mFindTask;
     private TaskList _Task;
     private ArrayList<Client> _List;
-
-
+  
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,4 +132,3 @@ public class ManageTaskActivity extends AppCompatActivity {
             finish();
         }
     }
-

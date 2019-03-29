@@ -22,19 +22,27 @@ import static java.util.Calendar.DAY_OF_WEEK;
 
 public class MainActivity extends AppCompatActivity {
 
-   private Button mDeveloperMenu;
-   private Button mEmployeeMenu;
-   private Button mClientMenu;
+    private Button mDeveloperMenu;
+    private Button mEmployeeMenu;
+    private Button mClientMenu;
 
-   private Employee employee = new Employee("Joe Cool");
-   private SalesApplication salesApp = new SalesApplication();
-   private Account account = new Account();
-   private AccountList account_array = new AccountList();
+    private Employee employee = new Employee("Joe Cool");
+    private SalesApplication salesApp = new SalesApplication();
+    private Account account = new Account();
+    private AccountList account_array = new AccountList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        salesApp.setFirstName("Joe");
+        salesApp.setLastName("Cool");
+        salesApp.setCompanyName("Gilroy Garlic");
+        salesApp.setPhoneNumber("5102222222");
+        salesApp.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+        salesApp.setEmail("joe@garlic.com");
+        employee.getAppList().add(salesApp);
 
         account.setAccountName("McDonald's");
         account.setOpportunityName("Corporate Locations");
@@ -44,17 +52,16 @@ public class MainActivity extends AppCompatActivity {
         Client new_person = new Client();
         new_person.setFirstName("Homer");
         new_person.setLastName("Simpson");
-        new_person.setAddress(new Address("742 Evergreen Terrace" , "Hayward", "CA", "94545"));
+        new_person.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
         new_person.setEmail("thisisatestemail@gmail.com");
         account.getClients().add(new_person);
 
         Client new_person2 = new Client();
         new_person2.setFirstName("Bart");
         new_person2.setLastName("Simpson");
-        new_person2.setAddress(new Address("742 Evergreen Terrace" , "Hayward", "CA", "94545"));
+        new_person2.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
         new_person2.setEmail("thisisatestemail@gmail.com");
         account.getClients().add(new_person2);
-
 
 
         Task temp = new Task("Conference Call", new_person, Calendar.getInstance());
@@ -121,13 +128,13 @@ public class MainActivity extends AppCompatActivity {
     //Once the next activity is ends (finish()) and the onCreate() is recalled for this activity, onActivityResult() is called and restores the changes made
     //to client list from the closed activity into this activity's account.
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         Log.d("APP", "onActivityResult called with a result code of " + resultCode + " and request code of " + requestCode);
 
 
-        if(requestCode == 1){
-            if(resultCode == RESULT_OK){
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
 
                 ArrayList<Client> temp;
 
@@ -136,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
                 account.getClients().clear();
 
-                for(int i = 0; i < temp.size(); i++) {
+                for (int i = 0; i < temp.size(); i++) {
                     account.getClients().add(temp.get(i));
                 }
 
@@ -145,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(requestCode == 3){
-            if(resultCode == RESULT_OK){
+        if (requestCode == 3) {
+            if (resultCode == RESULT_OK) {
 
                 ArrayList<Task> temp;
 
@@ -154,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
                 account.getTasks().clear();
 
-                for(int i = 0; i < temp.size(); i++) {
+                for (int i = 0; i < temp.size(); i++) {
                     account.getTasks().add(temp.get(i));
                 }
 
@@ -165,4 +172,5 @@ public class MainActivity extends AppCompatActivity {
             Log.d("APP", "Tasks passed, post onActivity Result in MainActivity");
         }
 
+    }
 }

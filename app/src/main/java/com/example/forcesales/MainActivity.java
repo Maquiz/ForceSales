@@ -1,6 +1,7 @@
 package com.example.forcesales;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import com.example.forcesales.Data.Account.Account;
 import com.example.forcesales.Data.Account.AccountList;
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.UI.Developer.DeveloperMenuActivity;
@@ -25,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Account account = new Account();
     private AccountList account_array = new AccountList();
+    private Management management = new Management();
+
+    public static final int RETURNCODE_SETCLIENT = 1;
+    public static final int RETURNCODE_SETMANAGEMENT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, DeveloperMenuActivity.class);
-                startActivityForResult(i, 1);
-
+                i.putExtra("MANAGEMENT", management);
+                startActivityForResult(i, RETURNCODE_SETMANAGEMENT);
             }
         });
 
@@ -104,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("APP", "Pre-Transfer name is: " + account.getClients().get(0).getFirstName());
 
                 //Storing the client list in the intent as a ParcelableArrayList.
-                i.putParcelableArrayListExtra("ACCOUNT_LIST", account.getClients());
+                i.putExtra("ACCOUNT_LIST", (Parcelable) account.getClients());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
-                startActivityForResult(i, 1);
+                startActivityForResult(i, RETURNCODE_SETCLIENT);
 
             }
         });
@@ -121,20 +127,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d("APP", "onActivityResult called with a result code of " + resultCode + " and request code of " + requestCode);
 
 
-        if(requestCode == 1){
+        if(requestCode == RETURNCODE_SETCLIENT) {
             if(resultCode == RESULT_OK){
-
-                ArrayList<Client> temp = new ArrayList<>();
-
-                temp = data.getParcelableArrayListExtra("ACCOUNT_LIST");
-
-                account.getClients().clear();
-
-                for(int i = 0; i < temp.size(); i++) {
-                    account.getClients().add(temp.get(i));
-                }
-
+                account.setClients(data.getParcelableExtra("ACCOUNT_LIST"));
                 Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
+            }
+        }
+
+        else if (requestCode == RETURNCODE_SETMANAGEMENT) {
+            if (resultCode == RESULT_OK) {
 
             }
         }

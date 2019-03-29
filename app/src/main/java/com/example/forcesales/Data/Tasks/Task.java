@@ -9,6 +9,7 @@ import com.example.forcesales.Data.Person.Person;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 /* Tasks extends from AbstractTask<AbstractTask>. Refer to AbstractTask
@@ -18,6 +19,10 @@ import java.util.ArrayList;
 public class Task extends AbstractTask<Client> {
     public Task(String name, String description, Client who, Calendar due) {
         super(name,description,who,due);
+    }
+
+    public Task(String name, Client who, Calendar due) {
+        super(name,"",who,due);
     }
 
     @Override

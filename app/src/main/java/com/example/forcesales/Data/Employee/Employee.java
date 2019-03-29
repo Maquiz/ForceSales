@@ -11,7 +11,14 @@ import java.io.Serializable;
 
 
 public class Employee extends Person {
+	private SalesApplicationList appList;
+
 	public Employee() {
 		super();
+		appList = new SalesApplicationList();
+	}
+
+	public SalesApplicationList getAppList() {
+		return appList;
 	}
 }

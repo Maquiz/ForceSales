@@ -1,29 +1,18 @@
 package com.example.forcesales.Data.Tasks;
-/* TODO: Modify Documentation
- *
+/*
  * 												TaskList Class
  *
  * This class handles storing all the task objects into a list. As well as functions which allow the returning of
  * tasks that are complete, not complete, or assigned to a specific employee.
- * 
- * 
- * 
- * 
+ *
  * Attributes:
- * _List - List: An array list which holds task objects.
+ * compare_tasks - CompareTwoObjects<Task,Boolean>: Does a comparison to see if isTaskDone() equals the boolean value.
+ * compare_date - CompareTwoObjects<Task,Calendar>: Does a comparison check to see if the Day, Month, and Year equals the same.
  * 
- * 
- * 
- * 
- * Functions:
- * void - addTask(Task) - Takes input Task and adds it to the TaskList.
- * void - getCompletedTasks() - Prints out all completed tasks and their completion date.
- * void - getTasks() - Prints out all Tasks that have not been completed and shows their due date.
- * void - getAllTasks() - Prints all tasks in the Task List. This should be called before calling removeTask(), also shows assignment date.
- * void - getTodaysTasks() - Prints all tasks that are due on the date that this function is called.
- * void - removeTask(int) - Removes task at index, call getAllTasks() before selecting an index.
- * int - getSize() - Returns List size as an int.
- * Task - get() - Return task at an index.
+ * Functions (You can also use functions from the ArrayList class):
+ * void - getCompletedTasks() - Returns a list of all completed tasks.
+ * void - getTasks() - Returns a list of all Tasks that have not been completed.
+ * void - getTodaysTasks() - Returns a list of tasks that are due on the date that this function is called.
  */
 
 import android.os.Parcel;

@@ -62,7 +62,6 @@ import static java.util.Calendar.getInstance;
  * Date - getAssignedDate() - returns date the task was assigned.
  * Date - getDueDate() - returns date the task is due
  * Date - getCompletionDate() - returns date the task was completed.
- *
  */
 
 
@@ -79,17 +78,6 @@ public class AbstractTask<A extends Person> implements Parcelable {
     private final Calendar assignedDate;
     private Calendar dueDate;
 
-    //Constructor
-    public AbstractTask() {
-        this.nameOfTask = "";
-        this.descriptionOfTask = "";
-        this.isTaskDone = false;
-        this.completionDate = getInstance();
-        this.isPersonAssigned = false;
-        this.assigned = null;
-        this.assignedDate = getInstance();
-        this.dueDate = getInstance();
-    }
 
     protected AbstractTask(String name, String description, A who, Calendar due){
         this.nameOfTask = name;

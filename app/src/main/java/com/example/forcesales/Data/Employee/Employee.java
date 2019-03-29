@@ -9,17 +9,4 @@ public class Employee extends Person {
 	public Employee() {
 		super();
 	}
-	
-	private String name;
-
-	public Employee(String name){
-		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return this.name;
-	}
-	
-	
 }

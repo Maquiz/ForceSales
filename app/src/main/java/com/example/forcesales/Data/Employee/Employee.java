@@ -10,22 +10,8 @@ import java.io.Serializable;
  */
 
 
-public class Employee extends Person implements Serializable {
-	private SalesApplicationList appList;
-
-	public Employee(String name) {
-		this.name = name;
-		appList = new SalesApplicationList();
+public class Employee extends Person {
+	public Employee() {
+		super();
 	}
-
-	private String name;
-
-	public SalesApplicationList getAppList(){ return appList;}
-
-	@Override
-	public String toString() {
-		return this.name;
-	}
-	
-	
 }

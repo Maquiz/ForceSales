@@ -1,6 +1,7 @@
 package com.example.forcesales;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +20,7 @@ public class ManageClientActivity extends AppCompatActivity {
     private Button mAddClient;
     private Button mRemoveClient;
     private Button mFindClient;
-    private ArrayList<Client> _List = new ArrayList<>();
+    private ClientList _List = new ClientList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class ManageClientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_client);
 
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
-        _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
+        _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 
         //initializes Developer Menu button, sets an on click listerner with intent to switch to the Developer Menu.
         mShowAllClient = (Button) findViewById(R.id.show_all_client_button);
@@ -42,7 +43,7 @@ public class ManageClientActivity extends AppCompatActivity {
                 Intent i = new Intent(ManageClientActivity.this, ShowClientListActivity.class);
 
                 //Stores the parcelable arraylist that contains all clients
-                i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+                i.putExtra("ACCOUNT_LIST", (Parcelable) _List);
 
                 //Starts the activity, although since this activity will not change the list, we will not require result/return.
                 startActivity(i);
@@ -56,7 +57,7 @@ public class ManageClientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ManageClientActivity.this, AddClientActivity.class);
-                i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+                i.putExtra("ACCOUNT_LIST", (Parcelable) _List);
                 startActivityForResult(i,1);
 
             }
@@ -68,9 +69,7 @@ public class ManageClientActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ManageClientActivity.this, RemoveClientActivity.class);
-
-                i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
-
+                i.putExtra("ACCOUNT_LIST", (Parcelable) _List);
                 startActivityForResult(i, 1);
 
             }
@@ -100,7 +99,7 @@ public class ManageClientActivity extends AppCompatActivity {
 
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
-                _List = data.getParcelableArrayListExtra("ACCOUNT_LIST");
+                _List = data.getParcelableExtra("ACCOUNT_LIST");
             }
         }
     }
@@ -113,7 +112,7 @@ public class ManageClientActivity extends AppCompatActivity {
 
         Intent result = new Intent();
 
-        result.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+        result.putExtra("ACCOUNT_LIST", (Parcelable) _List);
         setResult(RESULT_OK, result);
         finish();
     }

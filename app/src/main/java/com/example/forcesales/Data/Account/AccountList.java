@@ -1,5 +1,6 @@
 package com.example.forcesales.Data.Account;
 
+import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
@@ -25,11 +26,10 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
  */
 
 
-public final class AccountList extends AbstractArrayListComparsion<Account, AccountList> implements Serializable {
+public final class AccountList extends AbstractArrayListComparsion<Account, AccountList> implements Parcelable {
 	// Lamadas are used to avoid code repetition
 	private CompareTwoObjects<Account,String> compare_account_name = (a,b) -> a.getAccountName().equalsIgnoreCase(b);
 	private CompareTwoObjects<Account,String> compare_oportunity_name = (a,b) -> a.getOpportunityName().equalsIgnoreCase(b);
-//	private CompareTwoObjects<Account,Client> compare_find_owner = (a,b) -> { return a.getOwner().contains(b); };
 	private CompareTwoObjects<Account,Calendar> compare_close_date =
 		(a,b) -> a.getCloseDate().get(Calendar.DATE) == b.get(Calendar.DATE) &&
 		a.getCloseDate().get(Calendar.MONTH) == b.get(Calendar.MONTH) &&
@@ -40,16 +40,10 @@ public final class AccountList extends AbstractArrayListComparsion<Account, Acco
 		super();
 	}
 
-	@Override
-	// returns a new AccountList (gets casted into ArrayList)
-	protected AccountList createEmptyArrayList() {
-		return new AccountList();
-	}
-
 	public AccountList compareAccountName(String value) {
 		return abstractContains(value, compare_account_name);
 	}
-	
+
 	// public AccountList compareCloseDateGreater(Calendar value)
 	// public AccountList compareCloseDateLess(Calendar value)
 	public AccountList compareCloseDate(Calendar value) {
@@ -59,8 +53,41 @@ public final class AccountList extends AbstractArrayListComparsion<Account, Acco
 	public AccountList compareOpportunityName(String value) {
 		return abstractContains(value, compare_oportunity_name);
 	}
-	
-//	public AccountList compareFindOwner(Client value) {
-//		return (AccountList) abstractContains(value, compare_find_owner);
-//	}
+
+	//
+	// Parcable stuff
+	//
+
+	protected AccountList(Parcel in) {
+		in.readList(this, AccountList.class.getClassLoader());
+	}
+
+	public static final Creator<AccountList> CREATOR = new Creator<AccountList>() {
+		@Override
+		public AccountList createFromParcel(Parcel in) {
+			return new AccountList(in);
+		}
+
+		@Override
+		public AccountList[] newArray(int size) {
+			return new AccountList[size];
+		}
+	};
+
+	@Override
+	// returns a new AccountList (gets casted into ArrayList)
+	protected AccountList createEmptyArrayList() {
+		return new AccountList();
+	}
+
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeList(this);
+	}
 }

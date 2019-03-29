@@ -9,8 +9,11 @@ import android.widget.Button;
 
 import com.example.forcesales.Data.Account.Account;
 import com.example.forcesales.Data.Account.AccountList;
+import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
+import com.example.forcesales.Data.Employee.Employee;
+import com.example.forcesales.Data.Employee.EmployeeList;
 import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Tasks.Task;
 
@@ -23,13 +26,25 @@ public class MainActivity extends AppCompatActivity {
    private Button mEmployeeMenu;
    private Button mClientMenu;
 
-    private Account account = new Account();
-    private AccountList account_array = new AccountList();
+
+   private Employee employee = new Employee("Joe Cool");
+   private SalesApplication salesApp = new SalesApplication();
+   private Account account = new Account();
+   private AccountList account_array = new AccountList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        salesApp.setFirstName("Joe");
+        salesApp.setLastName("Cool");
+        salesApp.setCompanyName("Gilroy Garlic");
+        salesApp.setPhoneNumber("510222222");
+        salesApp.setAddress(new Address("742 Evergreen Terrace" , "Hayward", "CA", "94545"));
+        salesApp.setEmail("joe@garlic.com");
+        employee.getAppList().add(salesApp);
+
 
         account.setAccountName("McDonald's");
         account.setOpportunityName("Corporate Locations");
@@ -87,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
-                startActivity(i);
+
+                i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
+
+                startActivityForResult(i, 2);
 
             }
         });
@@ -138,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+        if(requestCode == 2){}
     }
 
 }

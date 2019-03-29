@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         Task temp = new Task("Test", "", new_person, Calendar.getInstance());
 
-        account.getTasks().addTask(temp);
+//        account.getTasks().addTask(temp);
 
         //initializes Developer Menu button, sets an on click listerner with intent to switch to he Developer Menu.
         mDeveloperMenu = (Button) findViewById(R.id.developer_button);

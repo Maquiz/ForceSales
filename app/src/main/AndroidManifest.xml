@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RemoveClientActivity"></activity>
+        <activity android:name=".RemoveTaskActivity"></activity>
+        <activity android:name=".AddTaskActivity" />
+        <activity android:name=".ShowTaskListActivity" />
+        <activity android:name=".RemoveClientActivity" />
         <activity android:name=".AddClientActivity" />
         <activity android:name=".ShowClientListActivity" />
         <activity android:name=".ManageTaskActivity" />

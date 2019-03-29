@@ -22,7 +22,6 @@ public class Employee extends Person implements Serializable {
 
 	public SalesApplicationList getAppList(){ return appList;}
 
-
 	@Override
 	public String toString() {
 		return this.name;

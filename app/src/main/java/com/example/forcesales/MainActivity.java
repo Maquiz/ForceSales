@@ -16,16 +16,15 @@ import com.example.forcesales.Data.Employee.Employee;
 import com.example.forcesales.Data.Employee.EmployeeList;
 import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Tasks.Task;
-
 import java.util.ArrayList;
 import java.util.Calendar;
+import static java.util.Calendar.DAY_OF_WEEK;
 
 public class MainActivity extends AppCompatActivity {
 
    private Button mDeveloperMenu;
    private Button mEmployeeMenu;
    private Button mClientMenu;
-
 
    private Employee employee = new Employee("Joe Cool");
    private SalesApplication salesApp = new SalesApplication();
@@ -37,53 +36,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        salesApp.setFirstName("Joe");
-        salesApp.setLastName("Cool");
-        salesApp.setCompanyName("Gilroy Garlic");
-        salesApp.setPhoneNumber("510222222");
-        salesApp.setAddress(new Address("742 Evergreen Terrace" , "Hayward", "CA", "94545"));
-        salesApp.setEmail("joe@garlic.com");
-        employee.getAppList().add(salesApp);
-
-
         account.setAccountName("McDonald's");
         account.setOpportunityName("Corporate Locations");
         account.setCloseDate(Calendar.getInstance());
         account_array.add(account);
 
         Client new_person = new Client();
-        new_person.setFirstName("First");
-        new_person.setLastName("Last");
+        new_person.setFirstName("Homer");
+        new_person.setLastName("Simpson");
         new_person.setAddress(new Address("742 Evergreen Terrace" , "Hayward", "CA", "94545"));
         new_person.setEmail("thisisatestemail@gmail.com");
         account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
-        account.getClients().add(new_person);
+
+        Client new_person2 = new Client();
+        new_person2.setFirstName("Bart");
+        new_person2.setLastName("Simpson");
+        new_person2.setAddress(new Address("742 Evergreen Terrace" , "Hayward", "CA", "94545"));
+        new_person2.setEmail("thisisatestemail@gmail.com");
+        account.getClients().add(new_person2);
 
 
 
-        Task temp = new Task("Test", new_person, Calendar.getInstance());
+        Task temp = new Task("Conference Call", new_person, Calendar.getInstance());
+        account.getTasks().add(temp);
 
-        account.getTasks().addTask(temp);
+        Task temp2 = new Task("Coffee with Thomas", new_person, Calendar.getInstance());
+        account.getTasks().add(temp2);
+
+        Task temp3 = new Task("Review with Max", new_person, Calendar.getInstance());
+        account.getTasks().add(temp3);
+
+        Task temp4 = new Task("School", new_person, Calendar.getInstance());
+        account.getTasks().add(temp4);
+
 
         //initializes Developer Menu button, sets an on click listerner with intent to switch to he Developer Menu.
         mDeveloperMenu = (Button) findViewById(R.id.developer_button);
@@ -123,9 +108,11 @@ public class MainActivity extends AppCompatActivity {
 
                 //Storing the client list in the intent as a ParcelableArrayList.
                 i.putParcelableArrayListExtra("ACCOUNT_LIST", account.getClients());
+                i.putParcelableArrayListExtra("TASK_LIST", account.getTasks());
+                //i.putParcelableArrayListExtra("SALES_LIST", account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
-                startActivityForResult(i, 1);
+                startActivityForResult(i, 3);
 
             }
         });
@@ -142,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
 
-                ArrayList<Client> temp = new ArrayList<>();
+                ArrayList<Client> temp;
+
 
                 temp = data.getParcelableArrayListExtra("ACCOUNT_LIST");
 
@@ -156,7 +144,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-        if(requestCode == 2){}
-    }
+
+        if(requestCode == 3){
+            if(resultCode == RESULT_OK){
+
+                ArrayList<Task> temp;
+
+                temp = data.getParcelableArrayListExtra("ACCOUNT_LIST");
+
+                account.getTasks().clear();
+
+                for(int i = 0; i < temp.size(); i++) {
+                    account.getTasks().add(temp.get(i));
+                }
+
+                Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
+
+            }
+
+            Log.d("APP", "Tasks passed, post onActivity Result in MainActivity");
+        }
 
 }

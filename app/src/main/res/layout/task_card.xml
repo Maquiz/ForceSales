@@ -6,40 +6,45 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:padding="4dp">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/client_list_text1"
+            android:id="@+id/task_list_text1"
+            android:textStyle="bold"
             android:layout_alignParentTop="true"/>
 
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/client_list_text2"
-            android:layout_below="@id/client_list_text1"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/task_list_text2"
+            android:layout_below="@id/task_list_text1"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/client_list_text3"
-            android:layout_toEndOf="@id/client_list_text2"/>
+            android:id="@+id/task_list_text3"
+            android:paddingLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:textAlignment="textEnd"
+            android:layout_toEndOf="@id/task_list_text2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/client_list_text4"
-            android:layout_toEndOf="@id/client_list_text3" />
-
+            android:id="@+id/task_list_text4"
+            android:layout_below="@id/task_list_text3"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/client_list_text5"
-            android:layout_toEndOf="@id/client_list_text4"/>
+            android:id="@+id/task_list_text5"
+            android:layout_toEndOf="@id/task_list_text4"/>
 
 
 

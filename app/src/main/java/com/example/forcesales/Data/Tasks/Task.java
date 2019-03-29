@@ -7,8 +7,8 @@ import android.os.Parcelable;
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Employee.Employee;
 import com.example.forcesales.Data.Person.Person;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -112,14 +112,6 @@ public class Task implements Parcelable {
 	public Date getCompletionDate() {
 		return completionDate.getTime();
 	}
-
-//	//Attributes
-//	private String nameOfTask;
-//	private boolean isTaskDone;
-//	private Employee assigned;
-//	private Calendar assignedDate;
-//	private Calendar dueDate;
-//	private Calendar completionDate;
 
 	//parcelable methods
 	@Override

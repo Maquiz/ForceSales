@@ -1,19 +1,15 @@
 package com.example.forcesales;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Toast;
-import com.example.forcesales.Data.Client.Client;
-import com.example.forcesales.RecycleViewItems.ClientShowAdapter;
-import java.util.ArrayList;v
-import static android.widget.Toast.LENGTH_SHORT;
+import com.example.forcesales.Data.Tasks.Task;
+import com.example.forcesales.RecycleViewItems.TaskShowAdapter;
 
-public class ShowClientListActivity extends AppCompatActivity {
+import java.util.List;
+
+public class ShowTaskListActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -23,17 +19,16 @@ public class ShowClientListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_client_list);
+        setContentView(R.layout.activity_show_task_list);
 
-        ArrayList<Client> _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
+        List<Task> _List = getIntent().getParcelableArrayListExtra("TASK_LIST");
 
-        mRecyclerView = findViewById(R.id.show_all_client_recycleview);
+        mRecyclerView = findViewById(R.id.show_all_task_recycleview);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ClientShowAdapter(_List);
+        mAdapter = new TaskShowAdapter(_List);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 }

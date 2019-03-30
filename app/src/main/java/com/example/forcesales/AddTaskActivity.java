@@ -72,7 +72,7 @@ public class AddTaskActivity extends AppCompatActivity {
         mRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position < _List.size())
+                if(position < _List.size()-1)
                 {
                     position++;
                     mAssignButton.setText(_List.get(position).getFirstName() + " " + _List.get(position).getLastName());

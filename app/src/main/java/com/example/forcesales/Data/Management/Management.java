@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.example.forcesales.Data.Developer.DeveloperList;
 import com.example.forcesales.Data.Employee.EmployeeList;
+import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.Data.Tasks.TaskList;
 
 /*
@@ -18,12 +19,12 @@ import com.example.forcesales.Data.Tasks.TaskList;
 public class Management implements Parcelable {
     private DeveloperList developer_list;
     private EmployeeList employee_list;
-    private TaskList issue_tracker;
+    private IssueTrackerList issue_tracker;
 
     public Management() {
         developer_list = new DeveloperList();
         employee_list = new EmployeeList();
-        issue_tracker = new TaskList();
+        issue_tracker = new IssueTrackerList();
     }
 
     protected Management(Parcel in) {
@@ -52,7 +53,7 @@ public class Management implements Parcelable {
         return  this.employee_list;
     }
 
-    public TaskList getIssueTracker() {
+    public IssueTrackerList getIssueTracker() {
         return this.issue_tracker;
     }
 
@@ -64,7 +65,7 @@ public class Management implements Parcelable {
         this.employee_list = in;
     }
 
-    public void setIssueTracker(TaskList issue_tracker) {
+    public void setIssueTracker(IssueTrackerList issue_tracker) {
         this.issue_tracker = issue_tracker;
     }
 

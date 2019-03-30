@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.forcesales.Data.IssueTracker.IssueTracker;
+import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.R;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class IssueTrackerShowAdapter extends RecyclerView.Adapter<IssueTrackerShowAdapter.TaskShowViewHolder> {
 
-    private List<IssueTracker> mTaskList;
+    private IssueTrackerList mTaskList;
 
     public static class TaskShowViewHolder extends RecyclerView.ViewHolder{
 
@@ -37,7 +38,7 @@ public class IssueTrackerShowAdapter extends RecyclerView.Adapter<IssueTrackerSh
         }
     }
 
-    public IssueTrackerShowAdapter(List<IssueTracker> taskList){
+    public IssueTrackerShowAdapter(IssueTrackerList taskList){
         mTaskList = taskList;
     }
 

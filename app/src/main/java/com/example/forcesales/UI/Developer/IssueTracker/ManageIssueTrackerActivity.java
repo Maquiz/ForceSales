@@ -97,8 +97,8 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
             Log.d("APP", "onBackPressed() Override called in ManageIssueTrackerActivity");
 
             Intent result = new Intent();
-            result.putExtra(DEVELOPERLIST, (Parcelable) developer_list);
-            result.putExtra(ISSUETRACKER, (Parcelable) sw_ticket_list);
+            result.putExtra(DeveloperMenuActivity.DEVELOPERLIST, (Parcelable) developer_list);
+            result.putExtra(DeveloperMenuActivity.ISSUETRACKER, (Parcelable) sw_ticket_list);
 
             setResult(RESULT_OK, result);
             finish();

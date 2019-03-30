@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int RETURNCODE_SETCLIENT = 1;
     public static final int RETURNCODE_SETMANAGEMENT = 2;
+    public static final int RETURNCODE_SETTASKS = 3;
+    public static final int RETURNCODE_MAXMAGIC = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                 i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
 
-                startActivityForResult(i, 2);
+                startActivityForResult(i, RETURNCODE_MAXMAGIC);
 
             }
         });
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 //i.putParcelableArrayListExtra("SALES_LIST", account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
-                startActivityForResult(i, 3);
+                startActivityForResult(i, RETURNCODE_SETTASKS);
             }
         });
     }
@@ -168,14 +170,18 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 management = data.getParcelableExtra("MANAGEMENT");
             }
+
+            else {
+                Log.w("APP", "onActivityResult: Something wrong has happened");
+            }
         }
 
-        if (requestCode == 3) {
+        if (requestCode == RETURNCODE_SETTASKS) {
             if (resultCode == RESULT_OK) {
 
                 ArrayList<Task> temp;
 
-                temp = data.getParcelableArrayListExtra("ACCOUNT_LIST");
+                temp = data.getParcelableArrayListExtra("TASK_LIST");
 
                 account.getTasks().clear();
 

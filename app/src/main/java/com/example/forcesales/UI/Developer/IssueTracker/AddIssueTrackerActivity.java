@@ -2,6 +2,7 @@ package com.example.forcesales.UI.Developer.IssueTracker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -83,7 +84,8 @@ public class AddIssueTrackerActivity extends AppCompatActivity {
             issue_tracker_list.add(temp);
 
             Intent resultIntent = new Intent();
-            resultIntent.putParcelableArrayListExtra(ManageIssueTrackerActivity.ISSUETRACKER, issue_tracker_list);
+            resultIntent.putExtra(ManageIssueTrackerActivity.ISSUETRACKER, (Parcelable) issue_tracker_list);
+            resultIntent.putExtra(ManageIssueTrackerActivity.DEVELOPERLIST, (Parcelable) developer_list);
 
             setResult(RESULT_OK, resultIntent);
             finish();

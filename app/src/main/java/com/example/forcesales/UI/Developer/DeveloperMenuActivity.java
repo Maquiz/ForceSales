@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.forcesales.Data.Management.Management;
-import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.R;
 import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
 
@@ -25,7 +24,6 @@ public class DeveloperMenuActivity extends AppCompatActivity {
     private static final int REQUESTCODE_MANAGETICKETS = 1;
 
     private Management management;
-    private Task test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +32,12 @@ public class DeveloperMenuActivity extends AppCompatActivity {
 
         management = getIntent().getParcelableExtra("MANAGEMENT");
 
-//        test = new Task("Thomas's Value", "This task has a special meaning!", new Client(), Calendar.getInstance());
-
         Button sw_ticket = findViewById(R.id.button_dev_sw_ticket);
         sw_ticket.setOnClickListener(v -> {
             Intent i = new Intent(this, ManageIssueTrackerActivity.class);
-
-//            management.getIssueTracker().add(new IssueTracker("Does it work on DeveloperMenuActivity", "Does it!?", new Developer(), Calendar.getInstance()));
-
-            i.putExtra(DEVELOPERLIST, (Parcelable) management.getDeveloperList());
-            i.putExtra(ISSUETRACKER, (Parcelable) management.getIssueTracker());
-
-            startActivityForResult(i,REQUESTCODE_MANAGETICKETS);
+            i.putExtra(DeveloperMenuActivity.DEVELOPERLIST, (Parcelable) management.getDeveloperList());
+            i.putExtra(DeveloperMenuActivity.ISSUETRACKER, (Parcelable) management.getIssueTracker());
+            startActivityForResult(i, REQUESTCODE_MANAGETICKETS);
         });
 
 
@@ -58,16 +50,6 @@ public class DeveloperMenuActivity extends AppCompatActivity {
 //            startActivity(i);
 //            startActivityForResult(i,1);
         });
-
-        Button test_menu = findViewById(R.id.button_dev_test_menu);
-        test_menu.setOnClickListener(v -> {
-//            Intent i = new Intent(this, DeveloperMenuTest.class);
-//            i.putExtra(TASKLIST, test);
-//
-//            startActivityForResult(i, RETURN_TASK_OBJECT);
-        });
-
-//        test = new Task();
     }
 
     @Override
@@ -76,8 +58,8 @@ public class DeveloperMenuActivity extends AppCompatActivity {
 
         if (requestCode == REQUESTCODE_MANAGETICKETS) {
             if (resultCode == RESULT_OK) {
-                management.setDeveloperList(data.getParcelableExtra(DEVELOPERLIST));
-                management.setIssueTracker(data.getParcelableExtra(ISSUETRACKER));
+                management.setDeveloperList(data.getParcelableExtra(DeveloperMenuActivity.DEVELOPERLIST));
+                management.setIssueTracker(data.getParcelableExtra(DeveloperMenuActivity.ISSUETRACKER));
             }
         }
     }

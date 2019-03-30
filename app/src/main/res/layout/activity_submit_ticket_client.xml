@@ -4,6 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubmitTicketClientActivity">
+    tools:context=".AddClientActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Report Issue"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/report-issue_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/report-issue_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textMultiLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/report-issue_select_person_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Previous" />
+
+            <Button
+                android:id="@+id/report-issue_select_person_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Next" />
+
+            <Button
+                android:id="@+id/report-issue_select_person_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Assigned to" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/report-issue_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Submit" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

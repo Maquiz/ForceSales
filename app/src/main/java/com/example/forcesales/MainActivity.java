@@ -12,7 +12,9 @@ import com.example.forcesales.Data.Account.Account;
 import com.example.forcesales.Data.Account.AccountList;
 import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Developer.Developer;
 import com.example.forcesales.Data.Employee.Employee;
+import com.example.forcesales.Data.IssueTracker.IssueTracker;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Tasks.Task;
@@ -36,11 +38,31 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int RETURNCODE_SETCLIENT = 1;
     public static final int RETURNCODE_SETMANAGEMENT = 2;
+    public static final int RETURNCODE_SETTASKS = 3;
+    public static final int RETURNCODE_MAXMAGIC = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Developer new_dev = new Developer();
+        new_dev.setFirstName("Homer2");
+        new_dev.setLastName("Simpson2");
+        new_dev.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+        new_dev.setEmail("thisisatestemail2@gmail.com");
+        management.getDeveloperList().add(new_dev);
+
+        new_dev = new Developer();
+        new_dev.setFirstName("Bart2");
+        new_dev.setLastName("Simpson2");
+        new_dev.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+        new_dev.setEmail("thisisatestemail2@gmail.com");
+        management.getDeveloperList().add(new_dev);
+
+        management.getIssueTracker().add(new IssueTracker("End of the world", "We must find a way to save the earth", new_dev, Calendar.getInstance()));
+        management.getIssueTracker().add(new IssueTracker("Test", "This is a test", new Developer(), Calendar.getInstance()));
+
 
         salesApp.setFirstName("Joe");
         salesApp.setLastName("Cool");
@@ -49,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         salesApp.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
         salesApp.setEmail("joe@garlic.com");
         employee.getAppList().add(salesApp);
+
 
         account.setAccountName("McDonald's");
         account.setOpportunityName("Corporate Locations");
@@ -102,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                 i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
 
-                startActivityForResult(i, 2);
+                startActivityForResult(i, RETURNCODE_MAXMAGIC);
 
             }
         });
@@ -124,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 //i.putParcelableArrayListExtra("SALES_LIST", account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
-                startActivityForResult(i, 3);
+                startActivityForResult(i, RETURNCODE_SETTASKS);
             }
         });
     }
@@ -145,16 +168,20 @@ public class MainActivity extends AppCompatActivity {
 
         else if (requestCode == RETURNCODE_SETMANAGEMENT) {
             if (resultCode == RESULT_OK) {
+                management = data.getParcelableExtra("MANAGEMENT");
+            }
 
+            else {
+                Log.w("APP", "onActivityResult: Something wrong has happened");
             }
         }
 
-        if (requestCode == 3) {
+        if (requestCode == RETURNCODE_SETTASKS) {
             if (resultCode == RESULT_OK) {
 
                 ArrayList<Task> temp;
 
-                temp = data.getParcelableArrayListExtra("ACCOUNT_LIST");
+                temp = data.getParcelableArrayListExtra("TASK_LIST");
 
                 account.getTasks().clear();
 

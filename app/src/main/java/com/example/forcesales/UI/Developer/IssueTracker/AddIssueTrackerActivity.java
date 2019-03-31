@@ -9,9 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.forcesales.Data.Developer.Developer;
 import com.example.forcesales.Data.Developer.DeveloperList;
 import com.example.forcesales.Data.IssueTracker.IssueTracker;
 import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
+import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.R;
 
 import java.util.Calendar;
@@ -37,8 +39,8 @@ public class AddIssueTrackerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_ticket_client);
 
-        developer_list =  getIntent().getParcelableExtra(ManageIssueTrackerActivity.DEVELOPERLIST);
-        issue_tracker_list = getIntent().getParcelableExtra(ManageIssueTrackerActivity.ISSUETRACKER);
+        developer_list =  getIntent().getParcelableExtra(DeveloperList.PARCELABLE_STR);
+        issue_tracker_list = getIntent().getParcelableExtra(IssueTrackerList.PARCELABLE_STR);
 
         textTitle = findViewById(R.id.report_issue_title);
         textDescription = findViewById(R.id.report_issue_description);
@@ -79,13 +81,19 @@ public class AddIssueTrackerActivity extends AppCompatActivity {
 
 
         buttonSubmit.setOnClickListener(v -> {
-            // Update to Include Description.
-            IssueTracker temp = new IssueTracker(textTitle.getText().toString(),textDescription.getText().toString(), developer_list.get(position), Calendar.getInstance());
+            IssueTracker temp = new IssueTracker(
+                    textTitle.getText().toString(),
+                    textDescription.getText().toString(),
+                    developer_list.get(position),
+                    Calendar.getInstance()
+            );
+
             issue_tracker_list.add(temp);
 
             Intent resultIntent = new Intent();
-            resultIntent.putExtra(ManageIssueTrackerActivity.ISSUETRACKER, (Parcelable) issue_tracker_list);
-            resultIntent.putExtra(ManageIssueTrackerActivity.DEVELOPERLIST, (Parcelable) developer_list);
+//            resultIntent.putExtra(IssueTracker.PARCELABLE_STR, temp);
+            resultIntent.putExtra(IssueTrackerList.PARCELABLE_STR, (Parcelable) issue_tracker_list);
+            resultIntent.putExtra(DeveloperList.PARCELABLE_STR, (Parcelable) developer_list);
 
             setResult(RESULT_OK, resultIntent);
             finish();

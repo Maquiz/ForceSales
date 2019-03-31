@@ -17,6 +17,8 @@ import com.example.forcesales.Data.Tasks.TaskList;
  */
 
 public class Management implements Parcelable {
+    public static final String PARCELABLE_STR = "com.example.forcesales.Data.Management.Management";
+
     private DeveloperList developer_list;
     private EmployeeList employee_list;
     private IssueTrackerList issue_tracker;

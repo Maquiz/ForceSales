@@ -35,8 +35,7 @@ public class DeveloperMenuActivity extends AppCompatActivity {
         Button sw_ticket = findViewById(R.id.button_dev_sw_ticket);
         sw_ticket.setOnClickListener(v -> {
             Intent i = new Intent(this, ManageIssueTrackerActivity.class);
-            i.putExtra(DeveloperMenuActivity.DEVELOPERLIST, (Parcelable) management.getDeveloperList());
-            i.putExtra(DeveloperMenuActivity.ISSUETRACKER, (Parcelable) management.getIssueTracker());
+            i.putExtra(Management.PARCELABLE_STR, management);
             startActivityForResult(i, REQUESTCODE_MANAGETICKETS);
         });
 

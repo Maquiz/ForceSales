@@ -19,11 +19,11 @@ public class ShowClientListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_client_list);
+        setContentView(R.layout.activity_recycleview_list);
 
         ClientList _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 
-        mRecyclerView = findViewById(R.id.show_all_client_recycleview);
+        mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ClientShowAdapter(_List);

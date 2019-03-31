@@ -19,11 +19,11 @@ public class ShowIssueTrackerListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_task_list);
+        setContentView(R.layout.activity_recycleview_list);
 
         IssueTrackerList sw_issue_list = getIntent().getParcelableExtra(ManageIssueTrackerActivity.ISSUETRACKER);
 
-        mRecyclerView = findViewById(R.id.show_all_task_recycleview);
+        mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new IssueTrackerShowAdapter(sw_issue_list);

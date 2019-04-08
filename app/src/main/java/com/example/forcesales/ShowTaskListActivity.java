@@ -19,11 +19,11 @@ public class ShowTaskListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_task_list);
+        setContentView(R.layout.activity_recycleview_list);
 
         List<Task> _List = getIntent().getParcelableArrayListExtra("TASK_LIST");
 
-        mRecyclerView = findViewById(R.id.show_all_task_recycleview);
+        mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new TaskShowAdapter(_List);

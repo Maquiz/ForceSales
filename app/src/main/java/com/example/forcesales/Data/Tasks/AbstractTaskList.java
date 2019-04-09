@@ -18,23 +18,18 @@ package com.example.forcesales.Data.Tasks;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.forcesales.Data.Person.Person;
 import com.example.forcesales.Data.util.AbstractArrayListComparsion;
 import com.example.forcesales.Data.util.CompareTwoObjects;
 
-import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
-import java.util.ArrayList;
 
-import com.example.forcesales.Data.util.AbstractArrayListComparsion;
-import com.example.forcesales.Data.util.CompareTwoObjects;
-
-public class TaskList extends AbstractArrayListComparsion<Task,TaskList> implements Parcelable {
+abstract public class AbstractTaskList<A extends AbstractTask<?>, B extends AbstractTaskList<A,B>> extends AbstractArrayListComparsion<A,B> {
 
 
     // Attributes
-    private CompareTwoObjects<Task,Boolean> compare_tasks = (a, b) -> a.isTaskDone() == b;
-	  private CompareTwoObjects<Task, Calendar> compare_date = (a, b) -> {
+    private CompareTwoObjects<A,Boolean> compare_tasks = (a, b) -> a.isTaskDone() == b;
+	  private CompareTwoObjects<A, Calendar> compare_date = (a, b) -> {
 	    Calendar a2 = a.getCalendarDueDate();
         return a2.get(Calendar.DAY_OF_MONTH) == b.get(Calendar.DAY_OF_MONTH)
                 && a2.get(Calendar.MONTH) == b.get(Calendar.MONTH)
@@ -42,53 +37,48 @@ public class TaskList extends AbstractArrayListComparsion<Task,TaskList> impleme
     };
 
 	//Constructor
-	public TaskList(){
+	protected AbstractTaskList(){
 		super();
 	}
 
-   @Override
-  protected TaskList createEmptyArrayList() {
-     return new TaskList();
-   }
-	
-	public TaskList getCompletedTasks() {
+	public B getCompletedTasks() {
 	   return abstractContains(true, compare_tasks);
 	}
-	
-	public TaskList getTasks() {
+
+	public B getTasks() {
 	   return abstractContains(false, compare_tasks);
 	}
-	
-	public TaskList getTodaysTasks() {
+
+	public B getTodaysTasks() {
 		return abstractContains(Calendar.getInstance(), compare_date).getTasks();
 	}
 
 
-	//parcelable methods
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags){
-		dest.writeList(this);
-	}
-
-	//creator
-	public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-		public TaskList createFromParcel(Parcel in){
-			return new TaskList(in);
-		}
-
-		public TaskList[] newArray(int size){
-			return new TaskList[size];
-		}
-	};
-
-	//de-parecel object
-	private TaskList(Parcel in) {
-		in.readList(this, Task.class.getClassLoader());
-	}
+//	//parcelable methods
+//	@Override
+//	public int describeContents() {
+//		return 0;
+//	}
+//
+//	@Override
+//	public void writeToParcel(Parcel dest, int flags){
+//		dest.writeList(this);
+//	}
+//
+//	//creator
+//	public static final Creator CREATOR = new Creator() {
+//		public AbstractTaskList createFromParcel(Parcel in){
+//			return new AbstractTaskList(in);
+//		}
+//
+//		public AbstractTaskList[] newArray(int size){
+//			return new AbstractTaskList[size];
+//		}
+//	};
+//
+//	//de-parecel object
+//	private AbstractTaskList(Parcel in) {
+//		in.readList(this, Task.class.getClassLoader());
+//	}
 }
 

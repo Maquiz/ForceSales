@@ -22,7 +22,10 @@
         <activity android:name=".Employee.ApplicationsActivity" />
         <activity android:name=".ClientMenuActivity" />
         <activity android:name=".EmployeeMenuActivity" />
-        <activity android:name=".DeveloperMenuActivity" />
+        <activity android:name=".UI.Developer.DeveloperMenuActivity" />
+        <activity android:name=".UI.Developer.IssueTracker.ManageIssueTrackerActivity" />
+        <activity android:name=".UI.Developer.IssueTracker.ShowIssueTrackerListActivity" />
+        <activity android:name=".UI.Developer.IssueTracker.AddIssueTrackerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

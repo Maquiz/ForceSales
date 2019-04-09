@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.Data.Tasks.TaskList;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class ManageTaskActivity extends AppCompatActivity {
     private Button mAddTask;
     private Button mRemoveTask;
     private Button mFindTask;
-    private TaskList _Task;
+    private ArrayList<Task> _Task;
     private ArrayList<Client> _List;
   
   
@@ -78,14 +79,17 @@ public class ManageTaskActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    //starts intent to RemoveTaskActivty
-                    Intent i = new Intent(ManageTaskActivity.this, RemoveTaskActivity.class);
+//                    //starts intent to RemoveTaskActivty
+//                    Intent i = new Intent(ManageTaskActivity.this, RemoveTaskActivity.class);
+//
+//                    //storing the task list in this intent
+//                    i.putParcelableArrayListExtra("TASK_LIST", _Task);
+//
+//                    //starting activity for result to return the list when a task has been deleted.
+//                    startActivityForResult(i, 2);
 
-                    //storing the task list in this intent
-                    i.putParcelableArrayListExtra("TASK_LIST", _Task);
-
-                    //starting activity for result to return the list when a task has been deleted.
-                    startActivityForResult(i, 2);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Coming soon.", Toast.LENGTH_SHORT);
+                    toast.show();
 
                 }
             });
@@ -114,7 +118,7 @@ public class ManageTaskActivity extends AppCompatActivity {
 
             if(requestCode == 2){
                 if(resultCode == RESULT_OK){
-                    _Task = data.getParcelableExtra("TASK_LIST");
+                    _Task = data.getParcelableArrayListExtra("TASK_LIST");
                 }
             }
         }

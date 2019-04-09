@@ -1,6 +1,7 @@
 package com.example.forcesales;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Client.ClientList;
 import com.example.forcesales.RecycleViewItems.RemoveClientAdapter;
 
 import java.util.ArrayList;
@@ -17,16 +19,16 @@ public class RemoveClientActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<Client> _List;
+    private ClientList _List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_remove_client);
+        setContentView(R.layout.activity_recycleview_list);
 
-        _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
+        _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 
-        mRecyclerView = findViewById(R.id.remove_client_recycleview);
+        mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new RemoveClientAdapter(_List);
@@ -42,8 +44,7 @@ public class RemoveClientActivity extends AppCompatActivity {
         Log.d("APP", "onBackPressed() Override called it RemoveClientActivity");
 
         Intent result = new Intent();
-
-        result.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+        result.putExtra("ACCOUNT_LIST", (Parcelable) _List);
         setResult(RESULT_OK, result);
         finish();
     }

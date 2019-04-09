@@ -1,12 +1,14 @@
 package com.example.forcesales;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Client.ClientList;
 import com.example.forcesales.Data.Person.Address;
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ public class AddClientActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_client);
 
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
-        ArrayList<Client> _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
+        ClientList _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 
         mAddText1 = findViewById(R.id.add_client_box1);
         mAddText2 = findViewById(R.id.add_client_box2);
@@ -53,11 +55,10 @@ public class AddClientActivity extends AppCompatActivity {
                 _List.add(temp);
 
                 Intent resultIntent = new Intent();
-                resultIntent.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+                resultIntent.putExtra("ACCOUNT_LIST", (Parcelable) _List);
 
                 setResult(RESULT_OK, resultIntent);
                 finish();
-
             }
         });
 

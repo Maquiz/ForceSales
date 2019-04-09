@@ -72,7 +72,7 @@ public class AddTaskActivity extends AppCompatActivity {
         mRightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(position < _List.size())
+                if(position < _List.size()-1)
                 {
                     position++;
                     mAssignButton.setText(_List.get(position).getFirstName() + " " + _List.get(position).getLastName());
@@ -99,7 +99,8 @@ public class AddTaskActivity extends AppCompatActivity {
                 Calendar tempCal = Calendar.getInstance();
                 tempCal.set(Integer.parseInt(mAddText5.getText().toString()), Integer.parseInt(mAddText3.getText().toString()), Integer.parseInt(mAddText4.getText().toString()), Integer.parseInt(mAddText6.getText().toString()), Integer.parseInt(mAddText7.getText().toString()));
 
-                Task temp = new Task(mAddText1.getText().toString(), _List.get(position), tempCal);
+                // Update to Include Description.
+                Task temp = new Task(mAddText1.getText().toString(),_List.get(position), tempCal);
 
 
                 _Task.add(temp);

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RemoveTaskActivity"></activity>
+        <activity android:name=".RecycleViewItems.SaleShowAdapter"></activity>
+        <activity android:name=".ShowSaleListActivity" />
+        <activity android:name=".AddSaleActivity" />
+        <activity android:name=".RemoveSaleActivity" />
+        <activity android:name=".RemoveTaskActivity" />
         <activity android:name=".AddTaskActivity" />
         <activity android:name=".ShowTaskListActivity" />
         <activity android:name=".RemoveClientActivity" />

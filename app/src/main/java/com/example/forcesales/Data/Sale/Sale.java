@@ -51,7 +51,31 @@ import java.util.ArrayList;
 			amountPaid += payAmount;
 			
 		}
-		
+
+		public int getSaleId() {
+			return saleId;
+		}
+
+		public void setSaleId(int saleId) {
+			this.saleId = saleId;
+		}
+
+		public float getTotalCost() {
+			return totalCost;
+		}
+
+		public void setTotalCost(float totalCost) {
+			this.totalCost = totalCost;
+		}
+
+		public float getAmountPaid() {
+			return amountPaid;
+		}
+
+		public void setAmountPaid(float amountPaid) {
+			this.amountPaid = amountPaid;
+		}
+
 		public void printSale() {
 			System.out.println("Sale ID:" + saleId);
 			for(Item i :  saleList) {

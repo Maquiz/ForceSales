@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Tasks.Task;
+import com.example.forcesales.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;

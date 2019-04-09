@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
+import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.ClientShowAdapter;
 import java.util.ArrayList;
 

@@ -45,6 +45,10 @@ public class Sales implements Parcelable {
 			s.printSale();	
 		}	
 	};
+
+	public ArrayList<Sale> getSalesList(){
+		return salesList;
+	}
 	
 	public Sale getSale(int pos) {
 		return salesList.get(pos);

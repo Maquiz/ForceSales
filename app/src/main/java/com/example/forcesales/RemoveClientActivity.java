@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
+import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.RemoveClientAdapter;
 
 import java.util.ArrayList;

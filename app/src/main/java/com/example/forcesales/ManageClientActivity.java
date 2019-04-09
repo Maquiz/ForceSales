@@ -9,10 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
-
-import java.util.ArrayList;
 
 public class ManageClientActivity extends AppCompatActivity {
 

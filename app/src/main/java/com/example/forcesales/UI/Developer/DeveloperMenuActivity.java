@@ -1,7 +1,6 @@
 package com.example.forcesales.UI.Developer;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,8 +56,7 @@ public class DeveloperMenuActivity extends AppCompatActivity {
 
         if (requestCode == REQUESTCODE_MANAGETICKETS) {
             if (resultCode == RESULT_OK) {
-                management.setDeveloperList(data.getParcelableExtra(DeveloperMenuActivity.DEVELOPERLIST));
-                management.setIssueTracker(data.getParcelableExtra(DeveloperMenuActivity.ISSUETRACKER));
+                management = data.getParcelableExtra(Management.PARCELABLE_STR);
             }
         }
     }

@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.example.forcesales.Data.Tasks.AbstractTaskList;
 
 public class IssueTrackerList extends AbstractTaskList<IssueTracker,IssueTrackerList> implements Parcelable {
+    public static final String PARCELABLE_STR = "com.example.forcesales.Data.IssueTracker.IssueTrackerList";
+
     public IssueTrackerList() {
         super();
     }

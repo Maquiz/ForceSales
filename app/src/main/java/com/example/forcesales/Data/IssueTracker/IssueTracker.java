@@ -9,6 +9,8 @@ import com.example.forcesales.Data.Tasks.AbstractTask;
 import java.util.Calendar;
 
 public class IssueTracker extends AbstractTask<Developer> implements Parcelable {
+    public static final String PARCELABLE_STR = "com.example.forcesales.Data.IssueTracke.IssueTracker";
+
     public IssueTracker(String name, String description, Developer who, Calendar due) {
         super(name, description, who, due);
     }

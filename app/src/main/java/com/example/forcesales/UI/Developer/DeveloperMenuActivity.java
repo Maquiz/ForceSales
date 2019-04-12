@@ -1,7 +1,6 @@
 package com.example.forcesales.UI.Developer;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,8 +34,7 @@ public class DeveloperMenuActivity extends AppCompatActivity {
         Button sw_ticket = findViewById(R.id.button_dev_sw_ticket);
         sw_ticket.setOnClickListener(v -> {
             Intent i = new Intent(this, ManageIssueTrackerActivity.class);
-            i.putExtra(DeveloperMenuActivity.DEVELOPERLIST, (Parcelable) management.getDeveloperList());
-            i.putExtra(DeveloperMenuActivity.ISSUETRACKER, (Parcelable) management.getIssueTracker());
+            i.putExtra(Management.PARCELABLE_STR, management);
             startActivityForResult(i, REQUESTCODE_MANAGETICKETS);
         });
 
@@ -58,8 +56,7 @@ public class DeveloperMenuActivity extends AppCompatActivity {
 
         if (requestCode == REQUESTCODE_MANAGETICKETS) {
             if (resultCode == RESULT_OK) {
-                management.setDeveloperList(data.getParcelableExtra(DeveloperMenuActivity.DEVELOPERLIST));
-                management.setIssueTracker(data.getParcelableExtra(DeveloperMenuActivity.ISSUETRACKER));
+                management = data.getParcelableExtra(Management.PARCELABLE_STR);
             }
         }
     }

@@ -10,6 +10,8 @@ import android.widget.EditText;
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
 import com.example.forcesales.Data.Person.Address;
+import com.example.forcesales.R;
+
 import java.util.ArrayList;
 
 public class AddClientActivity extends AppCompatActivity {

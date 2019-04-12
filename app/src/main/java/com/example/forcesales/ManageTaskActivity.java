@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Tasks.Task;
-import com.example.forcesales.Data.Tasks.TaskList;
+
 import java.util.ArrayList;
 
 
@@ -79,17 +79,17 @@ public class ManageTaskActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-//                    //starts intent to RemoveTaskActivty
-//                    Intent i = new Intent(ManageTaskActivity.this, RemoveTaskActivity.class);
-//
-//                    //storing the task list in this intent
-//                    i.putParcelableArrayListExtra("TASK_LIST", _Task);
-//
-//                    //starting activity for result to return the list when a task has been deleted.
-//                    startActivityForResult(i, 2);
+                    //starts intent to RemoveTaskActivty
+                    Intent i = new Intent(ManageTaskActivity.this, RemoveTaskActivity.class);
 
-                    Toast toast = Toast.makeText(getApplicationContext(), "Coming soon.", Toast.LENGTH_SHORT);
-                    toast.show();
+                    //storing the task list in this intent
+                    i.putParcelableArrayListExtra("TASK_LIST", _Task);
+
+                    //starting activity for result to return the list when a task has been deleted.
+                    startActivityForResult(i, 2);
+
+//                    Toast toast = Toast.makeText(getApplicationContext(), "Coming soon.", Toast.LENGTH_SHORT);
+//                    toast.show();
 
                 }
             });

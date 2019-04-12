@@ -17,12 +17,12 @@ import com.example.forcesales.Data.Employee.Employee;
 import com.example.forcesales.Data.IssueTracker.IssueTracker;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.Data.Person.Address;
+import com.example.forcesales.Data.Sale.Sale;
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.UI.Developer.DeveloperMenuActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import static java.util.Calendar.DAY_OF_WEEK;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
         new_person2.setEmail("thisisatestemail@gmail.com");
         account.getClients().add(new_person2);
 
+        Sale tempSale = new Sale(001);
+        tempSale.setAmountPaid(0);
+        tempSale.setTotalCost(100);
+
+        account.getSales().addSale(tempSale);
+
 
         Task temp = new Task("Conference Call", new_person, Calendar.getInstance());
         account.getTasks().add(temp);
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 //Storing the client list in the intent as a ParcelableArrayList.
                 i.putExtra("ACCOUNT_LIST", (Parcelable) account.getClients());
                 i.putParcelableArrayListExtra("TASK_LIST", account.getTasks());
-                //i.putParcelableArrayListExtra("SALES_LIST", account.getSales());
+                i.putExtra("SALE_LIST", (Parcelable) account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
                 startActivityForResult(i, RETURNCODE_SETTASKS);

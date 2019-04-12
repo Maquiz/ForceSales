@@ -10,8 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RecycleViewItems.SaleShowAdapter"></activity>
         <activity android:name=".ShowSaleListActivity" />
         <activity android:name=".AddSaleActivity" />
         <activity android:name=".RemoveSaleActivity" />

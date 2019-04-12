@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
+import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.RemoveClientAdapter;
 
 import java.util.ArrayList;
@@ -24,11 +25,11 @@ public class RemoveClientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_remove_client);
+        setContentView(R.layout.activity_recycleview_list);
 
         _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 
-        mRecyclerView = findViewById(R.id.remove_client_recycleview);
+        mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new RemoveClientAdapter(_List);

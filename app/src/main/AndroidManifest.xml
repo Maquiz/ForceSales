@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.forcesales">
 
     <application
@@ -9,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RemoveTaskActivity"></activity>
+        <activity android:name=".ShowSaleListActivity" />
+        <activity android:name=".AddSaleActivity" />
+        <activity android:name=".RemoveSaleActivity" />
+        <activity android:name=".RemoveTaskActivity" />
         <activity android:name=".AddTaskActivity" />
         <activity android:name=".ShowTaskListActivity" />
         <activity android:name=".RemoveClientActivity" />
@@ -19,13 +23,14 @@
         <activity android:name=".SubmitTicketClientActivity" />
         <activity android:name=".ManageSaleActivity" />
         <activity android:name=".ManageClientActivity" />
-        <activity android:name=".Employee.ApplicationsActivity" />
+        <activity android:name=".Employee.ApplicationsActivity" tools:ignore="InnerclassSeparator" />
         <activity android:name=".ClientMenuActivity" />
         <activity android:name=".EmployeeMenuActivity" />
-        <activity android:name=".UI.Developer.DeveloperMenuActivity" />
-        <activity android:name=".UI.Developer.IssueTracker.ManageIssueTrackerActivity" />
-        <activity android:name=".UI.Developer.IssueTracker.ShowIssueTrackerListActivity" />
-        <activity android:name=".UI.Developer.IssueTracker.AddIssueTrackerActivity" />
+        <activity android:name=".UI.Developer.DeveloperMenuActivity" tools:ignore="InnerclassSeparator" />
+        <activity android:name=".UI.Developer.IssueTracker.ManageIssueTrackerActivity" tools:ignore="InnerclassSeparator" />
+        <activity android:name=".UI.Developer.IssueTracker.AddOrUpdateIssueTrackerActivity" tools:ignore="InnerclassSeparator" />
+        <activity android:name=".UI.Developer.IssueTracker.ViewIssueTrackerActivity" tools:ignore="InnerclassSeparator" />
+        <activity android:name=".UI.Developer.IssueTracker.RemoveIssueTrackerActivity" tools:ignore="InnerclassSeparator" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

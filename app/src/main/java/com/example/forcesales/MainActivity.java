@@ -17,12 +17,12 @@ import com.example.forcesales.Data.Employee.Employee;
 import com.example.forcesales.Data.IssueTracker.IssueTracker;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.Data.Person.Address;
+import com.example.forcesales.Data.Sale.Sale;
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.UI.Developer.DeveloperMenuActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import static java.util.Calendar.DAY_OF_WEEK;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,22 +46,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Developer new_dev = new Developer();
-        new_dev.setFirstName("Homer2");
-        new_dev.setLastName("Simpson2");
-        new_dev.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
-        new_dev.setEmail("thisisatestemail2@gmail.com");
-        management.getDeveloperList().add(new_dev);
+        String dev_first_name[] = {"Thomas", "Arend", "Maximilian"};
+        String dev_last_name[] = {"A", "S", "B"};
+        String dev_issue_title[] = {"Take Over The World","Make App Even More Better!","The Master With A Plan"};
+        String dev_issue_description[] = {"", "Arend has done a great job with the android app", "He is going to glue it all together"};
 
-        new_dev = new Developer();
-        new_dev.setFirstName("Bart2");
-        new_dev.setLastName("Simpson2");
-        new_dev.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
-        new_dev.setEmail("thisisatestemail2@gmail.com");
-        management.getDeveloperList().add(new_dev);
+        for (int i = 0; i < 3; i++) {
+            Developer new_dev = new Developer();
+            new_dev.setFirstName(dev_first_name[i]);
+            new_dev.setLastName(dev_last_name[i]);
+            new_dev.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+            new_dev.setEmail(String.format("%s.%s@forcesale.com", dev_first_name[i], dev_last_name[i]));
+            management.getDeveloperList().add(new_dev);
 
-        management.getIssueTracker().add(new IssueTracker("End of the world", "We must find a way to save the earth", new_dev, Calendar.getInstance()));
-        management.getIssueTracker().add(new IssueTracker("Test", "This is a test", new Developer(), Calendar.getInstance()));
+            management.getIssueTracker().add(new IssueTracker(dev_issue_title[i], dev_issue_description[i], new_dev, Calendar.getInstance()));
+        }
+
 
 
         salesApp.setFirstName("Joe");
@@ -92,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
         new_person2.setEmail("thisisatestemail@gmail.com");
         account.getClients().add(new_person2);
 
+        Sale tempSale = new Sale(001);
+        tempSale.setAmountPaid(0);
+        tempSale.setTotalCost(100);
+
+        account.getSales().addSale(tempSale);
+
 
         Task temp = new Task("Conference Call", new_person, Calendar.getInstance());
         account.getTasks().add(temp);
@@ -106,14 +112,11 @@ public class MainActivity extends AppCompatActivity {
         account.getTasks().add(temp4);
 
         //initializes Developer Menu button, sets an on click listerner with intent to switch to he Developer Menu.
-        mDeveloperMenu = (Button) findViewById(R.id.developer_button);
-        mDeveloperMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, DeveloperMenuActivity.class);
-                i.putExtra("MANAGEMENT", management);
-                startActivityForResult(i, RETURNCODE_SETMANAGEMENT);
-            }
+        mDeveloperMenu = findViewById(R.id.developer_button);
+        mDeveloperMenu.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, DeveloperMenuActivity.class);
+            i.putExtra("MANAGEMENT", management);
+            startActivityForResult(i, RETURNCODE_SETMANAGEMENT);
         });
 
         //initializes Employee Menu button, sets an on click listerner with intent to switch to he Employee Menu.
@@ -144,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 //Storing the client list in the intent as a ParcelableArrayList.
                 i.putExtra("ACCOUNT_LIST", (Parcelable) account.getClients());
                 i.putParcelableArrayListExtra("TASK_LIST", account.getTasks());
-                //i.putParcelableArrayListExtra("SALES_LIST", account.getSales());
+                i.putExtra("SALE_LIST", (Parcelable) account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
                 startActivityForResult(i, RETURNCODE_SETTASKS);

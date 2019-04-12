@@ -11,6 +11,8 @@ import com.example.forcesales.Data.Person.PersonList;
  */
 
 public class DeveloperList extends PersonList<Developer,DeveloperList> implements Parcelable {
+    public static final String PARCELABLE_STR = "com.example.forcesales.Data.Developer.DeveloperList";
+
     public DeveloperList() {
         super();
     }

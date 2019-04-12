@@ -8,12 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.forcesales.Data.Account.AccountList;
 import com.example.forcesales.Data.Client.Client;
-import com.example.forcesales.Data.Client.ClientList;
-import com.example.forcesales.Data.Person.PersonList;
+import com.example.forcesales.Data.Sale.Sales;
 import com.example.forcesales.Data.Tasks.Task;
-import com.example.forcesales.Data.Tasks.TaskList;
 
 
 import java.util.ArrayList;
@@ -26,6 +23,7 @@ public class ClientMenuActivity extends AppCompatActivity {
     private Button mSubmitTicket;
     private ArrayList<Client> _List = new ArrayList<>();
     private ArrayList<Task> _Tasks;
+    private Sales _Sales;
 
 
     @Override
@@ -36,6 +34,7 @@ public class ClientMenuActivity extends AppCompatActivity {
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
         _List = getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
         _Tasks = getIntent().getParcelableArrayListExtra("TASK_LIST");
+        _Sales = getIntent().getParcelableExtra("SALE_LIST");
 
 
         //initializes Manage Client Menu button, sets an on click listerner with intent to switch to he Developer Menu.
@@ -60,14 +59,15 @@ public class ClientMenuActivity extends AppCompatActivity {
         mManageSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(ClientMenuActivity.this, ManageSaleActivity.class);
-//
-//                i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
-//
-//                startActivity(i);
 
-                Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent i = new Intent(ClientMenuActivity.this, ManageSaleActivity.class);
+
+                i.putExtra("SALE_LIST", _Sales);
+
+                startActivityForResult(i, 3);
+
+//                Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
+//                toast.show();
 
             }
         });

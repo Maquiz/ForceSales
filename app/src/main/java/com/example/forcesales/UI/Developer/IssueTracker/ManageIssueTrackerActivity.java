@@ -14,7 +14,7 @@ import com.example.forcesales.Data.Developer.DeveloperList;
 import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.R;
-import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerShowAdapter;
+import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerDetailedAdapter;
 
 public class ManageIssueTrackerActivity extends AppCompatActivity {
     private static final int REQUESTCODE_ADDISSUE = 1;
@@ -84,7 +84,7 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
 
 
     protected void updateAdapter() {
-        mAdapter = new IssueTrackerShowAdapter(management.getIssueTracker(),this);
+        mAdapter = new IssueTrackerDetailedAdapter(management.getIssueTracker(),this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -93,7 +93,7 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
     // Public Method
     //
 
-    // IssueTrackerShowAdapter will activate this function when it registers a OnClickListener event.
+    // IssueTrackerDetailedAdapter will activate this function when it registers a OnClickListener event.
     public void showDetailedInformation(int position) {
         Intent i = new Intent(ManageIssueTrackerActivity.this, ViewIssueTrackerActivity.class);
         i.putExtra(IssueTrackerList.PARCELABLE_STR, (Parcelable) management.getIssueTracker());

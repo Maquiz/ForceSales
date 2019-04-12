@@ -37,13 +37,6 @@
             android:hint="Description"
             android:inputType="textMultiLine" />
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="time" />
-
         <Button
             android:id="@+id/report-issue_due_date"
             android:layout_width="match_parent"

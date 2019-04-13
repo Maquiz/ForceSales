@@ -12,11 +12,15 @@ import java.io.Serializable;
 
 public class Employee extends Person {
 	private SalesApplicationList appList;
+	private SalesApplicationList approvedApps;
+	private SalesApplicationList deniedApps;
 	public static final String PARCELABLE_STR = "com.example.forcesales.Data.Employee.Employee";
 
 	public Employee() {
 		super();
 		appList = new SalesApplicationList();
+		approvedApps = new SalesApplicationList();
+		deniedApps = new SalesApplicationList();
 	}
 
 	public SalesApplicationList getAppList() {
@@ -25,5 +29,21 @@ public class Employee extends Person {
 
 	public void setAppList (SalesApplicationList l){
 		appList = l;
+	}
+
+	public SalesApplicationList getDeniedList() {
+		return deniedApps;
+	}
+
+	public void setDeniedList (SalesApplicationList l){
+		deniedApps = l;
+	}
+
+	public SalesApplicationList getApprovedList() {
+		return approvedApps;
+	}
+
+	public void setApprovedList (SalesApplicationList l){
+		approvedApps = l;
 	}
 }

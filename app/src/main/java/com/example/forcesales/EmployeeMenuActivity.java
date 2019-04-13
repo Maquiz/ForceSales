@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.forcesales.Data.Application.SalesApplication;
@@ -27,9 +28,12 @@ public class EmployeeMenuActivity extends AppCompatActivity {
     private Button mApplications;
     private Button mAddAccount;
     private Button mAddClient;
+    private TextView mAcceptStat;
+    private TextView mDeniedStat;
 
     private ArrayList<SalesApplication> _List = new ArrayList<>();
-
+    private ArrayList<SalesApplication> _AList = new ArrayList<>();
+    private ArrayList<SalesApplication> _DList = new ArrayList<>();
 
 
     @Override
@@ -40,6 +44,8 @@ public class EmployeeMenuActivity extends AppCompatActivity {
 
     //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
     _List = getIntent().getParcelableArrayListExtra("APPLICATIONS_LIST");
+    _AList = getIntent().getParcelableArrayListExtra("APPROVED_LIST");
+    _DList = getIntent().getParcelableArrayListExtra("DENIED_LIST");
 
        // SalesApplication sa = _List.get(0);
 
@@ -62,6 +68,8 @@ public class EmployeeMenuActivity extends AppCompatActivity {
             Intent i = new Intent(EmployeeMenuActivity.this, ApplicationsActivity.class);
 
             i.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
+            i.putParcelableArrayListExtra("APPROVED_LIST", _AList);
+            i.putParcelableArrayListExtra("DENIED_LIST", _DList);
             startActivityForResult(i,1);
 
         }
@@ -92,6 +100,11 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         }
     });
 
+        mAcceptStat = findViewById(R.id.acceptAmount);
+        mAcceptStat.setText("Accepted Applications: " + _AList.size());
+
+        mDeniedStat = findViewById(R.id.deniedAmount);
+        mDeniedStat.setText("Denied Applications: " + _DList.size() );
 }
 
 
@@ -101,6 +114,8 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
                 _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
+                _AList = data.getParcelableArrayListExtra("APPROVED_LIST");
+                _DList = data.getParcelableArrayListExtra("DENIED_LIST");
             }
         }
     }
@@ -114,9 +129,13 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         Intent result = new Intent();
 
         result.putExtra("APPLICATIONS_LIST", _List);
+        result.putExtra("APPROVED_LIST", _AList);
+        result.putExtra("DENIED_LIST", _DList);
         setResult(RESULT_OK, result);
         finish();
 
 
     }
+
+
 }

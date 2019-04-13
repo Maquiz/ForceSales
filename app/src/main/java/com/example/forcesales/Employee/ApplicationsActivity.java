@@ -21,6 +21,8 @@ import java.util.ArrayList;
 public class ApplicationsActivity extends AppCompatActivity {
 
     private ArrayList<SalesApplication> _List = new ArrayList<SalesApplication>();
+    private ArrayList<SalesApplication> _AList = new ArrayList<SalesApplication>();
+    private ArrayList<SalesApplication> _DList = new ArrayList<SalesApplication>();
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -35,6 +37,8 @@ public class ApplicationsActivity extends AppCompatActivity {
 
         employee = getIntent().getParcelableExtra(Employee.PARCELABLE_STR);
         _List = getIntent().getParcelableArrayListExtra("APPLICATIONS_LIST");
+        _AList = getIntent().getParcelableArrayListExtra("APPROVED_LIST");
+        _DList = getIntent().getParcelableArrayListExtra("DENIED_LIST");
 
         mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);
@@ -42,7 +46,7 @@ public class ApplicationsActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new ApplicationShowAdapter(_List);
+        mAdapter = new ApplicationShowAdapter(_List,_AList,_DList);
         mRecyclerView.setAdapter(mAdapter);
 
         //pull client list from the previous intent for use in t
@@ -56,6 +60,8 @@ public class ApplicationsActivity extends AppCompatActivity {
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
                 _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
+                _AList = data.getParcelableArrayListExtra("APPROVED_LIST");
+                _DList = data.getParcelableArrayListExtra("DENIED_LIST");
             }
         }
     }
@@ -69,8 +75,16 @@ public class ApplicationsActivity extends AppCompatActivity {
         Intent result = new Intent();
        // result.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
         result.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
+        result.putParcelableArrayListExtra("APPROVED_LIST", _AList);
+        result.putParcelableArrayListExtra("DENIED_LIST", _DList);
         setResult(RESULT_OK, result);
         finish();
 
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
     }
 }

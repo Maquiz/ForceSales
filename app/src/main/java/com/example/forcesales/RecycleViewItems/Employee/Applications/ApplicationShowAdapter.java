@@ -20,6 +20,8 @@ import java.util.ArrayList;
 public class ApplicationShowAdapter extends RecyclerView.Adapter<ApplicationShowAdapter.ApplicationShowViewHolder> {
 
     private ArrayList<SalesApplication> mApplicationList  = new ArrayList<SalesApplication>();
+    private ArrayList<SalesApplication> mApprovedList  = new ArrayList<SalesApplication>();
+    private ArrayList<SalesApplication> mDeniedList  = new ArrayList<SalesApplication>();
 
     public static class ApplicationShowViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView1;
@@ -43,7 +45,11 @@ public class ApplicationShowAdapter extends RecyclerView.Adapter<ApplicationShow
         }
     }
 
-    public ApplicationShowAdapter (ArrayList<SalesApplication> applicationList) {mApplicationList = applicationList;}
+    public ApplicationShowAdapter (ArrayList<SalesApplication> applicationList, ArrayList<SalesApplication> approvedList,ArrayList<SalesApplication> deniedList) {
+        mApplicationList = applicationList;
+        mApprovedList = approvedList;
+        mDeniedList = deniedList;
+    }
 
     @Override
     public ApplicationShowViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
@@ -66,19 +72,24 @@ public class ApplicationShowAdapter extends RecyclerView.Adapter<ApplicationShow
         holder.mAccept.setOnClickListener(v -> {
             Toast toast = Toast.makeText(v.getContext(), "Account Accepted", Toast.LENGTH_SHORT);
             toast.show();
+            //Add to Accepted List
+            mApprovedList.add(mApplicationList.get(position));
             //Remove item from list
             mApplicationList.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position,mApplicationList.size());
-            //Add to Accepted List
-            //((Activity)context).finish();
         });
 
         //Decline Button
         holder.mDeny.setOnClickListener(v -> {
             Toast toast = Toast.makeText(v.getContext(), "Account Denied", Toast.LENGTH_SHORT);
             toast.show();
-            //finish();
+            //Add to decline list
+            mDeniedList.add(mApplicationList.get(position));
+            //Remove from main list
+            mApplicationList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position,mApplicationList.size());
         });
     }
 

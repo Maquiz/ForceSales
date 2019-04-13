@@ -130,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
         mEmployeeMenu.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
             i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
-
+            i.putParcelableArrayListExtra("APPROVED_LIST", employee.getApprovedList());
+            i.putParcelableArrayListExtra("DENIED_LIST", employee.getDeniedList());
             startActivityForResult(i, RETURNCODE_MAXMAGIC);
 
         });
@@ -184,6 +185,8 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == RETURNCODE_MAXMAGIC) {
             if(resultCode == RESULT_OK){
                 employee.setAppList(data.getParcelableExtra("APPLICATIONS_LIST"));
+                employee.setApprovedList (data.getParcelableExtra("APPROVED_LIST"));
+                employee.setDeniedList(data.getParcelableExtra("DENIED_LIST"));
                 Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
             }
         }

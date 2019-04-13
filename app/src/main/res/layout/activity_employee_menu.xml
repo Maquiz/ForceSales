@@ -48,6 +48,18 @@
             android:id="@+id/add_client_from_employee_button"
             android:text="Add Client"/>
 
+        <TextView
+            android:id="@+id/acceptAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/deniedAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

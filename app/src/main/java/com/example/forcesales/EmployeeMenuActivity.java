@@ -4,6 +4,8 @@ package com.example.forcesales;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +16,8 @@ import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Employee.AddAccountsActivity;
 import com.example.forcesales.Employee.ApplicationsActivity;
 import com.example.forcesales.Employee.SupportTicketActivity;
+import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerDetailedAdapter;
+import com.example.forcesales.RecycleViewItems.Employee.Applications.ApplicationShowAdapter;
 
 import java.util.ArrayList;
 
@@ -23,7 +27,12 @@ public class EmployeeMenuActivity extends AppCompatActivity {
     private Button mApplications;
     private Button mAddAccount;
     private Button mAddClient;
+
     private ArrayList<SalesApplication> _List = new ArrayList<>();
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -31,11 +40,11 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_menu);
 
+
     //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
     _List = getIntent().getParcelableArrayListExtra("APPLICATIONS_LIST");
 
-        SalesApplication sa = _List.get(0);
-
+       // SalesApplication sa = _List.get(0);
 
     //initializes Manage Client Menu button, sets an on click listerner with intent to switch to the emplo Menu.
     mSupportTicket = (Button) findViewById(R.id.support_tickets_button);

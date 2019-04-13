@@ -126,16 +126,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //initializes Employee Menu button, sets an on click listerner with intent to switch to he Employee Menu.
-        mEmployeeMenu = (Button) findViewById(R.id.employee_button);
-        mEmployeeMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
-                i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
+        mEmployeeMenu =  findViewById(R.id.employee_button);
+        mEmployeeMenu.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
+            i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
 
-                startActivityForResult(i, RETURNCODE_MAXMAGIC);
+            startActivityForResult(i, RETURNCODE_MAXMAGIC);
 
-            }
         });
 
         //initializes Client Menu button, sets an on click listerner with intent to switch to he Client Menu.
@@ -181,6 +178,13 @@ public class MainActivity extends AppCompatActivity {
 
             else {
                 Log.w("APP", "onActivityResult: Something wrong has happened");
+            }
+        }
+
+        if(requestCode == RETURNCODE_MAXMAGIC) {
+            if(resultCode == RESULT_OK){
+                employee.setAppList(data.getParcelableExtra("APPLICATIONS_LIST"));
+                Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
             }
         }
 

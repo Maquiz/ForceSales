@@ -30,9 +30,6 @@ public class EmployeeMenuActivity extends AppCompatActivity {
 
     private ArrayList<SalesApplication> _List = new ArrayList<>();
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -65,8 +62,7 @@ public class EmployeeMenuActivity extends AppCompatActivity {
             Intent i = new Intent(EmployeeMenuActivity.this, ApplicationsActivity.class);
 
             i.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
-
-            startActivity(i);
+            startActivityForResult(i,1);
 
         }
     });
@@ -117,8 +113,10 @@ public class EmployeeMenuActivity extends AppCompatActivity {
 
         Intent result = new Intent();
 
-        result.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
+        result.putExtra("APPLICATIONS_LIST", _List);
         setResult(RESULT_OK, result);
         finish();
+
+
     }
 }

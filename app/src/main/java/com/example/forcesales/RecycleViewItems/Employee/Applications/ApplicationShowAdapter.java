@@ -1,7 +1,10 @@
 package com.example.forcesales.RecycleViewItems.Employee.Applications;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 
 public class ApplicationShowAdapter extends RecyclerView.Adapter<ApplicationShowAdapter.ApplicationShowViewHolder> {
 
-    private ArrayList<SalesApplication> mApplicationList;
+    private ArrayList<SalesApplication> mApplicationList  = new ArrayList<SalesApplication>();
 
     public static class ApplicationShowViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView1;
@@ -63,7 +66,12 @@ public class ApplicationShowAdapter extends RecyclerView.Adapter<ApplicationShow
         holder.mAccept.setOnClickListener(v -> {
             Toast toast = Toast.makeText(v.getContext(), "Account Accepted", Toast.LENGTH_SHORT);
             toast.show();
-            //finish();
+            //Remove item from list
+            mApplicationList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position,mApplicationList.size());
+            //Add to Accepted List
+            //((Activity)context).finish();
         });
 
         //Decline Button
@@ -76,4 +84,5 @@ public class ApplicationShowAdapter extends RecyclerView.Adapter<ApplicationShow
 
     @Override
     public int getItemCount() { return mApplicationList.size();}
+
 }

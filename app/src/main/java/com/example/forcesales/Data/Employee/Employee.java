@@ -22,4 +22,8 @@ public class Employee extends Person {
 	public SalesApplicationList getAppList() {
 		return appList;
 	}
+
+	public void setAppList (SalesApplicationList l){
+		appList = l;
+	}
 }

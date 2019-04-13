@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ApplicationsActivity extends AppCompatActivity {
 
-    private ArrayList<SalesApplication> _List = new ArrayList<>();
+    private ArrayList<SalesApplication> _List = new ArrayList<SalesApplication>();
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -67,9 +67,10 @@ public class ApplicationsActivity extends AppCompatActivity {
         Log.d("APP", "onBackPressed() Override called it ClientMenuActivity");
 
         Intent result = new Intent();
-
+       // result.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
         result.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
         setResult(RESULT_OK, result);
         finish();
+
     }
 }

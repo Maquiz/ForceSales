@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private Button mClientMenu;
 
     private Employee employee = new Employee();
-    private SalesApplication salesApp = new SalesApplication();
     private Account account = new Account();
     private AccountList account_array = new AccountList();
     private Management management = new Management();
@@ -63,15 +62,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        //Application test info
+        String applicant_first_name[] = {"Joe", "Billy", "Maria"};
+        String applicant_last_name[] = {"Cool", "Ball", "Money"};
+        String applicant_company_name[] = {"Gilroy Garlic", "Oakland A's", "Robinhood"};
+        String applicant_email[] = {"joe@garlic.com", "Bill@A.com", "Maria@Robinhood.org"};
 
-        salesApp.setFirstName("Joe");
-        salesApp.setLastName("Cool");
-        salesApp.setCompanyName("Gilroy Garlic");
-        salesApp.setPhoneNumber("5102222222");
-        salesApp.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
-        salesApp.setEmail("joe@garlic.com");
-        employee.getAppList().add(salesApp);
-
+        for(int i = 0; i < 3; i++){
+            SalesApplication salesApp = new SalesApplication();
+            salesApp.setFirstName(applicant_first_name[i]);
+            salesApp.setLastName(applicant_last_name[i]);
+            salesApp.setCompanyName(applicant_company_name[i]);
+            salesApp.setPhoneNumber("5102222222");
+            salesApp.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+            salesApp.setEmail(applicant_email[i]);
+            employee.getAppList().add(salesApp);
+        }
 
         account.setAccountName("McDonald's");
         account.setOpportunityName("Corporate Locations");
@@ -125,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
-
                 i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
 
                 startActivityForResult(i, RETURNCODE_MAXMAGIC);

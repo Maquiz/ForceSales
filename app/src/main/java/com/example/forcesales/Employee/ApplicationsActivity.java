@@ -3,6 +3,7 @@ package com.example.forcesales.Employee;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.forcesales.Data.Application.SalesApplication;
+import com.example.forcesales.Data.Employee.Employee;
 import com.example.forcesales.R;
 import java.util.ArrayList;
 
@@ -23,17 +25,27 @@ public class ApplicationsActivity extends AppCompatActivity {
     public TextView mTextView4;
     public TextView mTextView5;
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     public Button mAccept;
     public Button mDeny;
+
+    private Employee employee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_review);
+        employee = getIntent().getParcelableExtra(Employee.PARCELABLE_STR);
 
-        //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
+        //pull client list from the previous intent for use in t
+        // is activity. (no casting required, just store in a ArrayList<Client>)
         _List = getIntent().getParcelableArrayListExtra("APPLICATIONS_LIST");
 
+
+        //Currently hardcoded for one
         SalesApplication sa = _List.get(0);
 
 

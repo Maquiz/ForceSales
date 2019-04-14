@@ -1,14 +1,12 @@
 package com.example.forcesales;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import com.example.forcesales.Data.Client.Client;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.forcesales.Data.Client.ClientList;
-import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.ClientShowAdapter;
-import java.util.ArrayList;
 
 public class ShowClientListActivity extends AppCompatActivity {
 

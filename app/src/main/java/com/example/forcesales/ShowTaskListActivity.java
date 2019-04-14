@@ -1,11 +1,10 @@
 package com.example.forcesales;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.forcesales.Data.Tasks.Task;
-import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.TaskShowAdapter;
 
 import java.util.List;

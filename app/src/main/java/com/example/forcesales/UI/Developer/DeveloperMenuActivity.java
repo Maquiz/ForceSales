@@ -17,9 +17,6 @@ import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivi
  */
 
 public class DeveloperMenuActivity extends AppCompatActivity {
-    public static final String DEVELOPERLIST = "com.example.forcesales.UI.Developer.DeveloperMenuActivity.Management.DEVELOPERLIST";
-    public static final String ISSUETRACKER = "com.example.forcesales.UI.Developer.DeveloperMenuActivity.Management.ISSUETRACKER";
-
     private static final int REQUESTCODE_MANAGETICKETS = 1;
 
     private Management management;

@@ -11,6 +11,8 @@ import java.io.Serializable;
 
 
 public class Employee extends Person {
+	public static final String PARCELABLE_STR = "com.example.forcesales.Data.Employee.Employee";
+
 	private SalesApplicationList appList;
 
 	public Employee() {

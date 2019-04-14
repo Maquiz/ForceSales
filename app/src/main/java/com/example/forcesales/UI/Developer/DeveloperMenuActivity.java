@@ -1,12 +1,14 @@
 package com.example.forcesales.UI.Developer;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.forcesales.Data.Employee.EmployeeList;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.R;
 import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
@@ -18,6 +20,7 @@ import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivi
 
 public class DeveloperMenuActivity extends AppCompatActivity {
     private static final int REQUESTCODE_MANAGETICKETS = 1;
+    private static final int REQUESTCODE_ADDEMPLOYEE = 2;
 
     private Management management;
 
@@ -38,12 +41,9 @@ public class DeveloperMenuActivity extends AppCompatActivity {
 
         Button add_employee = findViewById(R.id.button_dev_add_employee);
         add_employee.setOnClickListener(v -> {
-//            Intent i = new Intent(this, ShowT);
-            Toast t = Toast.makeText(getApplicationContext(), "ADD EMPLOYEE: Need to connect soon", Toast.LENGTH_SHORT);
-            t.show();
-
-//            startActivity(i);
-//            startActivityForResult(i,1);
+            Intent i = new Intent(this, AddEmployeeActivity.class);
+            i.putExtra(EmployeeList.PARCELABLE_STR, (Parcelable) management.getEmployeeList());
+            startActivityForResult(i, REQUESTCODE_ADDEMPLOYEE);
         });
     }
 
@@ -54,6 +54,12 @@ public class DeveloperMenuActivity extends AppCompatActivity {
         if (requestCode == REQUESTCODE_MANAGETICKETS) {
             if (resultCode == RESULT_OK) {
                 management = data.getParcelableExtra(Management.PARCELABLE_STR);
+            }
+        }
+
+        else if (requestCode == REQUESTCODE_ADDEMPLOYEE) {
+            if (resultCode == RESULT_OK) {
+                management.setEmployeeList(data.getParcelableExtra(EmployeeList.PARCELABLE_STR));
             }
         }
     }

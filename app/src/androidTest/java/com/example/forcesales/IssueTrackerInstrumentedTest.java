@@ -10,6 +10,7 @@ import com.example.forcesales.TestHelper.IssueTrackerHelper;
 import org.junit.Rule;
 import org.junit.Test;
 
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.rule.ActivityTestRule;
 
@@ -55,5 +56,23 @@ public class IssueTrackerInstrumentedTest {
 
         issue_tracker_helper = activityRule.getActivity(); // If you have variables in your class that you want to assess, this is probably the best (and only?) way to access it.
         assertThat(issue_tracker_helper.management.getIssueTracker().size(), is(5)); // http://junit.sourceforge.net/javadoc/org/junit/Assert.html
+    }
+
+    @Test
+    public void testRemoveIssueTracker() {
+        onView(withId(R.id.manage_list_delete)).perform(click());
+
+        int value_group[] = {0,1,3};
+        for (int value: value_group) {
+            onView(withId(R.id.abstract_recycleview_list)).perform(
+                    RecyclerViewActions.actionOnItemAtPosition(value, click())
+            );
+        }
+
+        onView(withId(R.id.manage_deletion_delete)).perform(click());
+        pressBack();
+
+        issue_tracker_helper = activityRule.getActivity();
+        assertThat(issue_tracker_helper.management.getIssueTracker().size(), is(1));
     }
 }

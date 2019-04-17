@@ -5,6 +5,9 @@ import android.os.Parcelable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,9 +23,14 @@ import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Sale.Sale;
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.UI.Developer.DeveloperMenuActivity;
+import com.example.forcesales.UI.InfoBarActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+/*
+ * TODO: See If It Is Possible to Remove Employee and Account
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -153,6 +161,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(i, RETURNCODE_SETTASKS);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menu_inflater = getMenuInflater();
+        menu_inflater.inflate(R.menu.mainmenu_info, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mainmenu_info_info:
+                Intent i = new Intent(this, InfoBarActivity.class);
+                i.putExtra(Management.PARCELABLE_STR, management);
+                i.putExtra(AccountList.PARCELABLE_STR, (Parcelable) account_array);
+                startActivity(i); // We don't really need to return anything, right?
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
+        return true;
     }
 
     //Once the next activity is ends (finish()) and the onCreate() is recalled for this activity, onActivityResult() is called and restores the changes made

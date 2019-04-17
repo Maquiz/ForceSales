@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".UI.Developer.AddEmployeeActivity" />
+        <activity android:name=".TestHelper.IssueTrackerHelper" />
+        <activity android:name=".UI.InfoBarActivity" />
         <activity android:name=".ShowSaleListActivity" />
         <activity android:name=".AddSaleActivity" />
         <activity android:name=".RemoveSaleActivity" />

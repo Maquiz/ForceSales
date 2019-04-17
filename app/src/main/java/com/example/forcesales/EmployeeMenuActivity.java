@@ -2,7 +2,7 @@ package com.example.forcesales;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.forcesales.Data.Application.SalesApplication;
-import com.example.forcesales.Data.Client.Client;
-import com.example.forcesales.Employee.AddAccountsActivity;
 import com.example.forcesales.Employee.ApplicationsActivity;
-import com.example.forcesales.Employee.SupportTicketActivity;
 
 import java.util.ArrayList;
 

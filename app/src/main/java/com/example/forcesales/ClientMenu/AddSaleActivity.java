@@ -1,7 +1,9 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.forcesales.R;
 
 public class AddSaleActivity extends AppCompatActivity {
 

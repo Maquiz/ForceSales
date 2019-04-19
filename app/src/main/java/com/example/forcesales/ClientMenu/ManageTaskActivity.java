@@ -1,14 +1,16 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Tasks.Task;
+import com.example.forcesales.R;
 
 import java.util.ArrayList;
 

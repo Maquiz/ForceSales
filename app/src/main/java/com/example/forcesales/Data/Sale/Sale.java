@@ -35,7 +35,7 @@ import java.util.ArrayList;
 		private int saleId;
 		private float totalCost;
 		private float amountPaid;
-		private ArrayList<Item> saleList =  new ArrayList<Item>();	
+		private ArrayList<Item> itemList =  new ArrayList<Item>();
 
 		public Sale(int _id){
 			saleId = _id;
@@ -44,7 +44,7 @@ import java.util.ArrayList;
 		}
 		
 		public void addItem(Item i) {
-			saleList.add(i);
+			itemList.add(i);
 		}
 		
 		public void addPayment(float payAmount) {
@@ -78,7 +78,7 @@ import java.util.ArrayList;
 
 		public void printSale() {
 			System.out.println("Sale ID:" + saleId);
-			for(Item i :  saleList) {
+			for(Item i :  itemList) {
 				totalCost += i.itemTotalCost();
 				i.printItem();
 				System.out.println();
@@ -101,7 +101,7 @@ import java.util.ArrayList;
 			dest.writeInt(saleId);
 			dest.writeFloat(totalCost);
 			dest.writeFloat(amountPaid);
-			dest.writeList(saleList);
+			dest.writeList(itemList);
 		}
 
 		//creator
@@ -120,8 +120,8 @@ import java.util.ArrayList;
 			saleId = in.readInt();
 			totalCost = in.readFloat();
 			amountPaid = in.readFloat();
-			saleList = new ArrayList<Item>();
-			in.readList(saleList, Item.class.getClassLoader());
+			itemList = new ArrayList<Item>();
+			in.readList(itemList, Item.class.getClassLoader());
 		}
 			
 }

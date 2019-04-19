@@ -3,9 +3,9 @@ package com.example.forcesales.UI.Developer.IssueTracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +15,6 @@ import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerRemoveAdapter;
 
 import java.util.Iterator;
-import java.util.Stack;
 
 public class RemoveIssueTrackerActivity extends AppCompatActivity {
     private RecyclerView mRecycleView;

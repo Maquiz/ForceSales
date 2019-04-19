@@ -5,6 +5,7 @@ import android.view.View;
 import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.Base.IssueTrackerSharedAdapter;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.Base.TaskShowViewHolderBase;
+import com.example.forcesales.UI.Abstract.RecycleView.ShowDetailedInfo;
 import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
 
 
@@ -14,10 +15,10 @@ import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivi
  */
 
 public class IssueTrackerDetailedAdapter extends IssueTrackerSharedAdapter<IssueTrackerDetailedAdapter.TaskShowViewHolderShow> {
-    private ManageIssueTrackerActivity mIssueTrackerListActivity;
+    private ShowDetailedInfo show_detailed_info;
 
     public static class TaskShowViewHolderShow extends TaskShowViewHolderBase {
-        public TaskShowViewHolderShow(View itemView, ManageIssueTrackerActivity mIssueTrackerListActivity) {
+        public TaskShowViewHolderShow(View itemView, ShowDetailedInfo mIssueTrackerListActivity) {
             super(itemView);
 
             itemView.setOnClickListener(v -> {
@@ -28,11 +29,11 @@ public class IssueTrackerDetailedAdapter extends IssueTrackerSharedAdapter<Issue
 
     @Override
     public TaskShowViewHolderShow createViewHolder(View v) {
-        return new TaskShowViewHolderShow(v, mIssueTrackerListActivity);
+        return new TaskShowViewHolderShow(v, show_detailed_info);
     }
 
-    public IssueTrackerDetailedAdapter(IssueTrackerList taskList, ManageIssueTrackerActivity issue_tracker_list_activity) {
+    public IssueTrackerDetailedAdapter(IssueTrackerList taskList, ShowDetailedInfo issue_tracker_list_activity) {
         super(taskList);
-        mIssueTrackerListActivity = issue_tracker_list_activity;
+        show_detailed_info = issue_tracker_list_activity;
     }
 }

@@ -1,8 +1,8 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import android.content.Intent;
 import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +11,6 @@ import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
 import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.R;
-
-import java.util.ArrayList;
 
 public class AddClientActivity extends AppCompatActivity {
 
@@ -29,6 +27,8 @@ public class AddClientActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
+
+        getSupportActionBar().setTitle("Add Clients");
 
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
         ClientList _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");

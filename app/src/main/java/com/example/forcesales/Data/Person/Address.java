@@ -168,4 +168,8 @@ public final class Address implements Parcelable {
 		zip_code = in.readString();
 	}
 
+	@Override
+	public String toString(){
+		return street_address + " " + city + ", " + state + " "+ zip_code;
+	}
 }

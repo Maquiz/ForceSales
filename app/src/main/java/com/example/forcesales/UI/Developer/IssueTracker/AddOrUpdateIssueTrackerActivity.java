@@ -1,12 +1,14 @@
 package com.example.forcesales.UI.Developer.IssueTracker;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,19 @@ import java.util.Calendar;
  */
 
 public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
+    //
+    // Saleforce Objects
+    //
+
+    private DeveloperList developer_list;
+    private IssueTrackerList issue_tracker_list;
+    private int issue_tracker_pos;
+    private IssueTracker.LABLE label_option;
+    private boolean is_task_done;
+
+    //
+    // Android GUI Objects
+    //
 
     private EditText textTitle;
     private EditText textDescription;
@@ -35,13 +50,16 @@ public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
     private Button buttonPrevious;
     private Button buttonNext;
 
+    private Button buttonOpenClosed;
+    private Button buttonLabel;
+
     private Button buttonSubmit;
     private int select_dev_position;
 
-    private DeveloperList developer_list;
-    private IssueTrackerList issue_tracker_list;
-    private int issue_tracker_pos;
-
+    //
+    // Other Objects
+    //
+    private String label_names[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +76,22 @@ public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
         buttonPrevious = findViewById(R.id.report_issue_select_person_previous);
         buttonNext = findViewById(R.id.report_issue_select_person_next);
         buttonAssign = findViewById(R.id.report_issue_select_person_name);
+        buttonOpenClosed = findViewById(R.id.report_issue_openclosed);
+        buttonLabel = findViewById(R.id.report_issue_label);
         buttonSubmit = findViewById(R.id.report_issue_submit);
+
+        label_names = new String[IssueTracker.LABLE.values().length];
+        int i = 0;
+        for (IssueTracker.LABLE v: IssueTracker.LABLE.values()) {
+            label_names[i++] = v.name();
+        }
 
         if (issue_tracker_pos == -1) {
             select_dev_position = 0;
             buttonSubmit.setText("Add");
             calendar_due_date = Calendar.getInstance();
+            label_option = IssueTracker.LABLE.NONE;
+            is_task_done = false;
         }
 
         else {
@@ -75,14 +103,18 @@ public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
             textTitle.setText(current_issue_tracker.getNameOfTask());
             textDescription.setText(current_issue_tracker.getDescriptionOfTask());
             calendar_due_date = current_issue_tracker.getCalendarDueDate();
-
+            label_option = current_issue_tracker.getLabel();
+            is_task_done = current_issue_tracker.isTaskDone();
         }
 
         updateCalenderButton();
+        updateOpenClosedButton();
         buttonAssign.setText(developer_list.get(select_dev_position).getFirstName()+ " " + developer_list.get(select_dev_position).getLastName());
+        buttonLabel.setText(label_option.name());
 
         setDeveloperOptionButtons();
         setCalendarDueDateButton();
+        setIssueTrackerStatus();
         setSubmitButton();
     }
 
@@ -95,6 +127,16 @@ public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
                         calendar_due_date.get(Calendar.YEAR)
                 )
         );
+    }
+
+    private void updateOpenClosedButton() {
+        if (is_task_done) {
+            buttonOpenClosed.setText("Closed");
+        }
+
+        else {
+            buttonOpenClosed.setText("Open");
+        }
     }
 
     //
@@ -153,6 +195,24 @@ public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
         });
     }
 
+    private void setIssueTrackerStatus() {
+        buttonOpenClosed.setOnClickListener(v -> {
+            is_task_done = !is_task_done;
+            updateOpenClosedButton();
+        });
+
+        buttonLabel.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Set Label");
+            builder.setItems(label_names, (dialog, which) -> {
+                label_option = IssueTracker.LABLE.values()[which];
+                buttonLabel.setText(label_option.name());
+            });
+
+            builder.show();
+        });
+    }
+
 
     private void setSubmitButton() {
         buttonSubmit.setOnClickListener(v -> {
@@ -164,6 +224,10 @@ public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
                         calendar_due_date
                 );
 
+                temp.setLabel(label_option);
+                if (is_task_done) { temp.setTaskDone(); }
+                else { temp.unsetTaskDone(); }
+
                 issue_tracker_list.add(temp);
             }
 
@@ -173,6 +237,10 @@ public class AddOrUpdateIssueTrackerActivity extends AppCompatActivity {
                 value.setDescriptionOfTask(textDescription.getText().toString());
                 value.changeAssigned(developer_list.get(select_dev_position));
                 value.setCalendarDueDate(calendar_due_date);
+                value.setLabel(label_option);
+
+                if (is_task_done) { value.setTaskDone();}
+                else { value.unsetTaskDone(); }
             }
 
             Intent resultIntent = new Intent();

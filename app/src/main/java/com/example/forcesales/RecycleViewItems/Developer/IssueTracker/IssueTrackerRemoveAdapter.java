@@ -1,19 +1,13 @@
 package com.example.forcesales.RecycleViewItems.Developer.IssueTracker;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 
-import com.example.forcesales.Data.IssueTracker.IssueTracker;
 import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.Base.IssueTrackerSharedAdapter;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.Base.TaskShowViewHolderBase;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.TreeSet;
 
 /*

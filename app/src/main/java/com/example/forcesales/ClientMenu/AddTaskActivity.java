@@ -1,9 +1,8 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +14,6 @@ import com.example.forcesales.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -37,6 +35,8 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        getSupportActionBar().setTitle("Add Tasks");
 
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
         _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");

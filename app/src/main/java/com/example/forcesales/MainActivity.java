@@ -2,12 +2,17 @@ package com.example.forcesales;
 
 import android.content.Intent;
 import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.forcesales.ClientMenu.ClientMenuActivity;
+import com.example.forcesales.ClientMenu.EmployeeMenuActivity;
 import com.example.forcesales.Data.Account.Account;
 import com.example.forcesales.Data.Account.AccountList;
 import com.example.forcesales.Data.Application.SalesApplication;
@@ -20,9 +25,13 @@ import com.example.forcesales.Data.Person.Address;
 import com.example.forcesales.Data.Sale.Sale;
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.UI.Developer.DeveloperMenuActivity;
+import com.example.forcesales.UI.InfoBarActivity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
+
+/*
+ * TODO: See If It Is Possible to Remove Employee and Account
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mClientMenu;
 
     private Employee employee = new Employee();
-    private SalesApplication salesApp = new SalesApplication();
+    private Management empManagement = new Management();
     private Account account = new Account();
     private AccountList account_array = new AccountList();
     private Management management = new Management();
@@ -63,15 +72,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        //Application test info
+        String applicant_first_name[] = {"Joe", "Billy", "Maria"};
+        String applicant_last_name[] = {"Cool", "Ball", "Money"};
+        String applicant_company_name[] = {"Gilroy Garlic", "Oakland A's", "Robinhood"};
+        String applicant_email[] = {"joe@garlic.com", "Bill@A.com", "Maria@Robinhood.org"};
 
-        salesApp.setFirstName("Joe");
-        salesApp.setLastName("Cool");
-        salesApp.setCompanyName("Gilroy Garlic");
-        salesApp.setPhoneNumber("5102222222");
-        salesApp.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
-        salesApp.setEmail("joe@garlic.com");
-        employee.getAppList().add(salesApp);
+        for(int i = 0; i < 3; i++){
+            SalesApplication salesApp = new SalesApplication();
+            salesApp.setFirstName(applicant_first_name[i]);
+            salesApp.setLastName(applicant_last_name[i]);
+            salesApp.setCompanyName(applicant_company_name[i]);
+            salesApp.setPhoneNumber("5102222222");
+            salesApp.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+            salesApp.setEmail(applicant_email[i]);
+            employee.getAppList().add(salesApp);
+        }
+        //Employee Tasks
+        String emp_first_name[] = {"Thomas", "Arend", "Maximilian"};
+        String emp_last_name[] = {"A", "S", "B"};
+        String emp_issue_title[] = {"Take Over The World","Make App Even More Better!","The Master With A Plan"};
+        String emp_issue_description[] = {"", "Arend has done a great job with the android app", "He is going to glue it all together"};
 
+        for (int i = 0; i < 3; i++) {
+            Developer new_dev = new Developer();
+            new_dev.setFirstName(dev_first_name[i]);
+            new_dev.setLastName(dev_last_name[i]);
+            new_dev.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+            new_dev.setEmail(String.format("%s.%s@forcesale.com", dev_first_name[i], dev_last_name[i]));
+            empManagement.getDeveloperList().add(new_dev);
+
+            empManagement.getIssueTracker().add(new IssueTracker(dev_issue_title[i], dev_issue_description[i], new_dev, Calendar.getInstance()));
+        }
 
         account.setAccountName("McDonald's");
         account.setOpportunityName("Corporate Locations");
@@ -120,17 +152,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //initializes Employee Menu button, sets an on click listerner with intent to switch to he Employee Menu.
-        mEmployeeMenu = (Button) findViewById(R.id.employee_button);
-        mEmployeeMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
+        mEmployeeMenu =  findViewById(R.id.employee_button);
+        mEmployeeMenu.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, EmployeeMenuActivity.class);
+            i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
+            i.putParcelableArrayListExtra("APPROVED_LIST", employee.getApprovedList());
+            i.putParcelableArrayListExtra("DENIED_LIST", employee.getDeniedList());
+            i.putExtra("EMPLOYEE", empManagement);
+            startActivityForResult(i, RETURNCODE_MAXMAGIC);
 
-                i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
-
-                startActivityForResult(i, RETURNCODE_MAXMAGIC);
-
-            }
         });
 
         //initializes Client Menu button, sets an on click listerner with intent to switch to he Client Menu.
@@ -146,13 +176,37 @@ public class MainActivity extends AppCompatActivity {
 
                 //Storing the client list in the intent as a ParcelableArrayList.
                 i.putExtra("ACCOUNT_LIST", (Parcelable) account.getClients());
-                i.putParcelableArrayListExtra("TASK_LIST", account.getTasks());
+                i.putExtra("TASK_LIST", (Parcelable) account.getTasks());
                 i.putExtra("SALE_LIST", (Parcelable) account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
                 startActivityForResult(i, RETURNCODE_SETTASKS);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menu_inflater = getMenuInflater();
+        menu_inflater.inflate(R.menu.mainmenu_info, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mainmenu_info_info:
+                Intent i = new Intent(this, InfoBarActivity.class);
+                i.putExtra(Management.PARCELABLE_STR, management);
+                i.putExtra(AccountList.PARCELABLE_STR, (Parcelable) account_array);
+                startActivity(i); // We don't really need to return anything, right?
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
+        return true;
     }
 
     //Once the next activity is ends (finish()) and the onCreate() is recalled for this activity, onActivityResult() is called and restores the changes made
@@ -179,18 +233,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        if(requestCode == RETURNCODE_MAXMAGIC) {
+            if(resultCode == RESULT_OK){
+                employee.setAppList(data.getParcelableExtra("APPLICATIONS_LIST"));
+                employee.setApprovedList (data.getParcelableExtra("APPROVED_LIST"));
+                employee.setDeniedList(data.getParcelableExtra("DENIED_LIST"));
+                empManagement = data.getParcelableExtra("EMPLOYEE");
+                Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
+            }
+        }
+
         if (requestCode == RETURNCODE_SETTASKS) {
             if (resultCode == RESULT_OK) {
 
-                ArrayList<Task> temp;
 
-                temp = data.getParcelableArrayListExtra("TASK_LIST");
+                account.setTasks(data.getParcelableExtra("TASK_LIST"));
+                account.setClients(data.getParcelableExtra("ACCOUNT_LIST"));
 
-                account.getTasks().clear();
-
-                for (int i = 0; i < temp.size(); i++) {
-                    account.getTasks().add(temp.get(i));
-                }
 
                 Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
 
@@ -200,4 +259,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 }

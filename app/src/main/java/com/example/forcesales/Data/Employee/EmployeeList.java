@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.example.forcesales.Data.Person.PersonList;
 
 public class EmployeeList extends PersonList<Employee,EmployeeList> implements Parcelable {
+    public static final String PARCELABLE_STR = "com.example.forcesales.Data.Employee.EmployeeList";
+
     public EmployeeList() {
         super();
     }

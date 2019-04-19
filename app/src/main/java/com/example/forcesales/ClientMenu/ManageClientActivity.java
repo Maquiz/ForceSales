@@ -1,4 +1,4 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import android.content.Intent;
 import android.os.Parcelable;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.forcesales.Data.Client.ClientList;
+import com.example.forcesales.R;
 
 public class ManageClientActivity extends AppCompatActivity {
 

@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.forcesales.ClientMenu.ClientMenuActivity;
+import com.example.forcesales.ClientMenu.EmployeeMenuActivity;
 import com.example.forcesales.Data.Account.Account;
 import com.example.forcesales.Data.Account.AccountList;
 import com.example.forcesales.Data.Application.SalesApplication;
@@ -25,7 +27,6 @@ import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.UI.Developer.DeveloperMenuActivity;
 import com.example.forcesales.UI.InfoBarActivity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /*

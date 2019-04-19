@@ -1,13 +1,15 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SubmitTicketClientActivity extends AppCompatActivity {
+import com.example.forcesales.R;
+
+public class AddSaleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submit_ticket_client);
+        setContentView(R.layout.activity_add_sale);
     }
 }

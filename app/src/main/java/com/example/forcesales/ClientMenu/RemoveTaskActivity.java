@@ -1,4 +1,4 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import android.content.Intent;
 import android.os.Parcelable;
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 
 import com.example.forcesales.Data.Tasks.TaskList;
+import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.RemoveTaskAdapter;
 
 public class RemoveTaskActivity extends AppCompatActivity {

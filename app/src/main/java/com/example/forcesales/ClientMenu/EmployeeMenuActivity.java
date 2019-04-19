@@ -1,4 +1,4 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.Employee.ApplicationsActivity;
+import com.example.forcesales.R;
 import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
 import com.example.forcesales.Data.Sale.Sales;
-import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.Data.Tasks.TaskList;
-
-
-import java.util.ArrayList;
+import com.example.forcesales.R;
 
 public class ClientMenuActivity extends AppCompatActivity {
 

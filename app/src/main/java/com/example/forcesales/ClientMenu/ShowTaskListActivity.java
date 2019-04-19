@@ -1,4 +1,4 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Tasks.Task;
-import com.example.forcesales.RecycleViewItems.ClientShowAdapter;
+import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.TaskShowAdapter;
 
 import java.util.List;

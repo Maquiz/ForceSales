@@ -1,6 +1,7 @@
-package com.example.forcesales;
+package com.example.forcesales.ClientMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -8,17 +9,23 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.forcesales.Data.Client.ClientList;
-import com.example.forcesales.RecycleViewItems.ClientShowAdapter;
 
-public class ShowClientListActivity extends AppCompatActivity {
+import com.example.forcesales.Data.Sale.Sale;
+import com.example.forcesales.Data.Sale.Sales;
+import com.example.forcesales.R;
+import com.example.forcesales.RecycleViewItems.SaleShowAdapter;
+
+import java.util.List;
+
+public class ShowSaleListActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    ClientList _List;
+    Sales temp;
 
 
     @Override
@@ -26,20 +33,17 @@ public class ShowClientListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycleview_list);
 
-        getSupportActionBar().setTitle("Manage Clients");
-
-        _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
+        temp = getIntent().getParcelableExtra("SALE_LIST");
+        List<Sale> _List = temp.getSalesList();
 
         mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ClientShowAdapter(_List);
+        mAdapter = new SaleShowAdapter(_List);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,19 +76,20 @@ public class ShowClientListActivity extends AppCompatActivity {
     }
 
     private void menuItemAdd() {
-        Intent i = new Intent(this, AddClientActivity.class);
-        i.putExtra("ACCOUNT_LIST", (Parcelable) _List);
-        startActivityForResult(i,1);
+        Intent i = new Intent(this, AddSaleActivity.class);
+        i.putExtra("SALES_LIST", (Parcelable) temp);
+        startActivityForResult(i,3);
     }
 
     private void menuItemDelete() {
-        Intent i = new Intent(this, RemoveClientActivity.class);
-        i.putExtra("ACCOUNT_LIST", (Parcelable) _List);
-        startActivityForResult(i, 1);
+        Intent i = new Intent(this, RemoveSaleActivity.class);
+        i.putExtra("SALES_LIST",(Parcelable) temp);
+        startActivityForResult(i, 3);
     }
 
     protected void updateAdapter() {
-        mAdapter = new ClientShowAdapter((_List));
+        List<Sale> _List = temp.getSalesList();
+        mAdapter = new SaleShowAdapter((_List));
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -92,12 +97,12 @@ public class ShowClientListActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
 
-        Log.d("APP", "onActivityResult called, in ManageClient Activity, with a result code of " + resultCode + " and request code of " + requestCode);
+        Log.d("APP", "onActivityResult called, in Manage Task Activity, with a result code of " + resultCode + " and request code of " + requestCode);
 
 
-        if(requestCode == 1){
+        if(requestCode == 3){
             if(resultCode == RESULT_OK){
-                _List = data.getParcelableExtra("ACCOUNT_LIST");
+                temp = data.getParcelableExtra("SALES_LIST");
                 updateAdapter();
             }
         }
@@ -107,12 +112,13 @@ public class ShowClientListActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        Log.d("APP", "onBackPressed() Override called it ManageClientActivity");
+        Log.d("APP", "onBackPressed() Override called it ManageSaleActivity");
 
         Intent result = new Intent();
 
-        result.putExtra("ACCOUNT_LIST", (Parcelable) _List);
+        result.putExtra("SALES_LIST", (Parcelable) temp);
         setResult(RESULT_OK, result);
         finish();
     }
 }
+

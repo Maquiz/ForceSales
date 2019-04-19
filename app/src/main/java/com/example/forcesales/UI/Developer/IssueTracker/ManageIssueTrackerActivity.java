@@ -113,7 +113,6 @@ public class ManageIssueTrackerActivity extends AppCompatActivity implements Sho
         startActivityForResult(i, REQUESTCODE_VIEWISSUE);
     }
 
-
     //
     // Menu Functions
     //

@@ -4,23 +4,39 @@ package com.example.forcesales;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.forcesales.Data.Application.SalesApplication;
+import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Developer.DeveloperList;
+import com.example.forcesales.Data.Employee.Employee;
+import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
+import com.example.forcesales.Data.Management.Management;
+import com.example.forcesales.Employee.AddAccountsActivity;
 import com.example.forcesales.Employee.ApplicationsActivity;
-
+import com.example.forcesales.Employee.SupportTicketActivity;
+import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerDetailedAdapter;
+import com.example.forcesales.RecycleViewItems.Employee.Applications.ApplicationShowAdapter;
+import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
 import java.util.ArrayList;
 
 public class EmployeeMenuActivity extends AppCompatActivity {
 
-    private Button mSupportTicket;
     private Button mApplications;
-    private Button mAddAccount;
-    private Button mAddClient;
+    private TextView mAcceptStat;
+    private TextView mDeniedStat;
+    private Management employee;
+
+
     private ArrayList<SalesApplication> _List = new ArrayList<>();
+    private ArrayList<SalesApplication> _AList = new ArrayList<>();
+    private ArrayList<SalesApplication> _DList = new ArrayList<>();
 
 
     @Override
@@ -28,22 +44,26 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_menu);
 
+
+
+
     //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
     _List = getIntent().getParcelableArrayListExtra("APPLICATIONS_LIST");
+    _AList = getIntent().getParcelableArrayListExtra("APPROVED_LIST");
+    _DList = getIntent().getParcelableArrayListExtra("DENIED_LIST");
+    employee = getIntent().getParcelableExtra("EMPLOYEE");
 
-        SalesApplication sa = _List.get(0);
-
+       // SalesApplication sa = _List.get(0);
 
     //initializes Manage Client Menu button, sets an on click listerner with intent to switch to the emplo Menu.
-    mSupportTicket = (Button) findViewById(R.id.support_tickets_button);
-        mSupportTicket.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+        Button sw_ticket = findViewById(R.id.support_tickets_button);
+        sw_ticket.setOnClickListener(v -> {
+            Intent i = new Intent(this, ManageIssueTrackerActivity.class);
+            i.putExtra(Management.PARCELABLE_STR, employee);
+            startActivityForResult(i, 2);
+        });
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    });
+
 
     //initializes Manage Sales Menu button, sets an on click listerner with intent to switch to he Employee Menu.
     mApplications = (Button) findViewById(R.id.manage_applications_button);
@@ -53,37 +73,19 @@ public class EmployeeMenuActivity extends AppCompatActivity {
             Intent i = new Intent(EmployeeMenuActivity.this, ApplicationsActivity.class);
 
             i.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
-
-            startActivity(i);
-
-        }
-    });
-
-    //initializes add Account button, sets an on click listerner with intent to switch to he Add Account activity.
-    mAddAccount = (Button) findViewById(R.id.add_account_button);
-        mAddAccount.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
-            toast.show();
+            i.putParcelableArrayListExtra("APPROVED_LIST", _AList);
+            i.putParcelableArrayListExtra("DENIED_LIST", _DList);
+            startActivityForResult(i,1);
 
         }
     });
 
-    //initializes Add Client Button, sets an on click listerner with intent to switch to he Client Menu.
-        mAddClient = (Button) findViewById(R.id.add_client_from_employee_button);
-        mAddClient.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-//                Intent i = new Intent(ClientMenuActivity.this, SubmitTicketClientActivity.class);
-//                startActivity(i);
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
-            toast.show();
+        mAcceptStat = findViewById(R.id.acceptAmount);
+        mAcceptStat.setText("Accepted Applications: " + _AList.size());
 
-        }
-    });
-
+        mDeniedStat = findViewById(R.id.deniedAmount);
+        mDeniedStat.setText("Denied Applications: " + _DList.size() );
 }
 
 
@@ -93,6 +95,17 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
                 _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
+                _AList = data.getParcelableArrayListExtra("APPROVED_LIST");
+                _DList = data.getParcelableArrayListExtra("DENIED_LIST");
+            }
+        }
+
+        if(requestCode == 2){
+            if(resultCode == RESULT_OK){
+              //  _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
+               // _AList = data.getParcelableArrayListExtra("APPROVED_LIST");
+               // _DList = data.getParcelableArrayListExtra("DENIED_LIST");
+                employee = data.getParcelableExtra(Management.PARCELABLE_STR);
             }
         }
     }
@@ -105,8 +118,12 @@ public class EmployeeMenuActivity extends AppCompatActivity {
 
         Intent result = new Intent();
 
-        result.putParcelableArrayListExtra("APPLICATIONS_LIST", _List);
+        result.putExtra("APPLICATIONS_LIST", _List);
+        result.putExtra("APPROVED_LIST", _AList);
+        result.putExtra("DENIED_LIST", _DList);
+        result.putExtra("EMPLOYEE",employee);
         setResult(RESULT_OK, result);
         finish();
+
     }
 }

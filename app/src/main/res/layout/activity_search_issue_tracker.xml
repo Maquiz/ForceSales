@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/search_issue_tracker_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Tittle"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/search_issue_tracker_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/search_issue_tracker_complete_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tasks That Are Completed" />
+
+    <Button
+        android:id="@+id/search_issue_tracker_incomplete_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return Tasks That Are Not Completed" />
+
+    <Button
+        android:id="@+id/search_issue_tracker_todays_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return Today's Task" />
+
+    <Button
+        android:id="@+id/search_issue_tracker_everything"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return Everything" />
+
+</LinearLayout>

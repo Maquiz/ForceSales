@@ -4,25 +4,13 @@ package com.example.forcesales;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.forcesales.Data.Application.SalesApplication;
-import com.example.forcesales.Data.Client.Client;
-import com.example.forcesales.Data.Developer.DeveloperList;
-import com.example.forcesales.Data.Employee.Employee;
-import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.Data.Management.Management;
-import com.example.forcesales.Employee.AddAccountsActivity;
 import com.example.forcesales.Employee.ApplicationsActivity;
-import com.example.forcesales.Employee.SupportTicketActivity;
-import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerDetailedAdapter;
-import com.example.forcesales.RecycleViewItems.Employee.Applications.ApplicationShowAdapter;
 import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
 import java.util.ArrayList;
 

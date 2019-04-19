@@ -2,8 +2,6 @@ package com.example.forcesales.RecycleViewItems.Employee.Applications;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +14,9 @@ import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.R;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ApplicationShowAdapter extends RecyclerView.Adapter<ApplicationShowAdapter.ApplicationShowViewHolder> {
 

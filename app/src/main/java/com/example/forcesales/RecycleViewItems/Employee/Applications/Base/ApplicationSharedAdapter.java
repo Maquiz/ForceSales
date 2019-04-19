@@ -1,10 +1,9 @@
 package com.example.forcesales.RecycleViewItems.Employee.Applications.Base;
 
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.forcesales.Data.IssueTracker.IssueTracker;
 import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.R;
@@ -12,6 +11,8 @@ import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.Base.TaskS
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /*
  * IssueTrackerSharedAdapter is the heart of the RecycleView.Adapter. It holds the information of the task list and

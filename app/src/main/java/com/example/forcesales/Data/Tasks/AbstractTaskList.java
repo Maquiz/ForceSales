@@ -15,10 +15,6 @@ package com.example.forcesales.Data.Tasks;
  * void - getTodaysTasks() - Returns a list of tasks that are due on the date that this function is called.
  */
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import com.example.forcesales.Data.Person.Person;
 import com.example.forcesales.Data.util.AbstractArrayListComparsion;
 import com.example.forcesales.Data.util.CompareTwoObjects;
 
@@ -28,8 +24,10 @@ abstract public class AbstractTaskList<A extends AbstractTask<?>, B extends Abst
 
 
     // Attributes
-    private CompareTwoObjects<A,Boolean> compare_tasks = (a, b) -> a.isTaskDone() == b;
-	  private CompareTwoObjects<A, Calendar> compare_date = (a, b) -> {
+    private CompareTwoObjects<A, String> compare_name = (a, b) -> a.getNameOfTask().contains(b);
+    private CompareTwoObjects<A, String> compare_description = (a, b) -> a.getDescriptionOfTask().contains(b);
+	private CompareTwoObjects<A, Boolean> compare_tasks = (a, b) -> a.isTaskDone() == b;
+    private CompareTwoObjects<A, Calendar> compare_date = (a, b) -> {
 	    Calendar a2 = a.getCalendarDueDate();
         return a2.get(Calendar.DAY_OF_MONTH) == b.get(Calendar.DAY_OF_MONTH)
                 && a2.get(Calendar.MONTH) == b.get(Calendar.MONTH)
@@ -40,6 +38,10 @@ abstract public class AbstractTaskList<A extends AbstractTask<?>, B extends Abst
 	protected AbstractTaskList(){
 		super();
 	}
+
+	public B containsTitle(String v) { return abstractContains(v, compare_name); }
+
+	public B containsDescription(String v) { return abstractContains(v, compare_description); }
 
 	public B getCompletedTasks() {
 	   return abstractContains(true, compare_tasks);
@@ -52,33 +54,5 @@ abstract public class AbstractTaskList<A extends AbstractTask<?>, B extends Abst
 	public B getTodaysTasks() {
 		return abstractContains(Calendar.getInstance(), compare_date).getTasks();
 	}
-
-
-//	//parcelable methods
-//	@Override
-//	public int describeContents() {
-//		return 0;
-//	}
-//
-//	@Override
-//	public void writeToParcel(Parcel dest, int flags){
-//		dest.writeList(this);
-//	}
-//
-//	//creator
-//	public static final Creator CREATOR = new Creator() {
-//		public AbstractTaskList createFromParcel(Parcel in){
-//			return new AbstractTaskList(in);
-//		}
-//
-//		public AbstractTaskList[] newArray(int size){
-//			return new AbstractTaskList[size];
-//		}
-//	};
-//
-//	//de-parecel object
-//	private AbstractTaskList(Parcel in) {
-//		in.readList(this, Task.class.getClassLoader());
-//	}
 }
 

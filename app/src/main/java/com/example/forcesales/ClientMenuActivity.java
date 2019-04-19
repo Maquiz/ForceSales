@@ -43,7 +43,7 @@ public class ClientMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Starts intent to ManageClientActivity
-                Intent i = new Intent(ClientMenuActivity.this, ManageClientActivity.class);
+                Intent i = new Intent(ClientMenuActivity.this, ShowClientListActivity.class);
 
                 //Stores the parcelable arraylist that contains all clients
                 i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
@@ -77,7 +77,7 @@ public class ClientMenuActivity extends AppCompatActivity {
         mManageTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ClientMenuActivity.this, ManageTaskActivity.class);
+                Intent i = new Intent(ClientMenuActivity.this, ShowTaskListActivity.class);
 
                 i.putExtra("TASK_LIST", _Tasks);
                 i.putExtra("ACCOUNT_LIST", _List);

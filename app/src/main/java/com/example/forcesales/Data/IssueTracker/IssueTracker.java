@@ -10,10 +10,31 @@ import java.util.Calendar;
 
 public class IssueTracker extends AbstractTask<Developer> implements Parcelable {
     public static final String PARCELABLE_STR = "com.example.forcesales.Data.IssueTracke.IssueTracker";
+    public enum LABLE {
+        NONE,
+        WONTFIX,
+        DUPLICATE,
+        QUESTION
+    }
+
+    private LABLE label;
 
     public IssueTracker(String name, String description, Developer who, Calendar due) {
         super(name, description, who, due);
+        this.label = LABLE.NONE;
     }
+
+    public LABLE getLabel() {
+        return this.label;
+    }
+
+    public void setLabel(LABLE label) {
+        this.label = label;
+    }
+
+    //
+    // Parcel Functions
+    //
 
     @Override
     public int describeContents(){
@@ -23,6 +44,7 @@ public class IssueTracker extends AbstractTask<Developer> implements Parcelable 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest,flags);
+        dest.writeInt(label.ordinal());
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
@@ -37,5 +59,6 @@ public class IssueTracker extends AbstractTask<Developer> implements Parcelable 
 
     protected IssueTracker(Parcel in) {
         super(in);
+        label = LABLE.values()[in.readInt()];
     }
 }

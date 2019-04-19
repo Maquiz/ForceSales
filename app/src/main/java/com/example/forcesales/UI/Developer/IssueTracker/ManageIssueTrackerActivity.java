@@ -9,17 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.forcesales.Data.Developer.DeveloperList;
 import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerDetailedAdapter;
+import com.example.forcesales.UI.Abstract.RecycleView.ShowDetailedInfo;
 
-public class ManageIssueTrackerActivity extends AppCompatActivity {
+public class ManageIssueTrackerActivity extends AppCompatActivity implements ShowDetailedInfo {
     private static final int REQUESTCODE_ADDISSUE = 1;
     private static final int REQUESTCODE_VIEWISSUE = 2;
     private static final int REQUESTCODE_REMOVEISSUE = 3;
+    private static final int REQUESTCODE_SEARCHISSUE = 4;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -57,6 +60,8 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUESTCODE_ADDISSUE) {
             if (resultCode == RESULT_OK) {
                 management.setDeveloperList(data.getParcelableExtra(DeveloperList.PARCELABLE_STR));
@@ -74,6 +79,12 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
         else if (requestCode == REQUESTCODE_REMOVEISSUE) {
             if (resultCode == RESULT_OK) {
                 management.setIssueTracker(data.getParcelableExtra(IssueTrackerList.PARCELABLE_STR));
+            }
+        }
+
+        else if (requestCode == REQUESTCODE_SEARCHISSUE) {
+            if (resultCode == RESULT_OK) {
+                management = data.getParcelableExtra(Management.PARCELABLE_STR);
             }
         }
 
@@ -129,6 +140,11 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
             case R.id.manage_list_delete:
                 menuItemDelete();
                 break;
+            case R.id.manage_list_search:
+                Toast disappointed = Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT);;
+                disappointed.show();
+//                menuItemSearch();
+                break;
             default:                        // If you have not met any of the cases
                 return super.onOptionsItemSelected(item);
         }
@@ -148,5 +164,11 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
         Intent i = new Intent(this, RemoveIssueTrackerActivity.class);
         i.putExtra(IssueTrackerList.PARCELABLE_STR, (Parcelable) management.getIssueTracker());
         startActivityForResult(i, REQUESTCODE_REMOVEISSUE);
+    }
+
+    private void menuItemSearch() {
+        Intent i = new Intent(this, SearchIssueTrackerActivity.class);
+        i.putExtra(Management.PARCELABLE_STR, management);
+        startActivityForResult(i, REQUESTCODE_SEARCHISSUE);
     }
 }

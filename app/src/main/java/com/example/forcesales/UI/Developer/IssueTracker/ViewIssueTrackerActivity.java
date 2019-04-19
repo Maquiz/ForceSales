@@ -26,12 +26,17 @@ public class ViewIssueTrackerActivity extends AppCompatActivity {
     private TextView assigned_edit;
     private TextView assigned_date_edit;
     private TextView due_date_edit;
+    private TextView issue_open_or_closed;
+    private TextView label;
 
     private void updateTextInfo() {
         IssueTracker current_issue = issue_tracker_list.get(current_issue_tracker_pos);
 
         title_edit.setText(current_issue.getNameOfTask());
         description_edit.setText(current_issue.getDescriptionOfTask());
+        issue_open_or_closed.setText(current_issue.isTaskDone() ? "Closed":"Open");
+        label.setText(current_issue.getLabel().name());
+
         assigned_edit.setText(
                 String.format(
                         "%s %s",
@@ -72,6 +77,8 @@ public class ViewIssueTrackerActivity extends AppCompatActivity {
         assigned_edit = findViewById(R.id.textView_issue_tracker_assigned_modified);
         assigned_date_edit = findViewById(R.id.textView_issue_tracker_assigned_date_modified);
         due_date_edit = findViewById(R.id.textView_issue_tracker_due_date_modified);
+        issue_open_or_closed = findViewById(R.id.textView_issue_tracker_issue_status_openedclosed);
+        label = findViewById(R.id.textView_issue_tracker_issue_status_label);
 
         updateTextInfo();
     }

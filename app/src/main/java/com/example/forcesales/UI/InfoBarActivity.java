@@ -8,6 +8,7 @@ import android.widget.Button;
 import com.example.forcesales.Data.Account.AccountList;
 import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.R;
+import com.example.forcesales.UI.InfoBar.DeveloperInfoStats;
 
 public class InfoBarActivity extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class InfoBarActivity extends AppCompatActivity {
     private void setDeveloperButton() {
         mDeveloper = findViewById(R.id.info_developer_button);
         mDeveloper.setOnClickListener(v -> {
-            Intent i = new Intent(this, null);
+            Intent i = new Intent(this, DeveloperInfoStats.class);
             i.putExtra(Management.PARCELABLE_STR, management);
             startActivity(i);
         });

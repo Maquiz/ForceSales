@@ -35,6 +35,8 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        getSupportActionBar().setTitle("Add Tasks");
+
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
         _List =  getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
         _Task = getIntent().getParcelableArrayListExtra("TASK_LIST");

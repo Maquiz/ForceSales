@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //Storing the client list in the intent as a ParcelableArrayList.
                 i.putExtra("ACCOUNT_LIST", (Parcelable) account.getClients());
-                i.putParcelableArrayListExtra("TASK_LIST", account.getTasks());
+                i.putExtra("TASK_LIST", (Parcelable) account.getTasks());
                 i.putExtra("SALE_LIST", (Parcelable) account.getSales());
 
                 //Starting activity for a result, which means that this activity will expect a return when the next activity closes. See onActivityResult().
@@ -214,15 +214,10 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == RETURNCODE_SETTASKS) {
             if (resultCode == RESULT_OK) {
 
-                ArrayList<Task> temp;
 
-                temp = data.getParcelableArrayListExtra("TASK_LIST");
+                account.setTasks(data.getParcelableExtra("TASK_LIST"));
+                account.setClients(data.getParcelableExtra("ACCOUNT_LIST"));
 
-                account.getTasks().clear();
-
-                for (int i = 0; i < temp.size(); i++) {
-                    account.getTasks().add(temp.get(i));
-                }
 
                 Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
 
@@ -232,4 +227,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 }

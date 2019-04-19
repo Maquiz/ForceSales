@@ -23,6 +23,8 @@ public class RemoveTaskActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_recycleview_list);
 
+            getSupportActionBar().setTitle("Remove Tasks");
+
             _List =  getIntent().getParcelableExtra("TASK_LIST");
 
             mRecyclerView = findViewById(R.id.abstract_recycleview_list);
@@ -41,7 +43,7 @@ public class RemoveTaskActivity extends AppCompatActivity {
             Log.d("APP", "onBackPressed() Override called it RemoveClientActivity");
 
             Intent result = new Intent();
-            result.putExtra("ACCOUNT_LIST", (Parcelable) _List);
+            result.putExtra("TASK_LIST", (Parcelable) _List);
             setResult(RESULT_OK, result);
             finish();
         }

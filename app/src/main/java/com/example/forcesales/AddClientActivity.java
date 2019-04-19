@@ -27,6 +27,8 @@ public class AddClientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
 
+        getSupportActionBar().setTitle("Add Clients");
+
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
         ClientList _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 

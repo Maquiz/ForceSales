@@ -2,22 +2,20 @@ package com.example.forcesales.RecycleViewItems;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.forcesales.Data.Tasks.Task;
 import com.example.forcesales.R;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class RemoveTaskAdapter extends RecyclerView.Adapter<RemoveTaskAdapter.RemoveTaskViewHolder> {
 
-    private static ArrayList<Task> mTaskList;
+    private static List<Task> mTaskList;
 
     public static class RemoveTaskViewHolder extends RecyclerView.ViewHolder{
 
@@ -47,7 +45,7 @@ public class RemoveTaskAdapter extends RecyclerView.Adapter<RemoveTaskAdapter.Re
         }
     }
 
-    public RemoveTaskAdapter(ArrayList<Task> taskList){
+    public RemoveTaskAdapter(List<Task> taskList){
         mTaskList = taskList;
     }
 

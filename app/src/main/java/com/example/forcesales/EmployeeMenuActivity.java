@@ -2,7 +2,7 @@ package com.example.forcesales;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +24,6 @@ import com.example.forcesales.Employee.SupportTicketActivity;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerDetailedAdapter;
 import com.example.forcesales.RecycleViewItems.Employee.Applications.ApplicationShowAdapter;
 import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
-
 import java.util.ArrayList;
 
 public class EmployeeMenuActivity extends AppCompatActivity {

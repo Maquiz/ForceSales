@@ -14,8 +14,8 @@ import java.io.Serializable;
  * 						Employee Menu
  */
 
-
 public class Employee extends Person implements Parcelable {
+
 	private SalesApplicationList appList;
 	private SalesApplicationList approvedApps;
 	private SalesApplicationList deniedApps;

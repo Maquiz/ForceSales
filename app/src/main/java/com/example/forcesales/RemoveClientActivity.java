@@ -2,18 +2,14 @@ package com.example.forcesales;
 
 import android.content.Intent;
 import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 
-import com.example.forcesales.Data.Client.Client;
 import com.example.forcesales.Data.Client.ClientList;
-import com.example.forcesales.R;
 import com.example.forcesales.RecycleViewItems.RemoveClientAdapter;
-
-import java.util.ArrayList;
 
 public class RemoveClientActivity extends AppCompatActivity {
 
@@ -26,6 +22,8 @@ public class RemoveClientActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycleview_list);
+
+        getSupportActionBar().setTitle("Remove Clients");
 
         _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 

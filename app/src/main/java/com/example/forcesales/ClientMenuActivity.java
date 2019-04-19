@@ -1,16 +1,19 @@
 package com.example.forcesales;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Client.ClientList;
 import com.example.forcesales.Data.Sale.Sales;
 import com.example.forcesales.Data.Tasks.Task;
+import com.example.forcesales.Data.Tasks.TaskList;
 
 
 import java.util.ArrayList;
@@ -21,8 +24,8 @@ public class ClientMenuActivity extends AppCompatActivity {
     private Button mManageSale;
     private Button mManageTask;
     private Button mSubmitTicket;
-    private ArrayList<Client> _List = new ArrayList<>();
-    private ArrayList<Task> _Tasks;
+    private ClientList _List;
+    private TaskList _Tasks;
     private Sales _Sales;
 
 
@@ -31,9 +34,11 @@ public class ClientMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_menu);
 
+        getSupportActionBar().setTitle("Business Menu");
+
         //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
-        _List = getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
-        _Tasks = getIntent().getParcelableArrayListExtra("TASK_LIST");
+        _List = getIntent().getParcelableExtra("ACCOUNT_LIST");
+        _Tasks = getIntent().getParcelableExtra("TASK_LIST");
         _Sales = getIntent().getParcelableExtra("SALE_LIST");
 
 
@@ -43,7 +48,7 @@ public class ClientMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Starts intent to ManageClientActivity
-                Intent i = new Intent(ClientMenuActivity.this, ManageClientActivity.class);
+                Intent i = new Intent(ClientMenuActivity.this, ShowClientListActivity.class);
 
                 //Stores the parcelable arraylist that contains all clients
                 i.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
@@ -77,10 +82,10 @@ public class ClientMenuActivity extends AppCompatActivity {
         mManageTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ClientMenuActivity.this, ManageTaskActivity.class);
+                Intent i = new Intent(ClientMenuActivity.this, ShowTaskListActivity.class);
 
-                i.putExtra("TASK_LIST", _Tasks);
-                i.putExtra("ACCOUNT_LIST", _List);
+                i.putExtra("TASK_LIST", (Parcelable) _Tasks);
+                i.putExtra("ACCOUNT_LIST", (Parcelable) _List);
 
                 startActivityForResult(i, 2);
 
@@ -108,7 +113,7 @@ public class ClientMenuActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == 1){
             if(resultCode == RESULT_OK){
-                _List = data.getParcelableArrayListExtra("ACCOUNT_LIST");
+                _List = data.getParcelableExtra("ACCOUNT_LIST");
             }
         }
 
@@ -128,9 +133,9 @@ public class ClientMenuActivity extends AppCompatActivity {
 
         Intent result = new Intent();
 
-        result.putParcelableArrayListExtra("ACCOUNT_LIST", _List);
+        result.putExtra("ACCOUNT_LIST", (Parcelable) _List);
 
-        result.putParcelableArrayListExtra("TASK_LIST", _Tasks);
+        result.putExtra("TASK_LIST", (Parcelable) _Tasks);
 
         setResult(RESULT_OK, result);
         finish();

@@ -1,9 +1,7 @@
 package com.example.forcesales;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.forcesales.R;
 
 public class SubmitTicketClientActivity extends AppCompatActivity {
 

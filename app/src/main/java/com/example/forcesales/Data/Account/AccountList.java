@@ -27,6 +27,8 @@ import com.example.forcesales.Data.util.CompareTwoObjects;
 
 
 public final class AccountList extends AbstractArrayListComparsion<Account, AccountList> implements Parcelable {
+	static final public String PARCELABLE_STR = "com.example.forcesales.Data.Account.AccountList";
+
 	// Lamadas are used to avoid code repetition
 	private CompareTwoObjects<Account,String> compare_account_name = (a,b) -> a.getAccountName().equalsIgnoreCase(b);
 	private CompareTwoObjects<Account,String> compare_oportunity_name = (a,b) -> a.getOpportunityName().equalsIgnoreCase(b);

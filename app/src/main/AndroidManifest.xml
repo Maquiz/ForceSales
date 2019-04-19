@@ -10,6 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TestHelper.IssueTrackerHelper" />
+        <activity android:name=".UI.InfoBarActivity" />
         <activity android:name=".ShowSaleListActivity" />
         <activity android:name=".AddSaleActivity" />
         <activity android:name=".RemoveSaleActivity" />

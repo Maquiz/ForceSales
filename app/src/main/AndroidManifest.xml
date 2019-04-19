@@ -10,6 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UI.Developer.IssueTracker.SearchOptionIssueTrackerActivity" />
+        <activity android:name=".UI.Developer.IssueTracker.SearchIssueTrackerActivity" />
+        <activity android:name=".UI.InfoBar.DeveloperInfoStats" />
         <activity android:name=".UI.Developer.AddEmployeeActivity" />
         <activity android:name=".TestHelper.IssueTrackerHelper" />
         <activity android:name=".UI.InfoBarActivity" />

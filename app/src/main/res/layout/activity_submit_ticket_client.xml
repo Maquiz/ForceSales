@@ -66,6 +66,26 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/report-issue_openclosed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Opened or Closed" />
+
+            <Button
+                android:id="@+id/report-issue_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Label" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/report-issue_submit"
             android:layout_width="wrap_content"

@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mClientMenu;
 
     private Employee employee = new Employee();
+    private Management empManagement = new Management();
     private Account account = new Account();
     private AccountList account_array = new AccountList();
     private Management management = new Management();
@@ -77,6 +78,22 @@ public class MainActivity extends AppCompatActivity {
             salesApp.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
             salesApp.setEmail(applicant_email[i]);
             employee.getAppList().add(salesApp);
+        }
+        //Employee Tasks
+        String emp_first_name[] = {"Thomas", "Arend", "Maximilian"};
+        String emp_last_name[] = {"A", "S", "B"};
+        String emp_issue_title[] = {"Take Over The World","Make App Even More Better!","The Master With A Plan"};
+        String emp_issue_description[] = {"", "Arend has done a great job with the android app", "He is going to glue it all together"};
+
+        for (int i = 0; i < 3; i++) {
+            Developer new_dev = new Developer();
+            new_dev.setFirstName(dev_first_name[i]);
+            new_dev.setLastName(dev_last_name[i]);
+            new_dev.setAddress(new Address("742 Evergreen Terrace", "Hayward", "CA", "94545"));
+            new_dev.setEmail(String.format("%s.%s@forcesale.com", dev_first_name[i], dev_last_name[i]));
+            empManagement.getDeveloperList().add(new_dev);
+
+            empManagement.getIssueTracker().add(new IssueTracker(dev_issue_title[i], dev_issue_description[i], new_dev, Calendar.getInstance()));
         }
 
         account.setAccountName("McDonald's");
@@ -132,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
             i.putParcelableArrayListExtra("APPROVED_LIST", employee.getApprovedList());
             i.putParcelableArrayListExtra("DENIED_LIST", employee.getDeniedList());
-            i.putExtra("EMPLOYEE", employee);
+            i.putExtra("EMPLOYEE", empManagement);
             startActivityForResult(i, RETURNCODE_MAXMAGIC);
 
         });
@@ -188,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                 employee.setAppList(data.getParcelableExtra("APPLICATIONS_LIST"));
                 employee.setApprovedList (data.getParcelableExtra("APPROVED_LIST"));
                 employee.setDeniedList(data.getParcelableExtra("DENIED_LIST"));
+                empManagement = data.getParcelableExtra("EMPLOYEE");
                 Log.d("APP", "Clients passed, post onActivityResult in MainActivity.");
             }
         }

@@ -33,9 +33,9 @@ public class Employee extends Person implements Parcelable {
 
 	protected Employee(Parcel in){
 		super();
-		appList = in.readParcelable(SalesApplicationList.class.getClassLoader());
-		approvedApps = 	in.readParcelable(SalesApplicationList.class.getClassLoader());
-		deniedApps = in.readParcelable(SalesApplicationList.class.getClassLoader());
+	//	appList = in.readParcelable(SalesApplicationList.class.getClassLoader());
+	//	approvedApps = 	in.readParcelable(SalesApplicationList.class.getClassLoader());
+	//	deniedApps = in.readParcelable(SalesApplicationList.class.getClassLoader());
 		issue_tracker = in.readParcelable(TaskList.class.getClassLoader());
 	}
 	public static final Creator<Employee> CREATOR = new Creator<Employee>() {

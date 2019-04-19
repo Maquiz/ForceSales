@@ -102,7 +102,6 @@ public class ManageIssueTrackerActivity extends AppCompatActivity {
         startActivityForResult(i, REQUESTCODE_VIEWISSUE);
     }
 
-
     //
     // Menu Functions
     //

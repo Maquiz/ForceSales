@@ -14,7 +14,10 @@ import android.widget.Toast;
 
 import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Developer.DeveloperList;
 import com.example.forcesales.Data.Employee.Employee;
+import com.example.forcesales.Data.IssueTracker.IssueTrackerList;
+import com.example.forcesales.Data.Management.Management;
 import com.example.forcesales.Employee.AddAccountsActivity;
 import com.example.forcesales.Employee.ApplicationsActivity;
 import com.example.forcesales.Employee.SupportTicketActivity;
@@ -29,7 +32,7 @@ public class EmployeeMenuActivity extends AppCompatActivity {
     private Button mApplications;
     private TextView mAcceptStat;
     private TextView mDeniedStat;
-    private Employee employee;
+    private Management employee;
 
 
     private ArrayList<SalesApplication> _List = new ArrayList<>();
@@ -57,7 +60,7 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         Button sw_ticket = findViewById(R.id.support_tickets_button);
         sw_ticket.setOnClickListener(v -> {
             Intent i = new Intent(this, ManageIssueTrackerActivity.class);
-            i.putExtra(Employee.PARCELABLE_STR, employee);
+            i.putExtra(Management.PARCELABLE_STR, employee);
             startActivityForResult(i, 2);
         });
 
@@ -100,9 +103,10 @@ public class EmployeeMenuActivity extends AppCompatActivity {
 
         if(requestCode == 2){
             if(resultCode == RESULT_OK){
-                _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
-                _AList = data.getParcelableArrayListExtra("APPROVED_LIST");
-                _DList = data.getParcelableArrayListExtra("DENIED_LIST");
+              //  _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
+               // _AList = data.getParcelableArrayListExtra("APPROVED_LIST");
+               // _DList = data.getParcelableArrayListExtra("DENIED_LIST");
+                employee = data.getParcelableExtra(Management.PARCELABLE_STR);
             }
         }
     }
@@ -118,11 +122,9 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         result.putExtra("APPLICATIONS_LIST", _List);
         result.putExtra("APPROVED_LIST", _AList);
         result.putExtra("DENIED_LIST", _DList);
+        result.putExtra("EMPLOYEE",employee);
         setResult(RESULT_OK, result);
         finish();
 
-
     }
-
-
 }

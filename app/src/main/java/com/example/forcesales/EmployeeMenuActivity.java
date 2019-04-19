@@ -14,22 +14,23 @@ import android.widget.Toast;
 
 import com.example.forcesales.Data.Application.SalesApplication;
 import com.example.forcesales.Data.Client.Client;
+import com.example.forcesales.Data.Employee.Employee;
 import com.example.forcesales.Employee.AddAccountsActivity;
 import com.example.forcesales.Employee.ApplicationsActivity;
 import com.example.forcesales.Employee.SupportTicketActivity;
 import com.example.forcesales.RecycleViewItems.Developer.IssueTracker.IssueTrackerDetailedAdapter;
 import com.example.forcesales.RecycleViewItems.Employee.Applications.ApplicationShowAdapter;
+import com.example.forcesales.UI.Developer.IssueTracker.ManageIssueTrackerActivity;
 
 import java.util.ArrayList;
 
 public class EmployeeMenuActivity extends AppCompatActivity {
 
-    private Button mSupportTicket;
     private Button mApplications;
-    private Button mAddAccount;
-    private Button mAddClient;
     private TextView mAcceptStat;
     private TextView mDeniedStat;
+    private Employee employee;
+
 
     private ArrayList<SalesApplication> _List = new ArrayList<>();
     private ArrayList<SalesApplication> _AList = new ArrayList<>();
@@ -42,23 +43,25 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_menu);
 
 
+
+
     //pull client list from the previous intent for use in this activity. (no casting required, just store in a ArrayList<Client>)
     _List = getIntent().getParcelableArrayListExtra("APPLICATIONS_LIST");
     _AList = getIntent().getParcelableArrayListExtra("APPROVED_LIST");
     _DList = getIntent().getParcelableArrayListExtra("DENIED_LIST");
+    employee = getIntent().getParcelableExtra("EMPLOYEE");
 
        // SalesApplication sa = _List.get(0);
 
     //initializes Manage Client Menu button, sets an on click listerner with intent to switch to the emplo Menu.
-    mSupportTicket = (Button) findViewById(R.id.support_tickets_button);
-        mSupportTicket.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+        Button sw_ticket = findViewById(R.id.support_tickets_button);
+        sw_ticket.setOnClickListener(v -> {
+            Intent i = new Intent(this, ManageIssueTrackerActivity.class);
+            i.putExtra(Employee.PARCELABLE_STR, employee);
+            startActivityForResult(i, 2);
+        });
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    });
+
 
     //initializes Manage Sales Menu button, sets an on click listerner with intent to switch to he Employee Menu.
     mApplications = (Button) findViewById(R.id.manage_applications_button);
@@ -75,30 +78,6 @@ public class EmployeeMenuActivity extends AppCompatActivity {
         }
     });
 
-    //initializes add Account button, sets an on click listerner with intent to switch to he Add Account activity.
-    mAddAccount = (Button) findViewById(R.id.add_account_button);
-        mAddAccount.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
-            toast.show();
-
-        }
-    });
-
-    //initializes Add Client Button, sets an on click listerner with intent to switch to he Client Menu.
-        mAddClient = (Button) findViewById(R.id.add_client_from_employee_button);
-        mAddClient.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-//                Intent i = new Intent(ClientMenuActivity.this, SubmitTicketClientActivity.class);
-//                startActivity(i);
-
-            Toast toast = Toast.makeText(getApplicationContext(), "Coming soon", Toast.LENGTH_SHORT);
-            toast.show();
-
-        }
-    });
 
         mAcceptStat = findViewById(R.id.acceptAmount);
         mAcceptStat.setText("Accepted Applications: " + _AList.size());
@@ -112,6 +91,14 @@ public class EmployeeMenuActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == 1){
+            if(resultCode == RESULT_OK){
+                _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
+                _AList = data.getParcelableArrayListExtra("APPROVED_LIST");
+                _DList = data.getParcelableArrayListExtra("DENIED_LIST");
+            }
+        }
+
+        if(requestCode == 2){
             if(resultCode == RESULT_OK){
                 _List = data.getParcelableArrayListExtra("APPLICATIONS_LIST");
                 _AList = data.getParcelableArrayListExtra("APPROVED_LIST");

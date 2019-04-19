@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             i.putParcelableArrayListExtra("APPLICATIONS_LIST", employee.getAppList());
             i.putParcelableArrayListExtra("APPROVED_LIST", employee.getApprovedList());
             i.putParcelableArrayListExtra("DENIED_LIST", employee.getDeniedList());
+            i.putExtra("EMPLOYEE", employee);
             startActivityForResult(i, RETURNCODE_MAXMAGIC);
 
         });

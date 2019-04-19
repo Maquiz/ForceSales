@@ -23,6 +23,8 @@ public class RemoveTaskActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_recycleview_list);
 
+            getSupportActionBar().setTitle("Remove Tasks");
+
             _List =  getIntent().getParcelableExtra("TASK_LIST");
 
             mRecyclerView = findViewById(R.id.abstract_recycleview_list);

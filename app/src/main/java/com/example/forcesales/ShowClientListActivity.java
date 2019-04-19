@@ -18,7 +18,6 @@ public class ShowClientListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private int current_issue_tracker_pos;
     ClientList _List;
 
 
@@ -27,8 +26,9 @@ public class ShowClientListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycleview_list);
 
+        getSupportActionBar().setTitle("Manage Clients");
+
         _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
-        current_issue_tracker_pos = getIntent().getIntExtra("INTEGER", 0);
 
         mRecyclerView = findViewById(R.id.abstract_recycleview_list);
         mRecyclerView.setHasFixedSize(true);

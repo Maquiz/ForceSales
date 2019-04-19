@@ -34,6 +34,8 @@ public class ShowTaskListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycleview_list);
 
+        getSupportActionBar().setTitle("Manage Tasks");
+
         _List = getIntent().getParcelableArrayListExtra("TASK_LIST");
         _Client = getIntent().getParcelableArrayListExtra("ACCOUNT_LIST");
 

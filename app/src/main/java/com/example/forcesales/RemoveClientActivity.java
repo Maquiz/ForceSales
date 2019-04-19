@@ -23,6 +23,8 @@ public class RemoveClientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycleview_list);
 
+        getSupportActionBar().setTitle("Remove Clients");
+
         _List =  getIntent().getParcelableExtra("ACCOUNT_LIST");
 
         mRecyclerView = findViewById(R.id.abstract_recycleview_list);
